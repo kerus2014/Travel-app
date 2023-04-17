@@ -1,0 +1,19 @@
+// @import "../../styles/variables.scss";
+
+.link {
+  padding: 10px 0px;
+  cursor: pointer;
+  opacity: 0.6;
+
+  & * {
+    color: black;
+  }
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.activeLink {
+  opacity: 1;
+}
