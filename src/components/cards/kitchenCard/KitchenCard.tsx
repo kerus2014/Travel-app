@@ -1,12 +1,7 @@
+import { IKitchenCard } from "../../../types";
 import styles from "./KitchenCard.module.scss";
 
-interface IKitchenCard {
-  image: string;
-  title: string;
-  description: string;
-}
-
-const KitchenCard = (props: IKitchenCard) => {
+export const KitchenCard = (props: IKitchenCard) => {
   const { image, title, description } = props;
   return (
     <div className={styles.card}>
@@ -22,5 +17,3 @@ const KitchenCard = (props: IKitchenCard) => {
     </div>
   );
 };
-
-export default KitchenCard;

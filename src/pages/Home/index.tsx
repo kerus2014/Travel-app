@@ -1,6 +1,6 @@
 import styles from "./index.module.scss"
 import { Container } from "../../components/Container"
-import { KitchenCard } from "../../components/cards/kitchenCard"
+import { KitchenCard } from "../../components/cards/kitchenCard/KitchenCard"
 import { DatePicker } from "../../components/datePicker"
 import { useState } from "react"
 import { FlagItem } from "../../components/FlagItem"
@@ -9,6 +9,10 @@ import { MainButton } from "../../components/buttons/mainButton/MainButton"
 import { BackgroundBlockImage } from "../../components/BackgroundBlockImage"
 import image from "../../assets/pics/Home/faceBlock/20200806_154912 1.png";
 import { Form } from "../../components/Form"
+import { HomeBlockTemplate } from "../../components/HomeBlockTemplate"
+import { housesData, kitchenCardData } from "../../services/datas"
+import { HouseLittleCard } from "../../components/cards/HouseLittleCard"
+import { SimpleSlider } from "../../components/SimpleSlider"
 
 export const Home = () => {
   const [date, setDate] = useState(() => new Date());
@@ -38,17 +42,45 @@ export const Home = () => {
       </div>
       <Form value="Заповедный остров" buttonValue="Найти домик" className={styles.form}/>
 
-      
+      <HomeBlockTemplate title="Домики" className={styles.houses}>
+        <p>
+          Проживание - полный пансион!
+        </p>
+        <p>
+          Стоимость на аренду меняется в зависимости от времени года, продолжительности отдыха и дней недели.
+        </p>
+        <p>
+          У нас представлены разные варианты отдыха от эконом до VIP. Бывают спец.предложения и "форточки".
+        </p>
+        <div className={styles.cards}>
+          {housesData.map((el,index) => {
+            return (<HouseLittleCard 
+            key={index.toString()}  
+            title={el.title} 
+            description_short={el.description_short} 
+            photos={el.photos} 
+            price_weekday={el.price_weekday}/>)
+          })}
+        </div>
+        <MainButton value="Подробнее"/>
+      </HomeBlockTemplate>
 
-      {/* <FlagItem value={"jn fdssg 150"} />
-      <KitchenCard
-        image={logo}
-        title={"СУП КУРИНЫЙ"}
-        description={
-          "Куриный суп с вермишелью  с удовольствием съедят и дети, и взрослые."
-        }
-      />
-      <DatePicker value={date} handler={setFirstDate} /> */}
+      <HomeBlockTemplate title="Домашняя кухня">
+        <p>Полноценный отдых не обойдется без хорошего питания! Мы готовы угостить наших гостей домашней кухней. </p>
+        <p>У нас имеется свое подворье и огород. Некоторые блюда готовятся в русской печи, а что-то и на мангале, костре.</p>
+        <div>
+          <SimpleSlider>
+            {kitchenCardData.map((el,index) => {
+              return <KitchenCard
+              key={index.toString()}
+              image={el.image}
+              title={el.title}
+              description={el.description}
+              />
+            })}
+          </SimpleSlider>
+        </div>
+      </HomeBlockTemplate>
     </>
   )
 }

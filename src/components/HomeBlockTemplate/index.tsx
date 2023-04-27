@@ -5,9 +5,10 @@ import styles from "./index.module.scss";
 interface Props extends ClassName {
   children: React.ReactNode;
   id?:string;
+  title:string;
 }
 
-export const BlockTemplate = (props: Props) => {
+export const HomeBlockTemplate = (props: Props) => {
   return (
     <div
       className={
@@ -15,7 +16,10 @@ export const BlockTemplate = (props: Props) => {
       }
       id={props.id}
     >
-      <Container>{props.children}</Container>
+      <Container>
+        <div className={styles.title}>{props.title}</div>
+        {props.children}
+      </Container>
     </div>
   );
 };

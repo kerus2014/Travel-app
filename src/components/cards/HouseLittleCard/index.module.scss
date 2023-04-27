@@ -1,0 +1,47 @@
+.card{
+  flex-basis: 379px;
+  flex-shrink: 0;
+  height: 401px;
+  position: relative;
+  background: #FFFFFF;
+  box-shadow: 0px 4px 17px 5px rgba(218, 203, 203, 0.4);
+
+  h1{
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 500;
+  }
+
+  p{
+    margin-top: 5px;
+    font-size: 16px;
+    line-height: 20px;
+  }
+}
+
+.text-content{
+  padding: 15px 25px 25px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.image{
+  width: 100%;
+  height: 274px;
+
+  img{
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.flag{
+  position: absolute;
+  top:10px;
+  left:-10px;
+}
+
+.card+.card{
+  margin-left: 20px;
+}

@@ -13,17 +13,24 @@
 }
 
 .title{
-  color: white;
-  font-size: 80px;
-  line-height: 80px;
-  font-weight: 700;
+  font-size: 50px;
+  line-height: 61px;
+  font-weight: 500;
 }
 
 .left-side{
   padding-top: 100px;
 
+  .title{
+    color: white;
+    font-size: 80px;
+    line-height: 80px;
+    font-weight: 700;
+  }
+
   p{
-   color: white; 
+   color: white;
+   margin-top: 30px; 
   }
 }
 
@@ -37,4 +44,20 @@
   top:749px;
   left: 50%;
   transform: translateX(-50%);
+}
+
+.houses{
+  padding-top: 104px!important;
+
+  .cards{
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    position: relative;
+    justify-content: center;    
+  }
+
+  button{
+    margin: 0 auto;
+  }
 }
