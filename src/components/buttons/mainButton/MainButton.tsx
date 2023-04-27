@@ -5,7 +5,7 @@ interface IButton {
   handler?: () => void;
 }
 
-const MainButton = (props: IButton) => {
+export const MainButton = (props: IButton) => {
   const { value, handler } = props;
   return (
     <button onClick={handler} className={styles.button}>
@@ -14,4 +14,3 @@ const MainButton = (props: IButton) => {
   );
 };
 
-export default MainButton;

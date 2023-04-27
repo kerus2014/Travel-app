@@ -1,10 +1,11 @@
 import styles from "./FlagItem.module.scss";
+import React from "react";
 
 interface IProps {
   value: string;
 }
 
-const FlagItem = (props: IProps) => {
+export const FlagItem = (props: IProps) => {
   const { value } = props;
   return (
     <div className={styles.flag}>
@@ -13,4 +14,3 @@ const FlagItem = (props: IProps) => {
   );
 };
 
-export default FlagItem;

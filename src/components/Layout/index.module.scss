@@ -1,0 +1,45 @@
+@import "../../styles/varaibles.scss";
+
+.layout{
+  padding-top: 84px;
+}
+
+.arrow-top{
+  z-index: 2;
+  bottom: 20px;
+  right: 20px;
+  position: fixed;
+  width: 50px;
+  height: 50px;
+  background-color: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border: 1px solid $primaryColor;
+
+  @media (max-width:1000px) {
+    display: none;
+  }
+
+  &:hover{
+    border: 2px solid $primaryColor;
+  }
+
+  &:hover *{
+    height:31;
+    stroke-width:2;
+  }
+
+  div{
+    height: 31px;
+  }
+}
+
+.hide{
+  display: none;
+}
+
+.header-background{
+  background-color: $primaryColor;
+}

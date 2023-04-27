@@ -1,0 +1,25 @@
+@import "../../styles/varaibles.scss";
+
+.form{
+  display: flex;
+  background-color: $secondaryColor;
+  align-items: center;
+  height: 106px;
+  width: fit-content;
+  min-width: 761px;
+  justify-content: center;
+  margin: 0 auto;
+  
+  p{
+    font-size: 25px;
+    line-height: 30px;
+    font-weight: 500;
+    flex-shrink: 0;
+    text-transform: uppercase;
+  }
+
+  button{
+    flex-shrink: 0;
+    margin-left: 104px;
+  }
+}

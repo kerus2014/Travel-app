@@ -1,0 +1,40 @@
+@import "../../styles/varaibles.scss";
+
+.face-block{
+  width: 100%;
+  height: 718px;
+  position: relative;
+}
+
+.content-container{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 106px;
+}
+
+.title{
+  color: white;
+  font-size: 80px;
+  line-height: 80px;
+  font-weight: 700;
+}
+
+.left-side{
+  padding-top: 100px;
+
+  p{
+   color: white; 
+  }
+}
+
+.right-side{
+  padding-top: 56px;
+  color: white;
+}
+
+.form{
+  position: absolute;
+  top:749px;
+  left: 50%;
+  transform: translateX(-50%);
+}

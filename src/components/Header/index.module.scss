@@ -1,0 +1,18 @@
+@import "../../styles/varaibles.scss";
+
+.header{
+  height: 84px;
+  display: flex;
+  align-items: center;
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  z-index: 2;
+  transition-duration: 0.25s;
+}
+
+.content-container{
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}

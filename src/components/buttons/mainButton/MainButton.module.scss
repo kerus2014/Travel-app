@@ -1,12 +1,16 @@
 @import "../../../styles/varaibles.scss";
+
 $height: 54px;
+
 .button {
-  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   height: $height;
-  background-color: $button-color;
+  background-color: $primaryColor;
   border-style: none;
   cursor: pointer;
+  color: white;
+  font-weight: 500;
+  flex-basis: 240px;
 }
