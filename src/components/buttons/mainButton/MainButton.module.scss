@@ -1,12 +1,24 @@
 @import "../../../styles/varaibles.scss";
+
 $height: 54px;
+
 .button {
-  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   height: $height;
-  background-color: $button-color;
+  background-color: $primaryColor;
   border-style: none;
   cursor: pointer;
+  color: white;
+  font-weight: 500;
+  min-width: 240px;
+  box-shadow: 0px 0px 20px rgba(50, 33, 13, 0.35), inset 0px 0px 15px rgba(63, 40, 14, 0.25);
+
+  &:hover{
+    background: #C1B397;
+    border: 1px solid #583711;
+    box-shadow: 0px 0px 20px rgba(50, 33, 13, 0.35), inset 0px 0px 15px rgba(63, 40, 14, 0.25);
+    color: $primaryColor;
+  }
 }

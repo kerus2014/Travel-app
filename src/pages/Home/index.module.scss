@@ -1,0 +1,79 @@
+@import "../../styles/varaibles.scss";
+
+.face-block{
+  width: 100%;
+  height: 718px;
+  position: relative;
+}
+
+.content-container{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 106px;
+}
+
+.title{
+  font-size: 50px;
+  line-height: 61px;
+  font-weight: 500;
+}
+
+.left-side{
+  padding-top: 100px;
+
+  .title{
+    color: white;
+    font-size: 80px;
+    line-height: 80px;
+    font-weight: 700;
+  }
+
+  p{
+   color: white;
+   margin-top: 30px; 
+  }
+}
+
+.right-side{
+  padding-top: 56px;
+  color: white;
+}
+
+.form{
+  position: absolute;
+  top:749px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.houses{
+  padding-top: 104px!important;
+
+  .cards{
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    position: relative;
+    justify-content: center;    
+  }
+
+  button{
+    margin: 0 auto;
+  }
+}
+
+.carousel-container{
+  margin-top: 20px;
+}
+
+.entertainment-container{
+  margin-top: 15px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap:30px;
+}
+
+.entertainment-button{
+  margin-top: 30px!important;
+  margin: 0 auto;
+}

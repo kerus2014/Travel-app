@@ -1,0 +1,52 @@
+@import "../../styles/varaibles.scss";
+
+.layout{
+  padding-top: 84px;
+  overflow: hidden;
+}
+
+.arrow-top{
+  z-index: 2;
+  bottom: 20px;
+  right: 20px;
+  position: fixed;
+  width: 74px;
+  height: 74px;
+  background-color: $primaryColor;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  color: white;
+  box-shadow: 0px 0px 7px 1px rgba(63, 38, 10, 0.25);
+  border-radius: 100px;
+  transition-duration: 0.25s;
+
+  @media (max-width:1000px) {
+    display: none;
+  }
+
+  &:hover{
+    background: #C1B397;
+    border: 1px solid #583711;
+    box-shadow: 0px 0px 20px rgba(50, 33, 13, 0.35), inset 0px 0px 15px rgba(63, 40, 14, 0.25);
+  }
+
+  &:hover *{
+    stroke:$primaryColor;
+  }
+
+  svg{
+    position: relative;
+    top:-3px
+  }
+}
+
+.hide{
+  width: 0px;
+  height: 0px;
+}
+
+.header-background{
+  background-color: $primaryColor;
+}
