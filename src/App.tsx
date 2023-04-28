@@ -10,6 +10,7 @@ function App() {
   const setFirstDate = (date: any) => {
     setDate(date);
   };
+
   return (
     <div className="App">
       <Navbar />
@@ -23,6 +24,7 @@ function App() {
         }
       />
       <DatePicker value={date} handler={setFirstDate} />
+      {/* <DatePicker value={date} handler={setFirstDate} /> */}
     </div>
   );
 }
