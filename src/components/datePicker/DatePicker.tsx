@@ -12,6 +12,11 @@ import {
   months,
 } from "./utils/utils";
 
+const [date, setDate] = useState(() => new Date());
+const setFirstDate = (date: any) => {
+  setDate(date);
+};
+
 const getInputValueFromDate = (value: Date) => {
   const dateValue = value.getDate();
   const date = dateValue <= 9 ? `0${dateValue}` : dateValue;

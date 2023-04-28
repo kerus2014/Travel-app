@@ -1,11 +1,11 @@
 import { useDispatch } from "react-redux";
 import { closeMenuStateAction } from "../../reduxTools/burgerMenu/actions";
-import { ClassName, INavbarData} from "../../types";
-import styles from "./index.module.scss";
+import { ClassName, INavbarData } from "../../types";
+import styles from "./Navbar.module.scss";
 import { NavLink } from "react-router-dom";
 
 const Navbar = (props: ClassName) => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const navbarData: INavbarData[] = [
     {
@@ -21,17 +21,17 @@ const Navbar = (props: ClassName) => {
     {
       id: 3,
       value: "Домашняя Кухня",
-      path:"/kitchen",
+      path: "/kitchen",
     },
     {
       id: 4,
       value: "Развлечения",
-      path: "/entertainment"
+      path: "/entertainment",
     },
     {
       id: 5,
       value: "Галерея",
-      path: "/galery"
+      path: "/galery",
     },
     {
       id: 6,
@@ -54,7 +54,16 @@ const Navbar = (props: ClassName) => {
       }
     >
       {navbarData.map(({ id, value, path }) => (
-        <NavLink key={id.toString()} to={path} className={({ isActive }: { isActive: boolean }): string => (isActive ? `${styles["nav-link"]} ${styles["active"]}` : styles["nav-link"])} onClick={() => dispatch(closeMenuStateAction())} >
+        <NavLink
+          key={id.toString()}
+          to={path}
+          className={({ isActive }: { isActive: boolean }): string =>
+            isActive
+              ? `${styles["nav-link"]} ${styles["active"]}`
+              : styles["nav-link"]
+          }
+          onClick={() => dispatch(closeMenuStateAction())}
+        >
           {value}
         </NavLink>
       ))}

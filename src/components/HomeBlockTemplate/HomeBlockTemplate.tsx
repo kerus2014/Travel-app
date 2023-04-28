@@ -1,11 +1,11 @@
 import { ClassName } from "../../types";
-import { Container } from "../Container";
-import styles from "./index.module.scss";
+import { Container } from "../Container/Container";
+import styles from "./HomeBlockTemplate.module.scss";
 
 interface Props extends ClassName {
   children: React.ReactNode;
-  id?:string;
-  title?:string;
+  id?: string;
+  title?: string;
 }
 
 export const HomeBlockTemplate = (props: Props) => {
