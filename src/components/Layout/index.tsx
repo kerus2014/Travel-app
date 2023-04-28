@@ -2,6 +2,7 @@ import styles from "./index.module.scss";
 import { Header } from "../Header";
 import { Outlet } from "react-router-dom";
 import { useState,useEffect } from "react";
+import { Arrow } from "../../assets/icons/Arrow";
 
 export const Layout = () => {
   const [visible, setVisible] = useState(false)
@@ -27,7 +28,7 @@ export const Layout = () => {
     <div className={styles.layout}>
       <Header className={visible ? styles["header-background"] : undefined}/>
       <Outlet/>
-      <div onClick={handleClick} className={visible ? styles["arrow-top"] : styles.hide} id="arrow-top">top</div>
+      <div onClick={handleClick} className={visible ? styles["arrow-top"] : styles.hide} id="arrow-top"><Arrow/></div>
     </div>
   )
 }

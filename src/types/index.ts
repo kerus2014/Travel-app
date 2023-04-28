@@ -8,6 +8,12 @@ export interface IKitchenCard {
   description: string;
 }
 
+export interface IEntertainmentCard{
+  id?:number;
+  image:string;
+  title:string;
+}
+
 export interface INavbarData {
   id: number;
   value: NavLinkValueType;

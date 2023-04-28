@@ -61,3 +61,19 @@
     margin: 0 auto;
   }
 }
+
+.carousel-container{
+  margin-top: 20px;
+}
+
+.entertainment-container{
+  margin-top: 15px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap:30px;
+}
+
+.entertainment-button{
+  margin-top: 30px!important;
+  margin: 0 auto;
+}

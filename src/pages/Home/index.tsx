@@ -8,11 +8,12 @@ import logo from "../../assets/pics/kitchenLogoExample.png";
 import { MainButton } from "../../components/buttons/mainButton/MainButton"
 import { BackgroundBlockImage } from "../../components/BackgroundBlockImage"
 import image from "../../assets/pics/Home/faceBlock/20200806_154912 1.png";
-import { Form } from "../../components/Form"
+import { FormForOrder } from "../../components/Form"
 import { HomeBlockTemplate } from "../../components/HomeBlockTemplate"
-import { housesData, kitchenCardData } from "../../services/datas"
+import { entertainmentCardData, housesData, kitchenCardData } from "../../services/datas"
 import { HouseLittleCard } from "../../components/cards/HouseLittleCard"
-import { SimpleSlider } from "../../components/SimpleSlider"
+import { Carousel } from "../../components/Carousel"
+import { EntertainmentCard } from "../../components/cards/EntertainmentCard"
 
 export const Home = () => {
   const [date, setDate] = useState(() => new Date());
@@ -40,7 +41,7 @@ export const Home = () => {
           </div>
         </Container>
       </div>
-      <Form value="Заповедный остров" buttonValue="Найти домик" className={styles.form}/>
+      <FormForOrder value="Заповедный остров" buttonValue="Найти домик" className={styles.form}/>
 
       <HomeBlockTemplate title="Домики" className={styles.houses}>
         <p>
@@ -68,18 +69,32 @@ export const Home = () => {
       <HomeBlockTemplate title="Домашняя кухня">
         <p>Полноценный отдых не обойдется без хорошего питания! Мы готовы угостить наших гостей домашней кухней. </p>
         <p>У нас имеется свое подворье и огород. Некоторые блюда готовятся в русской печи, а что-то и на мангале, костре.</p>
-        <div>
-          <SimpleSlider>
+        <div className={styles["carousel-container"]}>
+          <Carousel>
             {kitchenCardData.map((el,index) => {
-              return <KitchenCard
-              key={index.toString()}
-              image={el.image}
-              title={el.title}
-              description={el.description}
-              />
-            })}
-          </SimpleSlider>
+                return <KitchenCard
+                key={index.toString()}
+                image={el.image}
+                title={el.title}
+                description={el.description}
+                />
+              })
+            }
+          </Carousel>
         </div>
+      </HomeBlockTemplate>
+      <HomeBlockTemplate title="Развлечения">
+        <p>Развлечения на территории нашей усадьбы словно Вы оказались в деревне у бабушки.</p>
+        <p>Каждая минута наполнена яркими событиями</p>
+        <div className={styles["entertainment-container"]}>
+          {entertainmentCardData.slice(0,6).map((el,index) => {
+            return <EntertainmentCard title={el.title} image={el.image} key={index.toString()}/>
+          })}
+        </div>
+        <MainButton value="Подробнее" className={styles["entertainment-button"]}/>
+      </HomeBlockTemplate>
+      <HomeBlockTemplate>
+        <FormForOrder value="Заповедный остров" buttonValue="Найти домик"/>
       </HomeBlockTemplate>
     </>
   )

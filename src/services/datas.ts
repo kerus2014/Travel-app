@@ -1,4 +1,4 @@
-import { House, IKitchenCard } from "../types";
+import { House, IEntertainmentCard, IKitchenCard } from "../types";
 import haromi from "../assets/pics/houses/haromiIaromi/Изображение.png";
 import eggs from "../assets/pics/kitchen/kitchenLogoExample.png";
 
@@ -75,5 +75,48 @@ export const kitchenCardData:IKitchenCard[] = [
     image:eggs,
     title:"Суп куриный",
     description:"Куриный суп с вермишелью с удовольствием съедят и дети, и взрослые.",
+  },
+]
+
+export const entertainmentCardData:IEntertainmentCard[] = [
+  {
+    image:eggs,
+    title:"Купаловская ночь",
+    id:1,
+  },
+  {
+    image:eggs,
+    title:"Дайвинг",
+    id:2,
+  },
+  {
+    image:eggs,
+    title:"Рыбалка",
+    id:3,
+  },
+  {
+    image:eggs,
+    title:"Ягоды и грибы",
+    id:4,
+  },
+  {
+    image:eggs,
+    title:"Катание на лошадях",
+    id:5,
+  },
+  {
+    image:eggs,
+    title:"Музыка и танцы",
+    id:6,
+  },
+  {
+    image:eggs,
+    title:"Суп куриный",
+    id:7,
+  },
+  {
+    image:eggs,
+    title:"Суп куриный",
+    id:8,
   },
 ]

@@ -34,5 +34,6 @@ $triangles-height: calc($height/2);
 
   &__text {
     color: $primaryColor;
+    font-weight: 500;
   }
 }

@@ -5,7 +5,7 @@ import styles from "./index.module.scss";
 interface Props extends ClassName {
   children: React.ReactNode;
   id?:string;
-  title:string;
+  title?:string;
 }
 
 export const HomeBlockTemplate = (props: Props) => {
@@ -17,7 +17,7 @@ export const HomeBlockTemplate = (props: Props) => {
       id={props.id}
     >
       <Container>
-        <div className={styles.title}>{props.title}</div>
+        {props.title ? <div className={styles.title}>{props.title}</div> : null}
         {props.children}
       </Container>
     </div>

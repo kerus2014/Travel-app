@@ -7,7 +7,7 @@ interface IProps extends ClassName{
   value:string;
 }
 
-export const Form = (props:IProps) => {
+export const FormForOrder = (props:IProps) => {
   return (
     <div className={props.className ? `${styles.form} ${props.className}` : styles.form}>
         <p>
