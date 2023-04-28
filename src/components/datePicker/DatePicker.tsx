@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import cn from "classnames";
 import styles from "./DatePicker.module.scss";
 import {
@@ -12,7 +12,117 @@ import {
   months,
 } from "./utils/utils";
 
-const DatePicker = (props: IDatePicker) => {
+const getInputValueFromDate = (value: Date) => {
+  const dateValue = value.getDate();
+  const date = dateValue <= 9 ? `0${dateValue}` : dateValue;
+  const monthValue = value.getMonth();
+
+  const month = monthValue > 9 ? monthValue + 1 : `0${monthValue + 1}`;
+  const year = value.getFullYear();
+  return `${date}-${month}-${year}`;
+};
+
+const validValueRegex = /^\d{2}-\d{2}-\d{4}$/;
+
+export const isValidDateString = (value: string) => {
+  if (!validValueRegex.test(value)) {
+    return false;
+  }
+  const [date, month, year] = value.split("-").map((v) => parseInt(v, 10));
+
+  if (month < 1 || month > 12 || date < 1) {
+    return false;
+  }
+
+  const maxDaysinMonth = getDaysAmountInMonths(year, month - 1);
+
+  if (date > maxDaysinMonth) {
+    return false;
+  }
+  return true;
+};
+
+export const DatePicker = (props: IDatePicker) => {
+  const { value, handler } = props;
+  const [showPopup, setShowPopup] = useState(false);
+  const datePickerElementRef = useRef<HTMLDivElement>(null);
+
+  const [inputValue, setInputValue] = useState("");
+
+  useLayoutEffect(() => {
+    setInputValue(getInputValueFromDate(value));
+  }, [value]);
+
+  useEffect(() => {
+    const element = datePickerElementRef.current;
+    if (!element) return;
+
+    const onDocumentClick = (e: MouseEvent) => {
+      const target = e.target;
+      if (!(target instanceof Node)) {
+        return;
+      }
+
+      if (element.contains(target)) {
+        return;
+      }
+      setShowPopup(false);
+    };
+
+    document.addEventListener("click", onDocumentClick);
+
+    return () => {
+      document.removeEventListener("click", onDocumentClick);
+      console.log("unmount");
+    };
+  }, []);
+
+  const onInputValueChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInputValue(e.target.value.trim());
+  };
+
+  const onFocus = () => {
+    setShowPopup(true);
+  };
+
+  const updateValueFromInputValue = () => {
+    if (!isValidDateString(inputValue)) {
+      return;
+    }
+    const [date, month, year] = inputValue
+      .split("-")
+      .map((v) => parseInt(v, 10));
+    const dateObj = new Date(year, month - 1, date);
+    handler(dateObj);
+  };
+
+  const onBlur = () => {
+    updateValueFromInputValue();
+  };
+
+  const onKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key !== "Enter") {
+      return;
+    }
+    updateValueFromInputValue();
+  };
+
+  return (
+    <div className={styles["datepicker__container"]} ref={datePickerElementRef}>
+      <input
+        value={inputValue}
+        onChange={onInputValueChange}
+        type="text"
+        onFocus={onFocus}
+        onBlur={onBlur}
+        onKeyDown={onKeyDown}
+      />
+      {showPopup && <DatePickerPopupContent value={value} handler={handler} />}
+    </div>
+  );
+};
+
+const DatePickerPopupContent = (props: IDatePicker) => {
   const { value, handler } = props;
   const [panelYear, setPanelYear] = useState(() => value.getFullYear());
   const [panelMonth, setPanelMonth] = useState(() => value.getMonth());
@@ -25,19 +135,19 @@ const DatePicker = (props: IDatePicker) => {
     return [currentYear, currentMonth, currentDay];
   }, [value]);
 
-  const dateCells = useMemo(() => {
+  const [prevMonthDays, currentMonthDays, nextMonthDays] = useMemo(() => {
     const daysInMonth = getDaysAmountInMonths(panelYear, panelMonth);
 
+    const prevMonthDays = getPreviousMonthDays(panelYear, panelMonth);
     const currentMonthDays = getCurrentMonthDays(
       panelYear,
       panelMonth,
       daysInMonth
     );
-    const prevMonthDays = getPreviousMonthDays(panelYear, panelMonth);
 
     const nextMonthDays = getNextMonthDays(panelYear, panelMonth);
 
-    return [...prevMonthDays, ...currentMonthDays, ...nextMonthDays];
+    return [prevMonthDays, currentMonthDays, nextMonthDays];
   }, [panelYear, panelMonth]);
 
   const onDateSelect = (item: IDateCellItem) => {
@@ -81,24 +191,49 @@ const DatePicker = (props: IDatePicker) => {
         <button onClick={nextMonth}>NextMonth</button>
         <button onClick={nextYear}>NextYear</button>
       </div>
-      <div className={styles.datepicker}>
+      <div className={styles["datepicker-popup"]}>
         {daysOfTheWeek.map((days) => {
           return (
-            <div key={days} className={styles["datepicker__days"]}>
+            <div key={days} className={styles["datepicker-popup__days"]}>
               {days}
             </div>
           );
         })}
-        {dateCells.map((cell, index) => {
-          const isCurrentDate =
-            cell.year === year && cell.month === month && cell.date === day;
+        {prevMonthDays.map((cell, index) => {
           return (
             <div
               key={index}
-              className={cn(styles["datepicker__cell"], {
-                [styles["datepicker__cell_active"]]: isCurrentDate,
+              className={cn(styles["datepicker-popup__cell_not-current-month"])}
+              onClick={() => prevMonth()}
+            >
+              {cell.date}
+            </div>
+          );
+        })}
+        {currentMonthDays.map((cell, index) => {
+          const isCurrentDate =
+            cell.year === year && cell.month === month && cell.date === day;
+
+          return (
+            <div
+              key={index}
+              className={cn(styles["datepicker-popup__cell"], {
+                [styles["datepicker-popup__cell_active"]]: isCurrentDate,
+                [styles["datepicker-popup__cell_date-now"]]: isCurrentDate,
               })}
               onClick={() => onDateSelect(cell)}
+            >
+              {cell.date}
+            </div>
+          );
+        })}
+        {nextMonthDays.map((cell, index) => {
+          return (
+            <div
+              key={index}
+              className={cn(styles["datepicker-popup__cell_not-current-month"])}
+              onClick={() => nextMonth()}
+              style={{ transform: "translateX(120px)" }}
             >
               {cell.date}
             </div>
@@ -108,4 +243,3 @@ const DatePicker = (props: IDatePicker) => {
     </div>
   );
 };
-export default DatePicker;

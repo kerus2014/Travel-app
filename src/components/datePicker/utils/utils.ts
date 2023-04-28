@@ -31,6 +31,7 @@ export const months = [
 export const daysOfTheWeek = ["пн", "вт", "ср", "чт", "пт", "сб", "вс"];
 const VISIBLE_CELLS_AMOUNT = 7 * 6;
 
+// get number of the days in month
 export const getDaysAmountInMonths = (year: number, month: number, day = 1) => {
   const nextMonthDate = new Date(year, month + 1, day);
   nextMonthDate.setMinutes(-1);
@@ -47,6 +48,7 @@ const sundayWeekToMondayWeekDayMap: Record<number, number> = {
   6: 5,
 };
 
+// converting to standard days from monday to sunday
 const getDayOfTheWeek = (date: Date) => {
   const day = date.getDay();
   return sundayWeekToMondayWeekDayMap[day];
@@ -57,7 +59,6 @@ export const getPreviousMonthDays = (year: number, month: number) => {
 
   const prevMonthCellsAmount = getDayOfTheWeek(currentMonthFirstDay);
   const daysAmountInPrevMonth = getDaysAmountInMonths(year, month - 1);
-  console.log(prevMonthCellsAmount);
 
   const dateCells: IDateCellItem[] = [];
   const [cellYear, cellMonth] =
@@ -86,7 +87,6 @@ export const getNextMonthDays = (year: number, month: number) => {
     month === 11 ? [year + 1, 0] : [year, month + 1];
 
   const dateCells: IDateCellItem[] = [];
-  console.log(nextMonthDays);
 
   for (let i = 1; i <= nextMonthDays; i++) {
     dateCells.push({

@@ -3,6 +3,7 @@ import { Layout } from "./components/Layout";
 import { Home } from "./pages/Home";
 
 function App() {
+
   
   return (
     <Routes>
@@ -10,6 +11,7 @@ function App() {
         <Route index element={<Home />} />
       </Route>
     </Routes>
+
   );
 }
 
