@@ -35,8 +35,62 @@
 }
 
 .right-side{
-  padding-top: 56px;
+  padding-top: 101px;
   color: white;
+  width: 500px;
+
+  & :global(.slick-dots li button:before) {
+    font-size: 10px;
+    color: white;
+  }
+
+  & :global(.slick-dots li.slick-active button:before) {
+    opacity: 1;
+    color: white!important;
+  }
+
+  & :global(.slick-dots){
+    position: static;
+    margin-top: 65px;
+  }
+
+  & .container{
+
+    & img{
+      object-fit: cover;
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+  & :global(.slick-track){
+    display: flex!important;
+  }
+
+  & :global(.slick-slide){
+    box-shadow: 0px 4px 30px 10px rgba(0, 0, 0, 0.5);
+    transition-duration: 0.25s;
+    height: 320px;
+
+    div{
+      height: 100%;
+
+      img{
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+
+  & :global(.slick-active){
+    transform: scale(1.28);
+    z-index: 2;
+  }
+
+  & :global(.slick-list){
+    overflow: visible;
+    overflow-x: clip;
+  }
 }
 
 .form{
@@ -64,6 +118,33 @@
 
 .carousel-container{
   margin-top: 20px;
+
+  & :global(.slick-slide){
+    padding: 0 20px;
+    display: flex!important;
+    flex-direction: column;
+    row-gap: 20px;
+  }
+
+  & :global(.slick-list){
+    margin: 0 -20px;
+    overflow: visible!important;
+    overflow-x: clip!important;
+  }
+
+  & :global(.slick-dots li button:before) {
+    font-size: 10px;
+  }
+
+  & :global(.slick-dots li.slick-active button:before) {
+    opacity: 1;
+    color: $primaryColor!important;
+  }
+
+  & :global(.slick-dots){
+    position: static;
+    margin-top: 21px;
+  }
 }
 
 .entertainment-container{

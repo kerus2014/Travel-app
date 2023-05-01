@@ -1,2 +1,2 @@
-import { FlagItem } from "./FalgItem";
+import { FlagItem } from "./FlagItem";
 export { FlagItem };

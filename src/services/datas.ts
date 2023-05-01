@@ -1,6 +1,9 @@
 import { House, IEntertainmentCard, IKitchenCard } from "../types";
 import haromi from "../assets/pics/houses/haromiIaromi/Изображение.png";
 import eggs from "../assets/pics/kitchen/kitchenLogoExample.png";
+import faceImg1 from "../assets/pics/Home/carouselImages/20210607_104318 1.png";
+import faceImg2 from "../assets/pics/Home/carouselImages/IMG-1127d31fd8da398fa5b4f7f8a070e0b5-V 1.png";
+import faceImg3 from "../assets/pics/Home/carouselImages/IMG-1127d31fd8da398fa5b4f7f8a070e0b5-V 2.png";
 
 export const housesData:House[] = [
   {
@@ -118,5 +121,17 @@ export const entertainmentCardData:IEntertainmentCard[] = [
     image:eggs,
     title:"Суп куриный",
     id:8,
+  },
+]
+
+export const faceBlockCarouselImages = [
+  {
+    image:faceImg1
+  },
+  {
+    image:faceImg2
+  },
+  {
+    image:faceImg3
   },
 ]

@@ -8,14 +8,39 @@ import { FormForOrder } from "../../components/Form/Form";
 import { HomeBlockTemplate } from "../../components/HomeBlockTemplate/HomeBlockTemplate";
 import {
   entertainmentCardData,
+  faceBlockCarouselImages,
   housesData,
   kitchenCardData,
 } from "../../services/datas";
 import { HouseLittleCard } from "../../components/cards/HouseLittleCard/HouseLittleCard";
 import { Carousel } from "../../components/Carousel/Carousel";
 import { EntertainmentCard } from "../../components/cards/EntertainmentCard/EntertainmentCard";
+import { useState } from "react";
+import {Settings} from "react-slick";
 
 export const Home = () => {
+  const [imageIndex,setImageIndex] = useState<number>(0)
+
+  const sliderFaceBlockSettings:Settings={
+    slidesToShow: 1,
+    centerPadding:"119px",
+    infinite:true,
+    speed:300,
+    arrows:false,
+    centerMode:true,
+    dots:true,
+  }
+
+  const kitchenSliderSettings = {
+    slidesToShow: 2,
+    slidesToScroll: 2,
+    rows:2,
+    dots:true,
+    arrows:true,
+    infinite:true,
+  }
+
+
   return (
     <>
       <div className={styles["face-block"]}>
@@ -33,7 +58,13 @@ export const Home = () => {
                 располагает к множеству занятий различного рода.
               </p>
             </div>
-            <div className={styles["right-side"]}>asdfasdf</div>
+            <div className={styles["right-side"]}>
+              <Carousel settings={sliderFaceBlockSettings}>
+                {faceBlockCarouselImages.map((el,index) => {
+                  return <img key={index.toString()} src={el.image} alt="" />
+                })}
+              </Carousel>
+            </div>
           </div>
         </Container>
       </div>
@@ -79,7 +110,7 @@ export const Home = () => {
           русской печи, а что-то и на мангале, костре.
         </p>
         <div className={styles["carousel-container"]}>
-          <Carousel>
+          <Carousel settings={kitchenSliderSettings}>
             {kitchenCardData.map((el, index) => {
               return (
                 <KitchenCard

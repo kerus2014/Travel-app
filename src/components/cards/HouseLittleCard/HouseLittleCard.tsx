@@ -1,5 +1,5 @@
 import { House } from "../../../types";
-import { FlagItem } from "../../flagItem";
+import { FlagItem } from "../../FlagItem";
 import styles from "./HouseLittleCard.module.scss";
 
 export const HouseLittleCard = (props: House) => {
