@@ -83,8 +83,12 @@
   }
 
   & :global(.slick-active){
-    transform: scale(1.28);
-    z-index: 2;
+
+    div{
+      transform: scale(1.28);
+      z-index: 2;
+    }
+    
   }
 
   & :global(.slick-list){
