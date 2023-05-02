@@ -1,9 +1,11 @@
 import { House } from "../../../types";
-import { FlagItem } from "../../FlagItem";
+import { FlagItem } from "../../flagItem/FlagItem";
+
 import styles from "./HouseLittleCard.module.scss";
 
 export const HouseLittleCard = (props: House) => {
   const { title, description_short, photos, price_weekday } = props;
+  console.log(photos);
 
   return (
     <div className={styles.card}>

@@ -1,0 +1,121 @@
+@import "../../../styles/varaibles.scss";
+
+.card {
+  position: relative;
+  display: flex;
+  width: 100%;
+  gap: 50px;
+  background: #ffffff;
+  padding: 26px 42px 20px 40px;
+  box-shadow: 0px 4px 17px 5px rgba(218, 203, 203, 0.4);
+}
+.card-left {
+  width: 100%;
+  max-width: 528px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  & :global(.slick-slide) {
+    padding: 0 20px;
+    display: flex !important;
+    flex-direction: column;
+    row-gap: 20px;
+  }
+
+  & :global(.slick-list) {
+    margin: 0 -20px;
+    overflow: visible !important;
+    overflow-x: clip !important;
+  }
+
+  & :global(.slick-dots li button:before) {
+    font-size: 10px;
+  }
+
+  & :global(.slick-dots li.slick-active button:before) {
+    opacity: 1;
+    color: $primaryColor !important;
+  }
+
+  & :global(.slick-dots) {
+    position: static;
+    margin-top: 20px;
+  }
+}
+
+.card-right {
+  flex: 1 1;
+}
+.priceText {
+  width: 150px;
+}
+.title {
+  min-width: 0;
+  color: $text-color;
+  font-size: 35px;
+  max-width: 500px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  line-height: 42px;
+}
+
+.infoContainer {
+  max-width: 484px;
+}
+
+.priceInfo {
+  display: flex;
+  justify-content: space-between;
+  gap: 5%;
+}
+
+.priceContainer {
+  max-width: 120px;
+}
+
+.priceContainerContainer {
+  display: flex;
+  gap: 10px;
+}
+
+@media screen and (max-width: 1000px) {
+  .card {
+    flex-direction: column;
+    padding: 0px 0px 20px 0px;
+  }
+  .card-left {
+    flex-direction: column-reverse;
+  }
+  .card-right {
+    padding: 0 10px 20px 10px;
+  }
+  .priceContainerContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    // max-width: 120px;
+  }
+  .priceContainer {
+    // max-width: none;
+    // width: 75px;
+  }
+  .priceText {
+    width: 75px;
+  }
+  .priceInfo {
+  }
+
+  .title {
+    font-weight: 600;
+    color: $text-color;
+    font-size: 18px;
+    max-width: 250px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    line-height: 22px;
+    padding: 0 10px 0px 10px;
+  }
+}
