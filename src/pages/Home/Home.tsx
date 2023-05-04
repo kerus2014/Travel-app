@@ -16,30 +16,29 @@ import { HouseLittleCard } from "../../components/cards/HouseLittleCard/HouseLit
 import { Carousel } from "../../components/Carousel/Carousel";
 import { EntertainmentCard } from "../../components/cards/EntertainmentCard/EntertainmentCard";
 import { useState } from "react";
-import {Settings} from "react-slick";
+import { Settings } from "react-slick";
 
 export const Home = () => {
-  const [imageIndex,setImageIndex] = useState<number>(0)
+  const [imageIndex, setImageIndex] = useState<number>(0);
 
-  const sliderFaceBlockSettings:Settings={
+  const sliderFaceBlockSettings: Settings = {
     slidesToShow: 1,
-    centerPadding:"119px",
-    infinite:true,
-    speed:300,
-    arrows:false,
-    centerMode:true,
-    dots:true,
-  }
+    centerPadding: "119px",
+    infinite: true,
+    speed: 300,
+    arrows: false,
+    centerMode: true,
+    dots: true,
+  };
 
   const kitchenSliderSettings = {
     slidesToShow: 2,
     slidesToScroll: 2,
-    rows:2,
-    dots:true,
-    arrows:true,
-    infinite:true,
-  }
-
+    rows: 2,
+    dots: true,
+    arrows: true,
+    infinite: true,
+  };
 
   return (
     <>
@@ -60,8 +59,8 @@ export const Home = () => {
             </div>
             <div className={styles["right-side"]}>
               <Carousel settings={sliderFaceBlockSettings}>
-                {faceBlockCarouselImages.map((el,index) => {
-                  return <img key={index.toString()} src={el.image} alt="" />
+                {faceBlockCarouselImages.map((el, index) => {
+                  return <img key={index.toString()} src={el.image} alt="" />;
                 })}
               </Carousel>
             </div>

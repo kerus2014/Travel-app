@@ -1,5 +1,5 @@
 export interface ClassName {
-  className?:string;
+  className?: string;
 }
 
 export interface IKitchenCard {
@@ -8,44 +8,44 @@ export interface IKitchenCard {
   description: string;
 }
 
-export interface IEntertainmentCard{
-  id?:number;
-  image:string;
-  title:string;
+export interface IEntertainmentCard {
+  id?: number;
+  image: string;
+  title: string;
 }
 
 export interface INavbarData {
   id: number;
   value: NavLinkValueType;
-  path:string;
+  path: string;
 }
 
-interface Meal{
-  [key:string]: {
-    "time":string,
-    "cost":string,
-  }
+interface Meal {
+  [key: string]: {
+    time: string;
+    cost: string;
+  };
 }
 
-interface Feature{
-  [key:string]:string
+interface Feature {
+  [key: string]: string;
 }
 
-interface Rooms{
-  [key:string]:number,
+interface Rooms {
+  [key: string]: number;
 }
 
-export interface House{
-  title:string;
-  pers_num?:number;
-  description_short:string;
-  description_long?:string;
-  rooms?:Rooms[];
-  kitchen?:Meal[];
-  price_weekday?:string;
-  price_holiday?:string;
-  photos:string[];
-  features?:Feature[];
+export interface House {
+  title: string;
+  pers_num?: number;
+  description_short: string;
+  description_long?: string;
+  rooms?: Rooms[];
+  kitchen?: Meal[];
+  price_weekday?: string;
+  price_holiday?: string;
+  photos: string[];
+  features?: string[];
 }
 
 export type NavLinkValueType =

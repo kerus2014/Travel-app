@@ -1,20 +1,19 @@
 import styles from "./index.module.scss";
 
-interface IProps{
-  image:string;
+interface IProps {
+  image: string;
 }
 
-export const BackgroundBlockImage = (props:IProps) => {
-  const {image} = props
+export const BackgroundBlockImage = (props: IProps) => {
+  const { image } = props;
 
   return (
     <>
       <div className={styles.image}>
-        <img src={image} alt="background image" />
+        <img src={image} alt="background" />
       </div>
 
-      <div className={styles.background}>
-      </div>
+      <div className={styles.background}></div>
     </>
-  )
-}
+  );
+};
