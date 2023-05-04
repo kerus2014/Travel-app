@@ -1,6 +1,8 @@
+import { features } from "process";
 import { House } from "../../../types";
 import Carousel from "../../Carousel";
 import Price from "../../Price";
+import { MainButton } from "../../buttons/mainButton/MainButton";
 import styles from "./HouseBigCard.module.scss";
 
 const housePhotosSettings = {
@@ -12,8 +14,15 @@ const housePhotosSettings = {
 };
 
 const HouseBigCard = (props: House) => {
-  const { title, description_short, photos, price_weekday, price_holiday } =
-    props;
+  const {
+    title,
+    description_short,
+    description_long,
+    photos,
+    price_weekday,
+    price_holiday,
+    features,
+  } = props;
 
   return (
     <div className={styles.card}>
@@ -24,10 +33,20 @@ const HouseBigCard = (props: House) => {
             return <img className={styles.image} src={el} alt="" />;
           })}
         </Carousel> */}
-        <img src={photos[0]} alt="" />
+        <div className={styles.imageContainer}>
+          <img src={photos[0]} alt="" />
+        </div>
       </div>
 
       <div className={styles["card-right"]}>
+        <div className={styles.iconsContainer}>
+          {features?.map((elem) => (
+            <div className={styles.icons}>
+              <img src={elem} alt="" />
+            </div>
+          ))}
+        </div>
+        <div>{description_long}</div>
         <div className={styles.infoContainer}>
           <div className={styles.priceInfo}>
             <p className={styles.priceText}>За дом в сутки:</p>
@@ -40,6 +59,10 @@ const HouseBigCard = (props: House) => {
               </div>
             </div>
           </div>
+        </div>
+        <div className={styles.buttonContainer}>
+          <MainButton value={"Забронировать"} />
+          <MainButton value={"Подробнее"} />
         </div>
       </div>
     </div>

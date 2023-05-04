@@ -4,7 +4,6 @@ import { Container } from "../../components/Container";
 import { housesData } from "../../services/datas";
 import HouseBigCard from "../../components/cards/HouseBigCard";
 import styles from "./Houses.module.scss";
-import { useGetObjectsQuery } from "../../reduxTools/requests/requests";
 import { HomeBlockTemplate } from "../../components/HomeBlockTemplate";
 
 export const Houses = () => {
@@ -29,9 +28,11 @@ export const Houses = () => {
                 key={index.toString()}
                 title={house.title}
                 description_short={house.description_short}
+                description_long={house.description_long}
                 photos={house.photos}
                 price_weekday={house.price_weekday}
                 price_holiday={house.price_holiday}
+                features={house.features}
               />
             );
           })}

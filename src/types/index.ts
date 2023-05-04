@@ -45,7 +45,7 @@ export interface House {
   price_weekday?: string;
   price_holiday?: string;
   photos: string[];
-  features?: Feature[];
+  features?: string[];
 }
 
 export type NavLinkValueType =
