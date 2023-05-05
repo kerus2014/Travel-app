@@ -1,6 +1,7 @@
 @import "../../../styles/varaibles.scss";
 
 .card {
+  overflow-x: hidden;
   position: relative;
   display: flex;
   width: 100%;
@@ -15,10 +16,12 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
-
+  img {
+    max-height: 330px;
+  }
   & :global(.slick-slide) {
     padding: 0 20px;
-    display: flex !important;
+    // display: flex !important;
     flex-direction: column;
     row-gap: 20px;
   }
@@ -42,11 +45,24 @@
     position: static;
     margin-top: 20px;
   }
+  & :global(.slick-arrow) {
+    display: none !important;
+  }
 }
 
 .card-right {
   flex: 1 1;
 }
+.descriptionLong {
+  height: 153px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  margin-bottom: 26px;
+  -webkit-line-clamp: 7;
+  -webkit-box-orient: vertical;
+}
+
 .priceText {
   width: 150px;
 }
@@ -97,6 +113,7 @@
 }
 
 .buttonContainer {
+  margin-top: 35px;
   display: flex;
   gap: 50px;
 }
@@ -105,12 +122,22 @@
   .card {
     flex-direction: column;
     padding: 0px 0px 20px 0px;
+
+    & :global(.slick-dots) {
+      margin-top: 0px;
+    }
   }
   .card-left {
     flex-direction: column-reverse;
+    img {
+      max-height: 200px;
+    }
   }
   .card-right {
     padding: 0 10px 20px 10px;
+  }
+  .iconsContainer {
+    display: none;
   }
   .priceContainerContainer {
     display: flex;
@@ -126,16 +153,19 @@
     width: 75px;
   }
   .priceInfo {
+    justify-content: flex-start;
+    gap: 30px;
   }
 
   .title {
+    max-width: 80%;
+    text-overflow: ellipsis;
     font-weight: 600;
     color: $text-color;
     font-size: 18px;
-    max-width: 370px;
-    white-space: unset;
-    text-overflow: unset;
-    overflow: unset;
+    white-space: nowrap;
+    // text-overflow: unset;
+    overflow: hidden;
     line-height: 22px;
     padding: 0 10px 0px 10px;
   }

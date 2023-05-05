@@ -28,25 +28,26 @@ const HouseBigCard = (props: House) => {
     <div className={styles.card}>
       <div className={styles["card-left"]}>
         <h2 className={styles.title}>{title}</h2>
-        {/* <Carousel settings={housePhotosSettings}>
+        <Carousel settings={housePhotosSettings}>
           {photos.map((el, index) => {
-            return <img className={styles.image} src={el} alt="" />;
+            return (
+              <div key={index}>
+                <img className={styles.image} src={el} alt="" />
+              </div>
+            );
           })}
-        </Carousel> */}
-        <div className={styles.imageContainer}>
-          <img src={photos[0]} alt="" />
-        </div>
+        </Carousel>
       </div>
 
       <div className={styles["card-right"]}>
         <div className={styles.iconsContainer}>
-          {features?.map((elem) => (
-            <div className={styles.icons}>
+          {features?.map((elem, index) => (
+            <div className={styles.icons} key={index}>
               <img src={elem} alt="" />
             </div>
           ))}
         </div>
-        <div>{description_long}</div>
+        <div className={styles.descriptionLong}>{description_long}</div>
         <div className={styles.infoContainer}>
           <div className={styles.priceInfo}>
             <p className={styles.priceText}>За дом в сутки:</p>
