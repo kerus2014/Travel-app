@@ -18,6 +18,8 @@
   gap: 20px;
   img {
     max-height: 330px;
+    object-fit: cover;
+    object-position: bottom;
   }
   & :global(.slick-slide) {
     padding: 0 20px;

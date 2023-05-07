@@ -1,5 +1,5 @@
 import { House } from "../../../types";
-import { FlagItem } from "../../flagItem/FlagItem";
+import { FlagItem } from "../../FlagItem/FlagItem";
 
 import styles from "./HouseLittleCard.module.scss";
 

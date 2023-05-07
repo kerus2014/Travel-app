@@ -1,6 +1,6 @@
 import styles from "./EntertainmentCard.module.scss";
 import { IEntertainmentCard } from "../../../types";
-import { FlagItem } from "../../flagItem";
+import { FlagItem } from "../../FlagItem";
 
 export const EntertainmentCard = (props: IEntertainmentCard) => {
   const { id, image, title } = props;

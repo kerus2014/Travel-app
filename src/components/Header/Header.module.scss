@@ -15,4 +15,15 @@
   align-items: center;
   display: flex;
   justify-content: space-between;
+
+  & .navigation{
+
+    @media (max-width:1000px) {
+      display: none;
+    }
+  }
+}
+
+.navigation-adaptiv{
+  
 }

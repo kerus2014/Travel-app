@@ -14,7 +14,7 @@ export const Header = (props: ClassName) => {
       <Container>
         <div className={styles["content-container"]}>
           <Logo />
-          <Navbar />
+          <Navbar className={styles.navigation}/>
         </div>
       </Container>
     </div>
