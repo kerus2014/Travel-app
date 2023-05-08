@@ -1,6 +1,6 @@
 import styles from "./Home.module.scss";
 import { Container } from "../../components/Container/Container";
-import { KitchenCard } from "../../components/cards/kitchenCard/KitchenCard";
+import { KitchenCard } from "../../components/cards/KitchenCard/KitchenCard";
 import { MainButton } from "../../components/buttons/mainButton/MainButton";
 import { BackgroundBlockImage } from "../../components/BackgroundBlockImage";
 import image from "../../assets/pics/Home/faceBlock/20200806_154912 1.png";
@@ -15,11 +15,23 @@ import {
 import { HouseLittleCard } from "../../components/cards/HouseLittleCard/HouseLittleCard";
 import { Carousel } from "../../components/Carousel/Carousel";
 import { EntertainmentCard } from "../../components/cards/EntertainmentCard/EntertainmentCard";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Settings } from "react-slick";
+import { House } from "../../types";
 
 export const Home = () => {
   const [imageIndex, setImageIndex] = useState<number>(0);
+  // const [housesData,setHousesData] = useState<House[]>([]);
+
+  // const URL = `http://eugene2r.beget.tech/api/objects/`;
+  // const request = new Request(URL, {
+  //   mode: 'no-cors',
+  //   credentials: 'include',
+  //   method: "GET",
+  //   headers: {
+  //     "Authorization": "Basic YWRtaW46MTIzMTIz",
+  //   },
+  // });
 
   const sliderFaceBlockSettings: Settings = {
     slidesToShow: 1,
@@ -39,6 +51,13 @@ export const Home = () => {
     arrows: true,
     infinite: true,
   };
+
+  // useEffect(() => {
+  //   fetch(request)
+  //     .then(res => res.json())
+  //     .then(res => setHousesData(res))
+  //     .catch(console.error);
+  // },[housesData])
 
   return (
     <>
@@ -90,7 +109,7 @@ export const Home = () => {
                 key={index.toString()}
                 title={el.title}
                 description_short={el.description_short}
-                photos={el.photos}
+                objects_photos={el.objects_photos}
                 price_weekday={el.price_weekday}
               />
             );

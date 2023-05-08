@@ -35,17 +35,19 @@ interface Rooms {
   [key: string]: number;
 }
 
+
 export interface House {
+  id?:number;
   title: string;
   pers_num?: number;
   description_short: string;
   description_long?: string;
-  rooms?: Rooms[];
+  rooms_count?: Rooms[];
   kitchen?: Meal[];
   price_weekday?: string;
   price_holiday?: string;
-  photos: string[];
-  features?: string[];
+  objects_photos: string[];
+  objects_features?: Feature[];
 }
 
 export type NavLinkValueType =
@@ -56,3 +58,8 @@ export type NavLinkValueType =
   | "Галерея"
   | "Правила"
   | "Контакты";
+
+  export interface Rule {
+    id?:number;
+    content:string;
+  }

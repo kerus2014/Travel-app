@@ -18,10 +18,10 @@ const HouseBigCard = (props: House) => {
     title,
     description_short,
     description_long,
-    photos,
+    objects_photos,
     price_weekday,
     price_holiday,
-    features,
+    objects_features,
   } = props;
 
   return (
@@ -29,7 +29,7 @@ const HouseBigCard = (props: House) => {
       <div className={styles["card-left"]}>
         <h2 className={styles.title}>{title}</h2>
         <Carousel settings={housePhotosSettings}>
-          {photos.map((el, index) => {
+          {objects_photos.map((el, index) => {
             return (
               <div key={index}>
                 <img className={styles.image} src={el} alt="" />
@@ -41,9 +41,9 @@ const HouseBigCard = (props: House) => {
 
       <div className={styles["card-right"]}>
         <div className={styles.iconsContainer}>
-          {features?.map((elem, index) => (
+          {objects_features?.map((elem, index) => (
             <div className={styles.icons} key={index}>
-              <img src={elem} alt="" />
+              <img src={elem.Shower} alt="" />
             </div>
           ))}
         </div>

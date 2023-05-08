@@ -3,9 +3,11 @@
 $height: 54px;
 
 .button {
-  width: 100%;
+  // width: 100%;
   display: flex;
   align-items: center;
+  min-width: 240px;
+  padding: 10px 20px;
   justify-content: center;
   height: $height;
   background-color: $primaryColor;

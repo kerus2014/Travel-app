@@ -1,0 +1,31 @@
+@import "../../styles/varaibles.scss";
+
+.header{
+  background-color: $primaryColor;
+  height: 84px;
+  width: 100%;
+  position: fixed;
+  z-index: 1;
+  top: 0px;
+  left: 0px;
+}
+
+.grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-column-gap: 75px;
+  grid-row-gap: 47px;
+  margin-top: 29px;
+
+  @media (max-width:1000px) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media (max-width:670px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.form{
+  margin-top:50px;
+}

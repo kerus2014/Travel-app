@@ -3,19 +3,20 @@ import { ClassName } from "../../types";
 import { MainButton } from "../buttons/mainButton/MainButton";
 
 interface IProps extends ClassName {
-  buttonValue: string;
-  value: string;
+  buttonValue?: string;
+  value?: string;
 }
 
 export const FormForOrder = (props: IProps) => {
+  const {buttonValue="Найти домик",value="Заповедный остров",className} = props
   return (
     <div
       className={
-        props.className ? `${styles.form} ${props.className}` : styles.form
+        className ? `${styles.form} ${className}` : styles.form
       }
     >
-      <p>{props.value}</p>
-      <MainButton value={props.buttonValue} />
+      <p>{value}</p>
+      <MainButton value={buttonValue} />
     </div>
   );
 };

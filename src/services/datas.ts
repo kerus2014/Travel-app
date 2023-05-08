@@ -1,4 +1,4 @@
-import { House, IEntertainmentCard, IKitchenCard } from "../types";
+import { House, IEntertainmentCard, IKitchenCard, Rule } from "../types";
 import haromi from "../assets/pics/houses/haromiIaromi/Изображение.png";
 import eggs from "../assets/pics/kitchen/kitchenLogoExample.png";
 import faceImg1 from "../assets/pics/Home/carouselImages/20210607_104318 1.png";
@@ -15,36 +15,36 @@ export const housesData: House[] = [
     Имеется интернет, телевидение. Перед домом большая беседка с русской печкой и летней кухней, мангал, гамак, место для костра. Рядом детская площадка. Вся мебель ручной работы.
     Имеется интернет, телевидение. Перед домом большая беседка с русской печкой и летней кухней, мангал, гамак, место для костра. Рядом детская площадка. Вся мебель ручной работы.
     Имеется интернет, телевидение. Перед домом большая беседка с русской печкой и летней кухней, мангал, гамак, место для костра. Рядом детская площадка.`,
-    photos: [haromi, eggs, haromi],
+    objects_photos: [haromi, eggs, haromi],
     price_weekday: "150",
     price_holiday: "150",
-    features: [haromi, haromi, haromi, haromi, haromi],
+    objects_features: [haromi, haromi, haromi, haromi, haromi],
   },
   {
     title: "Домик рубленый и мансардного типа",
     description_short: `Рассчитан на размещение шести человек ...`,
-    photos: [haromi, eggs, haromi],
+    objects_photos: [haromi, eggs, haromi],
     price_weekday: "120",
     price_holiday: "150",
   },
   {
     title: "Бревенчатый домик",
     description_short: `Деревянный дом в аренду (Бревенчатый домик) рассчитан на размещение трех человек ...`,
-    photos: [haromi, eggs, haromi],
+    objects_photos: [haromi, eggs, haromi],
     price_weekday: "100",
     price_holiday: "150",
   },
   {
     title: "Деревянный домик",
     description_short: `Деревянный дом в аренду (Деревянный домикитан на размещение семи человек ...`,
-    photos: [haromi, eggs, haromi],
+    objects_photos: [haromi, eggs, haromi],
     price_weekday: "250",
     price_holiday: "150",
   },
   {
     title: "Коттедж Харомы Яровы",
     description_short: `Деревянный дом в аренду (Харомы Яромы) рассчитан на размещение семи человек ...`,
-    photos: [haromi],
+    objects_photos: [haromi],
     price_weekday: "180",
     price_holiday: "150",
   },
@@ -155,3 +155,42 @@ export const faceBlockCarouselImages = [
     image: faceImg3,
   },
 ];
+
+export const rulesData:Rule[] = [
+  {
+    id:1,
+    content:"Курить в помещениях (в усадьбе есть предусмотренные для курения места)."
+  },
+  {
+    id:2,
+    content:"Курить в помещениях (в усадьбе есть предусмотренные для курения места)."
+  },
+  {
+    id:3,
+    content:"Курить в помещениях (в усадьбе есть предусмотренные для курения места)."
+  },
+  {
+    id:4,
+    content:"Курить в помещениях (в усадьбе есть предусмотренные для курения места)."
+  },
+  {
+    id:5,
+    content:"Курить в помещениях (в усадьбе есть предусмотренные для курения места)."
+  },
+  {
+    id:6,
+    content:"Курить в помещениях (в усадьбе есть предусмотренные для курения места)."
+  },
+  {
+    id:7,
+    content:"Курить в помещениях (в усадьбе есть предусмотренные для курения места)."
+  },
+  {
+    id:8,
+    content:"Курить в помещениях (в усадьбе есть предусмотренные для курения места)."
+  },
+  {
+    id:9,
+    content:"Курить в помещениях (в усадьбе есть предусмотренные для курения места)."
+  },
+]

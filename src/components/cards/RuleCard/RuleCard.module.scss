@@ -1,0 +1,50 @@
+@import "../../../styles/varaibles.scss";
+
+$height: 95px;
+$triangles-height: calc($height/2);
+
+.flag {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  position: relative;
+  height: $height;
+  background-color: $secondaryColor;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+
+  &::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 0;
+    right: -24px;
+    border-left: 24px solid $secondaryColor;
+    border-top: $triangles-height solid transparent;
+    
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 0;
+    right: -24px;
+    border-left: $triangles-height transparent;
+    border-right: 24px solid transparent;
+    border-top: $triangles-height solid $secondaryColor;
+  }
+
+  div{
+    position: absolute;
+    left:0px;
+    top:0px;
+    transform:translateX(-50%) ;
+  }
+
+  p{
+    color: $primaryColor;
+    font-size: 16px;
+    font-weight: 500;
+    margin-left: 45px;
+  }
+}

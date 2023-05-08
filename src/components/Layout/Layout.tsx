@@ -4,8 +4,11 @@ import { Outlet } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Arrow } from "../../assets/icons/Arrow";
 import { Footer } from "../Footer";
+import { useSelector } from "react-redux";
+import { AppState } from "../../reduxTools/store";
 
 export const Layout = () => {
+  const burgerIsOpen = useSelector((state:AppState) => state.burgerMenu.isOpen)
   const [visible, setVisible] = useState(false);
 
   const handleClick = () => {
@@ -27,7 +30,7 @@ export const Layout = () => {
 
   return (
     <div className={styles.layout}>
-      <Header className={visible ? styles["header-background"] : undefined} />
+      <Header className={burgerIsOpen || visible ? styles["header-background"] : undefined} />
       <Outlet />
       <Footer/>
       <div

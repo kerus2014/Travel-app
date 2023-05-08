@@ -5,21 +5,39 @@ import { housesData } from "../../services/datas";
 import HouseBigCard from "../../components/cards/HouseBigCard";
 import styles from "./Houses.module.scss";
 import { HomeBlockTemplate } from "../../components/HomeBlockTemplate";
+import {useState,useEffect} from "react"
+import { House } from "../../types";
+import { FaceBlock } from "../../components/FaceBlock/FaceBlock";
 
 export const Houses = () => {
   // const { data, error } = useGetObjectsQuery();
   // console.log(error);
+  // const [housesData,setHousesData] = useState<House[]>([]);
+
+  // const URL = `http://eugene2r.beget.tech/api/objects/`;
+  // const request = new Request(URL, {
+  //   mode: 'no-cors',
+  //   credentials: 'include',
+  //   method: "GET",
+  //   headers: {
+  //     'Content-Type': "application/json",
+  //     "Authorization": "Basic YWRtaW46MTIzMTIz",
+  //   },
+  // });
+
+  // console.log(housesData);
+  
+
+  // useEffect(() => {
+  //   fetch(request)
+  //     .then(res => res.json())
+  //     .then(res => setHousesData(res))
+  //     .catch(console.error);
+  // },[housesData])
 
   return (
     <>
-      <div className={styles["face-block"]}>
-        <BackgroundBlockImage image={image} />
-        <Container>
-          <div className={styles["content-container"]}>
-            <div className={styles.title}>Домики</div>
-          </div>
-        </Container>
-      </div>
+      <FaceBlock title="Домики" image={image}/>
       <HomeBlockTemplate title="">
         <div className={styles["houses-container"]}>
           {housesData.map((house, index) => {
@@ -29,10 +47,10 @@ export const Houses = () => {
                 title={house.title}
                 description_short={house.description_short}
                 description_long={house.description_long}
-                photos={house.photos}
+                objects_photos={house.objects_photos}
                 price_weekday={house.price_weekday}
                 price_holiday={house.price_holiday}
-                features={house.features}
+                objects_features={house.objects_features}
               />
             );
           })}
