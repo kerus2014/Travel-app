@@ -3,7 +3,7 @@ import image from "../../assets/pics/KitchenPage/Изображение.png";
 import { FormForOrder } from "../../components/Form";
 import { HomeBlockTemplate } from "../../components/HomeBlockTemplate";
 import { kitchenCardData } from "../../services/datas";
-import { KitchenCard } from "../../components/cards/KitchenCard";
+import { KitchenCard } from "../../components/cards/kitchenCard";
 import styles from "./Kitchen.module.scss";
 import { MealTimeCard } from "../../components/cards/MealTimeCard";
 
@@ -24,7 +24,6 @@ export const Kitchen = () => {
   // });
 
   // console.log(housesData);
-  
 
   // useEffect(() => {
   //   fetch(request)
@@ -35,22 +34,28 @@ export const Kitchen = () => {
 
   return (
     <>
-      <FaceBlock title="Домашняя кухня" image={image}/>
+      <FaceBlock title="Домашняя кухня" image={image} />
       <HomeBlockTemplate title="Расписание">
         <div className={styles["meal-time"]}>
-          <MealTimeCard title="Завтрак" time="9:00" price="15"/>
-          <MealTimeCard title="Обед" time="12:00" price="15"/>
-          <MealTimeCard title="Ужин" time="18:00" price="15"/>
+          <MealTimeCard title="Завтрак" time="9:00" price="15" />
+          <MealTimeCard title="Обед" time="12:00" price="15" />
+          <MealTimeCard title="Ужин" time="18:00" price="15" />
         </div>
         <div className={styles.title}>У нас можно попробовать</div>
         <div className={styles.grid}>
-          {kitchenCardData.map((el,index) => {
-            return <KitchenCard key={index.toString()} image={el.image} title={el.title} description={el.description}/>
-          })
-          }
+          {kitchenCardData.map((el, index) => {
+            return (
+              <KitchenCard
+                key={index.toString()}
+                image={el.image}
+                title={el.title}
+                description={el.description}
+              />
+            );
+          })}
         </div>
       </HomeBlockTemplate>
-      <FormForOrder/>
+      <FormForOrder />
     </>
   );
 };

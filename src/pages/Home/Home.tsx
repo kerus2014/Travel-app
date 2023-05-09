@@ -1,6 +1,6 @@
 import styles from "./Home.module.scss";
 import { Container } from "../../components/Container/Container";
-import { KitchenCard } from "../../components/cards/KitchenCard/KitchenCard";
+import { KitchenCard } from "../../components/cards/kitchenCard";
 import { MainButton } from "../../components/buttons/mainButton/MainButton";
 import { BackgroundBlockImage } from "../../components/BackgroundBlockImage";
 import image from "../../assets/pics/Home/faceBlock/20200806_154912 1.png";
