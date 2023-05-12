@@ -1,15 +1,13 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-const URL = `http://eugene2r.beget.tech/api/`;
-const key = `Basic YWRtaW46MTIzMTIz`;
+const URL = `http://45.147.176.176/api/`;
 
 export const houseData = createApi({
   reducerPath: "houseData",
   baseQuery: fetchBaseQuery({
     baseUrl: URL,
     headers: {
-      //   Accept: "application/json",
-      Authorization: "Basic YWRtaW46MTIzMTIz",
+      Accept: "application/json",
     },
   }),
   endpoints: (build) => ({
