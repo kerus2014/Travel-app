@@ -5,39 +5,18 @@ import { housesData } from "../../services/datas";
 import HouseBigCard from "../../components/cards/HouseBigCard";
 import styles from "./Houses.module.scss";
 import { HomeBlockTemplate } from "../../components/HomeBlockTemplate";
-import {useState,useEffect} from "react"
+import { useState, useEffect } from "react";
 import { House } from "../../types";
 import { FaceBlock } from "../../components/FaceBlock/FaceBlock";
+import { useGetObjectsQuery } from "../../reduxTools/requests/requests";
 
 export const Houses = () => {
-  // const { data, error } = useGetObjectsQuery();
-  // console.log(error);
-  // const [housesData,setHousesData] = useState<House[]>([]);
-
-  // const URL = `http://eugene2r.beget.tech/api/objects/`;
-  // const request = new Request(URL, {
-  //   mode: 'no-cors',
-  //   credentials: 'include',
-  //   method: "GET",
-  //   headers: {
-  //     'Content-Type': "application/json",
-  //     "Authorization": "Basic YWRtaW46MTIzMTIz",
-  //   },
-  // });
-
-  // console.log(housesData);
-  
-
-  // useEffect(() => {
-  //   fetch(request)
-  //     .then(res => res.json())
-  //     .then(res => setHousesData(res))
-  //     .catch(console.error);
-  // },[housesData])
+  const { data, error } = useGetObjectsQuery();
+  console.log(data);
 
   return (
     <>
-      <FaceBlock title="Домики" image={image}/>
+      <FaceBlock title="Домики" image={image} />
       <HomeBlockTemplate title="">
         <div className={styles["houses-container"]}>
           {housesData.map((house, index) => {
