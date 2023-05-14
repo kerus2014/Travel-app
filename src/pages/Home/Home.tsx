@@ -10,7 +10,6 @@ import {
   entertainmentCardData,
   faceBlockCarouselImages,
   // housesData,
-  kitchenCardData,
 } from "../../services/datas";
 import { HouseLittleCard } from "../../components/cards/HouseLittleCard/HouseLittleCard";
 import { Carousel } from "../../components/Carousel/Carousel";

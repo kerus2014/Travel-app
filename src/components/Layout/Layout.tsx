@@ -6,9 +6,13 @@ import { Arrow } from "../../assets/icons/Arrow";
 import { Footer } from "../Footer";
 import { useSelector } from "react-redux";
 import { AppState } from "../../reduxTools/store";
+import { useDispatch } from "react-redux";
+import { closeFormStateAction } from "../../reduxTools/formForOrderHouse/actions";
 
 export const Layout = () => {
   const burgerIsOpen = useSelector((state:AppState) => state.burgerMenu.isOpen)
+  const isFormOpen = useSelector((state:AppState) => state.form.isFormOpen)
+  const dispatch = useDispatch()
   const [visible, setVisible] = useState(false);
 
   const handleClick = () => {
@@ -39,6 +43,11 @@ export const Layout = () => {
         id="arrow-top"
       >
         <Arrow />
+      </div>
+      <div className={isFormOpen ? styles.container : styles.hide}>
+        <div className={styles.form}>
+          <div className={styles["close-button"]} onClick={() => dispatch(closeFormStateAction())}>&#10006;</div>
+        </div>
       </div>
     </div>
   );
