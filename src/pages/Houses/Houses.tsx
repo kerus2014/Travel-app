@@ -11,8 +11,22 @@ import { FaceBlock } from "../../components/FaceBlock/FaceBlock";
 import { useGetObjectsQuery } from "../../reduxTools/requests/requests";
 
 export const Houses = () => {
-  const { data, error } = useGetObjectsQuery();
-  console.log(data);
+  // const { data, error } = useGetObjectsQuery();
+  // console.log(data);
+
+  const [housesData,setHousesData] = useState<House[]>([]);
+
+  const URL = `http://45.147.176.176/api/objects/`;
+  const request = new Request(URL, {
+    method: "GET",
+  });
+
+  useEffect(() => {
+    fetch(request)
+      .then(res => res.json())
+      .then(res => setHousesData(res))
+      .catch(console.error);
+  },[housesData])
 
   return (
     <>
@@ -30,6 +44,7 @@ export const Houses = () => {
                 price_weekday={house.price_weekday}
                 price_holiday={house.price_holiday}
                 objects_features={house.objects_features}
+                pers_num={house.pers_num}
               />
             );
           })}

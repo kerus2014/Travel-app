@@ -1,6 +1,8 @@
 @import "../../styles/varaibles.scss";
 
 .container {
+  display: flex;
+  flex-direction: column;
 }
 
 span {

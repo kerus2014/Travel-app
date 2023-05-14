@@ -52,49 +52,49 @@ export const housesData: House[] = [
 
 export const kitchenCardData: IKitchenCard[] = [
   {
-    image: eggs,
+    photo: eggs,
     title: "Суп куриный",
     description:
       "Куриный суп с вермишелью с удовольствием съедят и дети, и взрослые.",
   },
   {
-    image: eggs,
+    photo: eggs,
     title: "Суп куриный",
     description:
       "Куриный суп с вермишелью с удовольствием съедят и дети, и взрослые.",
   },
   {
-    image: eggs,
+    photo: eggs,
     title: "Суп куриный",
     description:
       "Куриный суп с вермишелью с удовольствием съедят и дети, и взрослые.",
   },
   {
-    image: eggs,
+    photo: eggs,
     title: "Суп куриный",
     description:
       "Куриный суп с вермишелью с удовольствием съедят и дети, и взрослые.",
   },
   {
-    image: eggs,
+    photo: eggs,
     title: "Суп куриный",
     description:
       "Куриный суп с вермишелью с удовольствием съедят и дети, и взрослые.",
   },
   {
-    image: eggs,
+    photo: eggs,
     title: "Суп куриный",
     description:
       "Куриный суп с вермишелью с удовольствием съедят и дети, и взрослые.",
   },
   {
-    image: eggs,
+    photo: eggs,
     title: "Суп куриный",
     description:
       "Куриный суп с вермишелью с удовольствием съедят и дети, и взрослые.",
   },
   {
-    image: eggs,
+    photo: eggs,
     title: "Суп куриный",
     description:
       "Куриный суп с вермишелью с удовольствием съедят и дети, и взрослые.",

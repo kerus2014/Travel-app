@@ -3,7 +3,8 @@ export interface ClassName {
 }
 
 export interface IKitchenCard {
-  image: string;
+  id?:number;
+  photo: string;
   title: string;
   description: string;
 }
@@ -27,9 +28,7 @@ interface Meal {
   };
 }
 
-interface Feature {
-  [key: string]: string;
-}
+type Feature = "Internet" | "Shower" | "Kitchen" | "Fridge" | "TV"
 
 interface Rooms {
   [key: string]: number;
@@ -48,6 +47,8 @@ export interface House {
   price_holiday?: string;
   objects_photos: string[];
   objects_features?: Feature[];
+  beds_count?: number,
+  created_date?: string;
 }
 
 export type NavLinkValueType =

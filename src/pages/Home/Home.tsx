@@ -1,6 +1,6 @@
 import styles from "./Home.module.scss";
 import { Container } from "../../components/Container/Container";
-import { KitchenCard } from "../../components/cards/kitchenCard";
+import { KitchenCard } from "../../components/cards/KitchenCard";
 import { MainButton } from "../../components/buttons/mainButton/MainButton";
 import { BackgroundBlockImage } from "../../components/BackgroundBlockImage";
 import image from "../../assets/pics/Home/faceBlock/20200806_154912 1.png";
@@ -9,7 +9,7 @@ import { HomeBlockTemplate } from "../../components/HomeBlockTemplate/HomeBlockT
 import {
   entertainmentCardData,
   faceBlockCarouselImages,
-  housesData,
+  // housesData,
   kitchenCardData,
 } from "../../services/datas";
 import { HouseLittleCard } from "../../components/cards/HouseLittleCard/HouseLittleCard";
@@ -17,21 +17,22 @@ import { Carousel } from "../../components/Carousel/Carousel";
 import { EntertainmentCard } from "../../components/cards/EntertainmentCard/EntertainmentCard";
 import { useEffect, useState } from "react";
 import { Settings } from "react-slick";
-import { House } from "../../types";
+import { House, IKitchenCard } from "../../types";
 
 export const Home = () => {
   const [imageIndex, setImageIndex] = useState<number>(0);
-  // const [housesData,setHousesData] = useState<House[]>([]);
+  const [housesData,setHousesData] = useState<House[]>([]);
+  const [kitchenData,setKitchenData] = useState<IKitchenCard[]>([]);
 
-  // const URL = `http://eugene2r.beget.tech/api/objects/`;
-  // const request = new Request(URL, {
-  //   mode: 'no-cors',
-  //   credentials: 'include',
-  //   method: "GET",
-  //   headers: {
-  //     "Authorization": "Basic YWRtaW46MTIzMTIz",
-  //   },
-  // });
+  const URL = `http://45.147.176.176/api/objects/`;
+  const request = new Request(URL, {
+    method: "GET",
+  });
+
+  const URL2 = `http://45.147.176.176/api/dishes/`;
+  const request2 = new Request(URL2, {
+    method: "GET",
+  });
 
   const sliderFaceBlockSettings: Settings = {
     slidesToShow: 1,
@@ -52,12 +53,16 @@ export const Home = () => {
     infinite: true,
   };
 
-  // useEffect(() => {
-  //   fetch(request)
-  //     .then(res => res.json())
-  //     .then(res => setHousesData(res))
-  //     .catch(console.error);
-  // },[housesData])
+  useEffect(() => {
+    fetch(request)
+      .then(res => res.json())
+      .then(res => setHousesData(res))
+      .catch(console.error);
+    fetch(request2)
+    .then(res => res.json())
+    .then(res => setKitchenData(res))
+    .catch(console.error);
+  },[housesData,kitchenData])
 
   return (
     <>
@@ -103,7 +108,7 @@ export const Home = () => {
           спец.предложения и "форточки".
         </p>
         <div className={styles.cards}>
-          {housesData.map((el, index) => {
+          {housesData.slice(0,3).map((el, index) => {
             return (
               <HouseLittleCard
                 key={index.toString()}
@@ -129,11 +134,11 @@ export const Home = () => {
         </p>
         <div className={styles["carousel-container"]}>
           <Carousel settings={kitchenSliderSettings}>
-            {kitchenCardData.map((el, index) => {
+            {kitchenData.map((el, index) => {
               return (
                 <KitchenCard
                   key={index.toString()}
-                  image={el.image}
+                  photo={el.photo}
                   title={el.title}
                   description={el.description}
                 />

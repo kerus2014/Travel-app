@@ -3,34 +3,29 @@ import image from "../../assets/pics/KitchenPage/Изображение.png";
 import { FormForOrder } from "../../components/Form";
 import { HomeBlockTemplate } from "../../components/HomeBlockTemplate";
 import { kitchenCardData } from "../../services/datas";
-import { KitchenCard } from "../../components/cards/kitchenCard";
+import { KitchenCard } from "../../components/cards/KitchenCard";
 import styles from "./Kitchen.module.scss";
 import { MealTimeCard } from "../../components/cards/MealTimeCard";
+import { useEffect, useState } from "react";
+import { House, IKitchenCard } from "../../types";
 
 export const Kitchen = () => {
   // const { data, error } = useGetObjectsQuery();
   // console.log(error);
-  // const [housesData,setHousesData] = useState<House[]>([]);
+  const [kitchenData,setKitchenData] = useState<IKitchenCard[]>([]);
 
-  // const URL = `http://eugene2r.beget.tech/api/objects/`;
-  // const request = new Request(URL, {
-  //   mode: 'no-cors',
-  //   credentials: 'include',
-  //   method: "GET",
-  //   headers: {
-  //     'Content-Type': "application/json",
-  //     "Authorization": "Basic YWRtaW46MTIzMTIz",
-  //   },
-  // });
+  const URL = `http://45.147.176.176/api/dishes/`;
+  const request = new Request(URL, {
+    method: "GET",
+  });
 
-  // console.log(housesData);
+  useEffect(() => {
+    fetch(request)
+      .then(res => res.json())
+      .then(res => setKitchenData(res))
+      .catch(console.error);
+  },[kitchenData])
 
-  // useEffect(() => {
-  //   fetch(request)
-  //     .then(res => res.json())
-  //     .then(res => setHousesData(res))
-  //     .catch(console.error);
-  // },[housesData])
 
   return (
     <>
@@ -43,11 +38,11 @@ export const Kitchen = () => {
         </div>
         <div className={styles.title}>У нас можно попробовать</div>
         <div className={styles.grid}>
-          {kitchenCardData.map((el, index) => {
+          {kitchenData.map((el, index) => {
             return (
               <KitchenCard
                 key={index.toString()}
-                image={el.image}
+                photo={el.photo}
                 title={el.title}
                 description={el.description}
               />

@@ -9,7 +9,8 @@ const Price = (props: IProps) => {
   const { type, price } = props;
   return (
     <div className={styles.container}>
-      от <span>{price}</span> BYN {type === "weekday" ? "будни" : "выходные"}
+      <p>от <span>{price}</span> BYN </p>
+      <p>{type === "weekday" ? "будни" : "выходные"}</p>
     </div>
   );
 };

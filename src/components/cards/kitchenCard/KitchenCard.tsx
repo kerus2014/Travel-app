@@ -2,11 +2,11 @@ import { IKitchenCard } from "../../../types";
 import styles from "./KitchenCard.module.scss";
 
 export const KitchenCard = (props: IKitchenCard) => {
-  const { image, title, description } = props;
+  const { photo, title, description } = props;
   return (
     <div className={styles.card}>
       <div className={styles["card__image-container"]}>
-        <img src={image} alt={image} />
+        <img src={photo} alt={photo} />
       </div>
       <div className={styles["card__info"]}>
         <div className={styles["card__info-wrapper"]}>

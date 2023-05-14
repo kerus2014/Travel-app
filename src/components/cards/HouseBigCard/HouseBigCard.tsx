@@ -4,6 +4,13 @@ import Carousel from "../../Carousel";
 import Price from "../../Price";
 import { MainButton } from "../../buttons/mainButton/MainButton";
 import styles from "./HouseBigCard.module.scss";
+import { Shower} from "../../../assets/icons/features/Shower";
+import { Fridge } from "../../../assets/icons/features/Fridge";
+import { Kitchen } from "../../../assets/icons/features/Kitchen";
+import { Internet } from "../../../assets/icons/features/Internet";
+import { TV } from "../../../assets/icons/features/TV";
+import { spawn } from "child_process";
+import { Person } from "../../../assets/icons/features/Person";
 
 const housePhotosSettings = {
   slidesToShow: 1,
@@ -22,6 +29,7 @@ const HouseBigCard = (props: House) => {
     price_weekday,
     price_holiday,
     objects_features,
+    pers_num,
   } = props;
 
   return (
@@ -41,11 +49,29 @@ const HouseBigCard = (props: House) => {
 
       <div className={styles["card-right"]}>
         <div className={styles.iconsContainer}>
-          {objects_features?.map((elem, index) => (
-            <div className={styles.icons} key={index}>
-              <img src={elem.Shower} alt="" />
-            </div>
-          ))}
+          <div className={styles["person-number"]}>
+            <span>{pers_num ? pers_num : null}</span>
+            <Person/>
+          </div>
+          {
+            objects_features?.map((elem, index) => {
+
+              switch(elem) {
+                case "TV":  
+                  return <TV/>;
+                case "Fridge":  
+                  return <Fridge/>;
+                case "Kitchen":  
+                  return <Kitchen/>;
+                case "Shower":  
+                  return <Shower/>;
+                case "Internet":  
+                  return <Internet/>;
+                default:
+                  return null;
+              }
+            }
+          )}
         </div>
         <div className={styles.descriptionLong}>{description_long}</div>
         <div className={styles.infoContainer}>

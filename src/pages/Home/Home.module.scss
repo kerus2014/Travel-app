@@ -108,11 +108,11 @@
   padding-top: 104px!important;
 
   .cards{
-    display: flex;
+    display: grid;
     margin-top: 20px;
     margin-bottom: 30px;
     position: relative;
-    justify-content: center;    
+    grid-template-columns: 1fr 1fr 1fr;   
   }
 
   button{
