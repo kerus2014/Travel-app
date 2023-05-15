@@ -11,6 +11,7 @@ import { Internet } from "../../../assets/icons/features/Internet";
 import { TV } from "../../../assets/icons/features/TV";
 import { spawn } from "child_process";
 import { Person } from "../../../assets/icons/features/Person";
+import { useNavigate } from "react-router";
 
 const housePhotosSettings = {
   slidesToShow: 1,
@@ -21,7 +22,10 @@ const housePhotosSettings = {
 };
 
 const HouseBigCard = (props: House) => {
+  const navigate = useNavigate()
+
   const {
+    id,
     title,
     description_short,
     description_long,
@@ -89,7 +93,7 @@ const HouseBigCard = (props: House) => {
         </div>
         <div className={styles.buttonContainer}>
           <MainButton value={"Забронировать"} />
-          <MainButton value={"Подробнее"} />
+          <MainButton value={"Подробнее"} handler={() => navigate(`/houses/${id}`)}/>
         </div>
       </div>
     </div>

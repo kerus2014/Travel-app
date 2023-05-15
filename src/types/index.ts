@@ -31,7 +31,8 @@ interface Meal {
 type Feature = "Internet" | "Shower" | "Kitchen" | "Fridge" | "TV"
 
 interface Rooms {
-  [key: string]: number;
+  bdr?: number,
+  gst?: number
 }
 
 
@@ -41,7 +42,7 @@ export interface House {
   pers_num?: number;
   description_short: string;
   description_long?: string;
-  rooms_count?: Rooms[];
+  rooms_count?: Rooms;
   kitchen?: Meal[];
   price_weekday?: string;
   price_holiday?: string;
@@ -63,4 +64,9 @@ export type NavLinkValueType =
   export interface Rule {
     id?:number;
     content:string;
+  }
+
+  export interface ImagesGallery{
+    original: string,
+    thumbnail: string,
   }
