@@ -9,6 +9,7 @@ import { useState, useEffect } from "react";
 import { House } from "../../types";
 import { FaceBlock } from "../../components/FaceBlock/FaceBlock";
 import { useGetObjectsQuery } from "../../reduxTools/requests/requests";
+import { FormForOrder } from "../../components/Form";
 
 export const Houses = () => {
   // const { data, error } = useGetObjectsQuery();
@@ -37,6 +38,7 @@ export const Houses = () => {
             return (
               <HouseBigCard
                 key={index.toString()}
+                id={house.id}
                 title={house.title}
                 description_short={house.description_short}
                 description_long={house.description_long}
@@ -49,6 +51,9 @@ export const Houses = () => {
             );
           })}
         </div>
+      </HomeBlockTemplate>
+      <HomeBlockTemplate>
+        <FormForOrder value="Заповедный остров" buttonValue="Найти домик" />
       </HomeBlockTemplate>
     </>
   );

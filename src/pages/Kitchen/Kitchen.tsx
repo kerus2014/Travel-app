@@ -50,7 +50,9 @@ export const Kitchen = () => {
           })}
         </div>
       </HomeBlockTemplate>
-      <FormForOrder />
+      <HomeBlockTemplate>
+        <FormForOrder value="Заповедный остров" buttonValue="Найти домик" />
+      </HomeBlockTemplate>
     </>
   );
 };
