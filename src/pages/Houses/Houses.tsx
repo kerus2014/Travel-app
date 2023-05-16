@@ -15,7 +15,7 @@ export const Houses = () => {
   // const { data, error } = useGetObjectsQuery();
   // console.log(data);
 
-  const [housesData,setHousesData] = useState<House[]>([]);
+  const [housesData, setHousesData] = useState<House[]>([]);
 
   const URL = `http://45.147.176.176/api/objects/`;
   const request = new Request(URL, {
@@ -24,10 +24,10 @@ export const Houses = () => {
 
   useEffect(() => {
     fetch(request)
-      .then(res => res.json())
-      .then(res => setHousesData(res))
+      .then((res) => res.json())
+      .then((res) => setHousesData(res))
       .catch(console.error);
-  },[housesData])
+  }, [housesData]);
 
   return (
     <>

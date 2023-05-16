@@ -1,0 +1,60 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  position: relative;
+  display: flex;
+  box-shadow: 0px 4px 17px 5px rgba(218, 203, 203, 0.4);
+  padding: 25px 21px 12px 21px;
+
+  img {
+    height: 215px;
+    object-fit: cover;
+    object-position: bottom;
+    width: 100%;
+  }
+  & :global(.slick-slide) {
+    padding: 0 20px;
+    flex-direction: column;
+    row-gap: 20px;
+  }
+
+  & :global(.slick-list) {
+    margin: 0 -20px;
+    overflow: visible !important;
+    overflow-x: clip !important;
+  }
+
+  & :global(.slick-dots li button:before) {
+    font-size: 10px;
+  }
+
+  & :global(.slick-dots li.slick-active button:before) {
+    opacity: 1;
+    color: brown !important;
+  }
+
+  & :global(.slick-dots) {
+    position: static;
+    margin-top: 15px;
+  }
+  & :global(.slick-arrow) {
+    display: none !important;
+  }
+}
+
+.description_short {
+  font-size: 16px;
+  height: 88px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  margin-bottom: 26px;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+}

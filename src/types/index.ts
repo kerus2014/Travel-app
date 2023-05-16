@@ -3,7 +3,7 @@ export interface ClassName {
 }
 
 export interface IKitchenCard {
-  id?:number;
+  id?: number;
   photo: string;
   title: string;
   description: string;
@@ -13,6 +13,14 @@ export interface IEntertainmentCard {
   id?: number;
   image: string;
   title: string;
+}
+
+export interface IEntertainments extends IEntertainmentCard {
+  entertaiments_photos: string[];
+  description_short: string;
+  description_long: string;
+  price_desription: string;
+  price: string;
 }
 
 export interface INavbarData {
@@ -36,16 +44,22 @@ export const TELEVISOR = "Телевизор";
 export const MANGAL = "Мангал";
 export const DETSKAYA_PLOSCHADKA = "Детская площадка";
 
-type Feature = typeof INTERNET | typeof DUSH | typeof HOLODILNIK | typeof KUHNIYA | typeof TELEVISOR | typeof MANGAL | typeof DETSKAYA_PLOSCHADKA
+type Feature =
+  | typeof INTERNET
+  | typeof DUSH
+  | typeof HOLODILNIK
+  | typeof KUHNIYA
+  | typeof TELEVISOR
+  | typeof MANGAL
+  | typeof DETSKAYA_PLOSCHADKA;
 
 interface Rooms {
-  bdr?: number,
-  gst?: number
+  bdr?: number;
+  gst?: number;
 }
 
-
 export interface House {
-  id?:number;
+  id?: number;
   title: string;
   pers_num?: number;
   description_short: string;
@@ -56,7 +70,7 @@ export interface House {
   price_holiday?: string;
   objects_photos: string[];
   objects_features?: Feature[];
-  beds_count?: number,
+  beds_count?: number;
   created_date?: string;
 }
 
@@ -69,12 +83,12 @@ export type NavLinkValueType =
   | "Правила"
   | "Контакты";
 
-  export interface Rule {
-    id?:number;
-    content:string;
-  }
+export interface Rule {
+  id?: number;
+  content: string;
+}
 
-  export interface ImagesGallery{
-    original: string,
-    thumbnail: string,
-  }
+export interface ImagesGallery {
+  original: string;
+  thumbnail: string;
+}
