@@ -1,20 +1,24 @@
-import ImageGallery from 'react-image-gallery';
-import { ImagesGallery } from '../../types';
+import ImageGallery from "react-image-gallery";
+import { ImagesGallery } from "../../types";
 import "./ImageGalleryCarousel.scss";
 
-interface IProps{
-  images:string[]
+interface IProps {
+  images: string[];
+  thubnailPosition?: string;
 }
 
-export const MyGallery = (props:IProps) => {
-  const images:ImagesGallery[] = props.images.map(el => {
+export const MyGallery = (props: IProps) => {
+  const images: ImagesGallery[] = props.images.map((el) => {
     return {
       original: el,
       thumbnail: el,
-      }
-  }
-  )
-  return(
-    <ImageGallery items={images} showPlayButton={false}/>
-  )
-}
+    };
+  });
+  return (
+    <ImageGallery
+      items={images}
+      showPlayButton={false}
+      thumbnailPosition={props.thubnailPosition ? "right" : "bottom"}
+    />
+  );
+};

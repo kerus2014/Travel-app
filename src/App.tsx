@@ -6,6 +6,8 @@ import { Kitchen } from "./pages/Kitchen";
 import { Rules } from "./pages/Rules";
 import { Contacts } from "./pages/Contacts";
 import { HouseItem } from "./pages/HouseItem/HouseItem";
+import Entertainment from "./pages/Entertainment/Entertainment";
+import EntertainmentCurrent from "./pages/EntertainmentCurrent/EntertainmentCurrent";
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
         <Route path="kitchen" element={<Kitchen />} />
         <Route path="rules" element={<Rules />} />
         <Route path="contacts" element={<Contacts />} />
+        <Route path="entertainment" element={<Entertainment />} />
+        <Route path="entertainment/:id" element={<EntertainmentCurrent />} />
       </Route>
     </Routes>
   );

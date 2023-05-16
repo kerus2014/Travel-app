@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { IEntertainments } from "../../types";
 
 const URL = `http://45.147.176.176/api/`;
 
@@ -14,8 +15,11 @@ export const houseData = createApi({
     getDishes: build.query<any, void>({
       query: () => `dishes`,
     }),
-    getEntertaiments: build.query<any, void>({
+    getEntertainments: build.query<IEntertainments[], void>({
       query: () => `entertaiments`,
+    }),
+    getEntertainmentsCurrent: build.query<IEntertainments, string>({
+      query: (id) => `entertaiments/${id}`,
     }),
     getFeedingInfo: build.query<any, void>({
       query: () => `feeding-info`,
@@ -31,7 +35,8 @@ export const houseData = createApi({
 
 export const {
   useGetDishesQuery,
-  useGetEntertaimentsQuery,
+  useGetEntertainmentsQuery,
+  useGetEntertainmentsCurrentQuery,
   useGetFeedingInfoQuery,
   useGetInfoQuery,
   useGetObjectsQuery,
