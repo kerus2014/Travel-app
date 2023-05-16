@@ -1,17 +1,18 @@
 import { features } from "process";
-import { House } from "../../../types";
+import { DUSH, House, INTERNET, KUHNIYA, MANGAL, TELEVISOR } from "../../../types";
 import Carousel from "../../Carousel";
 import Price from "../../Price";
 import { MainButton } from "../../buttons/mainButton/MainButton";
 import styles from "./HouseBigCard.module.scss";
 import { Shower} from "../../../assets/icons/features/Shower";
 import { Fridge } from "../../../assets/icons/features/Fridge";
-import { Kitchen } from "../../../assets/icons/features/Kitchen";
+import { KitchenIcon } from "../../../assets/icons/features/KitchenIcon";
 import { Internet } from "../../../assets/icons/features/Internet";
 import { TV } from "../../../assets/icons/features/TV";
 import { spawn } from "child_process";
 import { Person } from "../../../assets/icons/features/Person";
 import { useNavigate } from "react-router";
+import { BigBed } from "../../../assets/icons/features/BigBed";
 
 const housePhotosSettings = {
   slidesToShow: 1,
@@ -34,6 +35,7 @@ const HouseBigCard = (props: House) => {
     price_holiday,
     objects_features,
     pers_num,
+    beds_count
   } = props;
 
   return (
@@ -57,19 +59,20 @@ const HouseBigCard = (props: House) => {
             <span>{pers_num ? pers_num : null}</span>
             <Person/>
           </div>
+          {beds_count && beds_count != 0 ? <BigBed/> : null}
           {
             objects_features?.map((elem, index) => {
 
               switch(elem) {
-                case "TV":  
+                case TELEVISOR:  
                   return <TV/>;
-                case "Fridge":  
+                case MANGAL:  
                   return <Fridge/>;
-                case "Kitchen":  
-                  return <Kitchen/>;
-                case "Shower":  
+                case KUHNIYA:  
+                  return <KitchenIcon/>;
+                case DUSH:  
                   return <Shower/>;
-                case "Internet":  
+                case INTERNET:  
                   return <Internet/>;
                 default:
                   return null;

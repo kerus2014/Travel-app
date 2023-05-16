@@ -47,6 +47,7 @@ export const Houses = () => {
                 price_holiday={house.price_holiday}
                 objects_features={house.objects_features}
                 pers_num={house.pers_num}
+                beds_count={house.beds_count}
               />
             );
           })}

@@ -28,7 +28,15 @@ interface Meal {
   };
 }
 
-type Feature = "Internet" | "Shower" | "Kitchen" | "Fridge" | "TV"
+export const INTERNET = "Интернет";
+export const DUSH = "Душ";
+export const HOLODILNIK = "Холодильник";
+export const KUHNIYA = "Кухня";
+export const TELEVISOR = "Телевизор";
+export const MANGAL = "Мангал";
+export const DETSKAYA_PLOSCHADKA = "Детская площадка";
+
+type Feature = typeof INTERNET | typeof DUSH | typeof HOLODILNIK | typeof KUHNIYA | typeof TELEVISOR | typeof MANGAL | typeof DETSKAYA_PLOSCHADKA
 
 interface Rooms {
   bdr?: number,
