@@ -3,11 +3,11 @@ import { IEntertainmentCard } from "../../../types";
 import { FlagItem } from "../../FlagItem";
 
 export const EntertainmentCard = (props: IEntertainmentCard) => {
-  const { id, image, title } = props;
+  const { id, entertaiments_photos, title } = props;
 
   return (
     <div className={styles.card}>
-      <img src={image} alt="" />
+      <img src={entertaiments_photos && entertaiments_photos[0]} alt="" />
       <FlagItem value={title} className={styles.flag} />
     </div>
   );

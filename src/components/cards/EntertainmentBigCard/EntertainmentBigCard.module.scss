@@ -1,3 +1,5 @@
+@import "../../../styles/varaibles.scss";
+
 .card {
   display: flex;
   flex-direction: column;
@@ -6,6 +8,23 @@
   display: flex;
   box-shadow: 0px 4px 17px 5px rgba(218, 203, 203, 0.4);
   padding: 25px 21px 12px 21px;
+
+  .more{
+    cursor: pointer;
+    font-weight: 500;
+  }
+
+  .price{
+    font-weight: 500;
+  }
+
+  .title{
+    cursor: pointer;
+    font-size: 30px;
+    font-weight: 500;
+    line-height: 37px;
+    text-transform: uppercase;margin-bottom: 20px;
+  }
 
   img {
     height: 215px;
@@ -31,7 +50,7 @@
 
   & :global(.slick-dots li.slick-active button:before) {
     opacity: 1;
-    color: brown !important;
+    color: $primaryColor !important;
   }
 
   & :global(.slick-dots) {
@@ -52,6 +71,7 @@
   margin-bottom: 26px;
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
+  margin-top: 20px;
 }
 
 .footer {

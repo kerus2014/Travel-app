@@ -19,7 +19,13 @@ export const FormForOrder = (props: IProps) => {
       }
     >
       <p>{value}</p>
-      <MainButton value={buttonValue} handler={() =>dispatch(changeFormStateAction())}/>
+      <MainButton value={buttonValue} handler={() =>{
+        document.body.style.position = 'fixed';
+        document.body.style.width = '100%';
+        document.body.style.top = `-${window.scrollY}px`;
+        dispatch(changeFormStateAction())
+      }
+      }/>
     </div>
   );
 };

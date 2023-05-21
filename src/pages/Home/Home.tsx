@@ -17,11 +17,13 @@ import { EntertainmentCard } from "../../components/cards/EntertainmentCard/Ente
 import { useEffect, useState } from "react";
 import { Settings } from "react-slick";
 import { House, IKitchenCard } from "../../types";
+import { useGetEntertainmentsQuery } from "../../reduxTools/requests/requests";
 
 export const Home = () => {
   const [imageIndex, setImageIndex] = useState<number>(0);
   const [housesData,setHousesData] = useState<House[]>([]);
   const [kitchenData,setKitchenData] = useState<IKitchenCard[]>([]);
+  const { data } = useGetEntertainmentsQuery();
 
   const URL = `http://45.147.176.176/api/objects/`;
   const request = new Request(URL, {
@@ -153,11 +155,11 @@ export const Home = () => {
         </p>
         <p>Каждая минута наполнена яркими событиями</p>
         <div className={styles["entertainment-container"]}>
-          {entertainmentCardData.slice(0, 6).map((el, index) => {
+          {data && data.slice(0, 6).map((el, index) => {
             return (
               <EntertainmentCard
                 title={el.title}
-                image={el.image}
+                entertaiments_photos={el.entertaiments_photos}
                 key={index.toString()}
               />
             );

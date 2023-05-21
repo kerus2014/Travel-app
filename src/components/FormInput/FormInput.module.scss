@@ -1,0 +1,30 @@
+@import "../../styles/varaibles.scss";
+
+.label{
+  position: relative;
+
+  input{
+    border: none;
+    outline: none;
+    border-bottom: 3px solid $primaryColor;
+    padding: 5px 5px 5px 23px;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 18px;
+    width: 100%;
+    background: none;
+  }
+
+  p{
+    margin-bottom: 5px;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 22px;
+  }
+
+  div{
+    position: absolute;
+    left: 0px;
+    bottom: 8px;
+  }
+}

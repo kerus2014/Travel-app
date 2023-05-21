@@ -1,9 +1,19 @@
-import { House, IEntertainmentCard, IKitchenCard, Rule } from "../types";
+import { House, IEntertainmentCard, IKitchenCard, ISexData, Rule } from "../types";
 import haromi from "../assets/pics/houses/haromiIaromi/Изображение.png";
 import eggs from "../assets/pics/kitchen/kitchenLogoExample.png";
 import faceImg1 from "../assets/pics/Home/carouselImages/20210607_104318 1.png";
 import faceImg2 from "../assets/pics/Home/carouselImages/IMG-1127d31fd8da398fa5b4f7f8a070e0b5-V 1.png";
 import faceImg3 from "../assets/pics/Home/carouselImages/IMG-1127d31fd8da398fa5b4f7f8a070e0b5-V 2.png";
+
+export const sexData:ISexData[]= [
+  {
+    title:'Мужской'
+  },
+  {
+    title:'Женский'
+  },
+]
+
 
 export const housesData: House[] = [
   {
@@ -103,42 +113,42 @@ export const kitchenCardData: IKitchenCard[] = [
 
 export const entertainmentCardData: IEntertainmentCard[] = [
   {
-    image: eggs,
+    entertaiments_photos: eggs,
     title: "Купаловская ночь",
     id: 1,
   },
   {
-    image: eggs,
+    entertaiments_photos: eggs,
     title: "Дайвинг",
     id: 2,
   },
   {
-    image: eggs,
+    entertaiments_photos: eggs,
     title: "Рыбалка",
     id: 3,
   },
   {
-    image: eggs,
+    entertaiments_photos: eggs,
     title: "Ягоды и грибы",
     id: 4,
   },
   {
-    image: eggs,
+    entertaiments_photos: eggs,
     title: "Катание на лошадях",
     id: 5,
   },
   {
-    image: eggs,
+    entertaiments_photos: eggs,
     title: "Музыка и танцы",
     id: 6,
   },
   {
-    image: eggs,
+    entertaiments_photos: eggs,
     title: "Суп куриный",
     id: 7,
   },
   {
-    image: eggs,
+    entertaiments_photos: eggs,
     title: "Суп куриный",
     id: 8,
   },

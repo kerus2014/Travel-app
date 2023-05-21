@@ -1,3 +1,20 @@
+@import "../../styles/varaibles.scss"; 
+
+.card{
+  padding: 30px 40px;
+  background: #FFFFFF;
+  margin: 55px auto 45px;
+  box-shadow: 0px 4px 17px 5px rgba(218, 203, 203, 0.4);
+
+  .title{
+    font-size: 35px;
+    font-weight: 600;
+    line-height: 43px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+  }
+}
+
 .sliderContainer {
   height: 488px;
   //   display: grid;
@@ -47,10 +64,10 @@
   }
 
   & :global(.image-gallery-thumbnail.active) {
-    border: 2px solid brown;
+    border: 2px solid $primaryColor;
   }
   & :global(.image-gallery-thumbnail:hover) {
-    border: 2px solid brown;
+    border: 2px solid $primaryColor;
   }
 
   & :global(.image-gallery-thumbnail + .image-gallery-thumbnail) {
@@ -73,9 +90,38 @@
   }
 }
 
+.title{
+  font-size: 35px;
+  font-weight: 600;
+  line-height: 43px;
+}
+
 .info {
   max-width: 80%;
+  margin-top: 25px;
+
+  h1{
+    font-size: 30px;
+    font-weight: 500;
+    line-height: 37px;
+    text-transform: uppercase;
+    margin-top: 25px;
+  }
+
+  hr{
+    margin: 10px 0px 15px;
+  }
+
+  .grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 20px;
+    grid-row-gap: 10px;
+  }
 }
 .line {
-  border: 2px solid brown;
+  border: none;
+  width: 100%;
+  background: $primaryColor;
+  height: 2px;
 }

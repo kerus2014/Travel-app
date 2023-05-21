@@ -11,16 +11,17 @@ export interface IKitchenCard {
 
 export interface IEntertainmentCard {
   id?: number;
-  image: string;
+  entertaiments_photos?: string[];
   title: string;
 }
 
 export interface IEntertainments extends IEntertainmentCard {
-  entertaiments_photos: string[];
-  description_short: string;
-  description_long: string;
-  price_desription: string;
-  price: string;
+  entertaiments_prices?: {
+    [key:string]: string,
+  },
+  description_short?: string,
+  description_long?: string,
+  price_desription?: string
 }
 
 export interface INavbarData {
@@ -91,4 +92,8 @@ export interface Rule {
 export interface ImagesGallery {
   original: string;
   thumbnail: string;
+}
+
+export interface ISexData{
+  title:string,
 }

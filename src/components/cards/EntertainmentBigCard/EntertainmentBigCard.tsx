@@ -13,19 +13,27 @@ const housePhotosSettings = {
 };
 
 export const EntertainmentBigCard = (props: IEntertainments) => {
-  const { id, entertaiments_photos, title, price } = props;
+  const { id, entertaiments_photos, title, entertaiments_prices, description_short } = props;
   const navigate = useNavigate();
+  let prices:number[] = []
+
+  for (let key in entertaiments_prices){
+    prices.push(+entertaiments_prices[key])
+  }
+
+  prices.sort((a, b) => a - b)
+
+
   return (
-    <div
-      className={styles.card}
-      onClick={() => {
+    <div className={styles.card} >
+      <div className={styles.title} onClick={() => {
         navigate(`/entertainment/${id}`);
-      }}
-    >
-      <div>{title}</div>
+      }}>
+        {title}
+      </div>
 
       <Carousel settings={housePhotosSettings}>
-        {photoExample.map((el, index) => {
+        {entertaiments_photos && entertaiments_photos.map((el, index) => {
           return (
             <div key={index}>
               <img className={styles.image} src={el} alt="" />
@@ -33,14 +41,18 @@ export const EntertainmentBigCard = (props: IEntertainments) => {
           );
         })}
       </Carousel>
+
       <p className={styles.description_short}>
-        Первоначальные навыки погружений Вы освоите в комфортной, спокойной
-        обстановке. Всё необходимое для погружения вам предоставляет!
-        dsfdsfdsfdsfdsfdsfdsfdsfsfds
+        {description_short}
       </p>
       <div className={styles.footer}>
-        <div>Подробнее ...</div>
-        <div> от {(+price).toFixed()} рублей</div>
+        <div className={styles.more} onClick={() => { navigate(`/entertainment/${id}`); }}>
+          Подробнее ...
+        </div>
+        <div className={styles.price}>
+          от {prices[0]} {prices[0] > 1 ? "рублей" : "рубля"}
+        </div>
+        
       </div>
     </div>
   );
