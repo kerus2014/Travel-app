@@ -9,8 +9,10 @@ import { useSelector } from "react-redux";
 import { AppState } from "../../reduxTools/store";
 
 export const Header = (props: ClassName) => {
-  const burgerIsOpen = useSelector((state:AppState) => state.burgerMenu.isOpen)
-  const dispatch = useDispatch()
+  const burgerIsOpen = useSelector(
+    (state: AppState) => state.burgerMenu.isOpen
+  );
+  const dispatch = useDispatch();
   return (
     <div
       className={
@@ -20,18 +22,30 @@ export const Header = (props: ClassName) => {
       <Container>
         <div className={styles["content-container"]}>
           <Logo />
-          <Navbar className={styles.navigation}/>
-          <div className={burgerIsOpen ? `${styles["menu-button-container"]} ${styles["menu-open"]}` : styles["menu-button-container"]} onClick={() => dispatch(changeMenuStateAction())}>
+          <Navbar className={styles.navigation} />
+          <div
+            className={
+              burgerIsOpen
+                ? `${styles["menu-button-container"]} ${styles["menu-open"]}`
+                : styles["menu-button-container"]
+            }
+            onClick={() => dispatch(changeMenuStateAction())}
+          >
             <div className={styles["menu-button"]}>
               <div className={styles["line"]}></div>
             </div>
           </div>
-          <div className={burgerIsOpen ? `${styles["menu"]} ${styles["menu-open"]}` : styles["menu"]}>
+          <div
+            className={
+              burgerIsOpen
+                ? `${styles["menu"]} ${styles["menu-open"]}`
+                : styles["menu"]
+            }
+          >
             <Container>
-              <Navbar/>
+              <Navbar />
             </Container>
           </div>
-          
         </div>
       </Container>
     </div>

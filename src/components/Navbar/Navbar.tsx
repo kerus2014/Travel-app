@@ -30,16 +30,21 @@ const Navbar = (props: ClassName) => {
     },
     {
       id: 5,
+      value: "Что рядом",
+      path: "/nearest",
+    },
+    {
+      id: 6,
       value: "Галерея",
       path: "/galery",
     },
     {
-      id: 6,
+      id: 7,
       value: "Правила",
       path: "/rules",
     },
     {
-      id: 7,
+      id: 8,
       value: "Контакты",
       path: "/contacts",
     },

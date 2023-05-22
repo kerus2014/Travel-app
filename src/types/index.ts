@@ -17,11 +17,11 @@ export interface IEntertainmentCard {
 
 export interface IEntertainments extends IEntertainmentCard {
   entertaiments_prices?: {
-    [key:string]: string,
-  },
-  description_short?: string,
-  description_long?: string,
-  price_desription?: string
+    [key: string]: string;
+  };
+  description_short?: string;
+  description_long?: string;
+  price_desription?: string;
 }
 
 export interface INavbarData {
@@ -80,6 +80,7 @@ export type NavLinkValueType =
   | "Домики"
   | "Домашняя Кухня"
   | "Развлечения"
+  | "Что рядом"
   | "Галерея"
   | "Правила"
   | "Контакты";
@@ -94,6 +95,6 @@ export interface ImagesGallery {
   thumbnail: string;
 }
 
-export interface ISexData{
-  title:string,
+export interface ISexData {
+  title: string;
 }

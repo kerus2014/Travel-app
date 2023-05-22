@@ -1,19 +1,24 @@
-import { House, IEntertainmentCard, IKitchenCard, ISexData, Rule } from "../types";
+import {
+  House,
+  IEntertainmentCard,
+  IKitchenCard,
+  ISexData,
+  Rule,
+} from "../types";
 import haromi from "../assets/pics/houses/haromiIaromi/Изображение.png";
 import eggs from "../assets/pics/kitchen/kitchenLogoExample.png";
 import faceImg1 from "../assets/pics/Home/carouselImages/20210607_104318 1.png";
 import faceImg2 from "../assets/pics/Home/carouselImages/IMG-1127d31fd8da398fa5b4f7f8a070e0b5-V 1.png";
 import faceImg3 from "../assets/pics/Home/carouselImages/IMG-1127d31fd8da398fa5b4f7f8a070e0b5-V 2.png";
 
-export const sexData:ISexData[]= [
+export const sexData: ISexData[] = [
   {
-    title:'Мужской'
+    title: "Мужской",
   },
   {
-    title:'Женский'
+    title: "Женский",
   },
-]
-
+];
 
 export const housesData: House[] = [
   {
@@ -215,3 +220,11 @@ export const rulesData: Rule[] = [
 ];
 
 export const photoExample = [haromi, eggs, haromi, haromi, haromi];
+
+export interface INearest {
+  id: number;
+  places_photos: string[];
+  title: string;
+  description: string;
+  location: string;
+}

@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { IEntertainments } from "../../types";
+import { INearest } from "../../services/datas";
 
 const URL = `http://45.147.176.176/api/`;
 
@@ -30,6 +31,9 @@ export const houseData = createApi({
     getObjects: build.query<any, void>({
       query: () => `objects/`,
     }),
+    getNearest: build.query<INearest[], void>({
+      query: () => `nearests/`,
+    }),
   }),
 });
 
@@ -40,4 +44,5 @@ export const {
   useGetFeedingInfoQuery,
   useGetInfoQuery,
   useGetObjectsQuery,
+  useGetNearestQuery,
 } = houseData;
