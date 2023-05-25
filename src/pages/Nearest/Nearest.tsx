@@ -1,3 +1,4 @@
+import { FormForOrder } from "../../components/Form";
 import { HomeBlockTemplate } from "../../components/HomeBlockTemplate";
 import { NearestCard } from "../../components/cards/NearestCard";
 import { useGetNearestQuery } from "../../reduxTools/requests/requests";
@@ -17,6 +18,9 @@ const Nearest = () => {
           ))}
         </div>
       </HomeBlockTemplate>{" "}
+      <HomeBlockTemplate>
+        <FormForOrder value="Заповедный остров" buttonValue="Найти домик" />
+      </HomeBlockTemplate>
     </>
   );
 };

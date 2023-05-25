@@ -51,8 +51,16 @@ export const HouseItem = () => {
                   <span>{houseItem.pers_num}</span>
                   <Person/>
                   <div className={styles["beds-container"]}>
-                    {houseItem.rooms_count?.bdr && houseItem.rooms_count.bdr > 0 ? <p>{houseItem.rooms_count.bdr} спальни</p> : null}
-                    {houseItem.rooms_count?.gst && houseItem.rooms_count.gst > 0 ? <p>{houseItem.rooms_count.gst} {houseItem.rooms_count.gst == 1 ? "гостиная" : "гостиных"}</p> : null}
+                    {houseItem.rooms_count && houseItem.rooms_count.map((el:any,index) => {
+                      for(let key in el){
+                        if (key === "Спальня"){
+                          return (<p>{el[key]} {+el[key] > 1 ? "спальни(ен)" : "спальня"}</p>)
+                        }
+                        if (key === "Гостинная"){
+                          return (<p>{el[key]} {+el[key] > 1 ? "гостиных" : "гостиная"}</p>)
+                        }
+                      }
+                    })}
                   </div>
                 </div>
               </div>

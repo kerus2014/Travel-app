@@ -15,10 +15,12 @@ export interface IEntertainmentCard {
   title: string;
 }
 
-export interface IEntertainments extends IEntertainmentCard {
-  entertaiments_prices?: {
+export interface IEntertainmentPrices{
     [key: string]: string;
-  };
+}
+
+export interface IEntertainments extends IEntertainmentCard {
+  entertaiments_prices: IEntertainmentPrices[];
   description_short?: string;
   description_long?: string;
   price_desription?: string;
@@ -55,8 +57,14 @@ type Feature =
   | typeof DETSKAYA_PLOSCHADKA;
 
 interface Rooms {
-  bdr?: number;
-  gst?: number;
+  "Спальня"?:string;
+  "Гостинная"?:string;
+}
+
+interface IBedsTypes{
+  "Односпальная кровать"?:string;
+  "Большая двухместная кровать"?:string;
+  "Детская кровать"?:string
 }
 
 export interface House {
@@ -65,7 +73,7 @@ export interface House {
   pers_num?: number;
   description_short: string;
   description_long?: string;
-  rooms_count?: Rooms;
+  rooms_count?: Rooms[];
   kitchen?: Meal[];
   price_weekday?: string;
   price_holiday?: string;
@@ -73,6 +81,8 @@ export interface House {
   objects_features?: Feature[];
   beds_count?: number;
   created_date?: string;
+  beds_types?:IBedsTypes[];
+  is_reserved?:boolean;
 }
 
 export type NavLinkValueType =
