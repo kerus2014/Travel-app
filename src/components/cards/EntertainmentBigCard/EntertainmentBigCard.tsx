@@ -15,15 +15,16 @@ const housePhotosSettings = {
 export const EntertainmentBigCard = (props: IEntertainments) => {
   const { id, entertaiments_photos, title, entertaiments_prices, description_short } = props;
   const navigate = useNavigate();
-  let prices:number[] = []
+  console.log(entertaiments_prices);
 
-  for (let key in entertaiments_prices){
-    prices.push(+entertaiments_prices[key])
-  }
-
-  prices.sort((a, b) => a - b)
-
-
+  let prices = entertaiments_prices ? entertaiments_prices.map((el,index) => {
+    for (let key in el) {
+      return +el[key]
+    }
+  }) : [] as number[]
+  prices.sort((a:any, b:any) => a - b);
+  console.log(prices);
+  
   return (
     <div className={styles.card} >
       <div className={styles.title} onClick={() => {
@@ -50,9 +51,8 @@ export const EntertainmentBigCard = (props: IEntertainments) => {
           Подробнее ...
         </div>
         <div className={styles.price}>
-          от {prices[0]} {prices[0] > 1 ? "рублей" : "рубля"}
-        </div>
-        
+          от {prices && prices[0]} {prices && prices[0] && prices[0] > 1 ? "рублей" : "рубля"}
+        </div> 
       </div>
     </div>
   );

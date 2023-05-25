@@ -14,16 +14,6 @@ const EntertainmentCurrent = () => {
   const { data } = useGetEntertainmentsCurrentQuery(id!);
   console.log(data);
 
-  let pricesNameArray:string[] = []
-  let pricesArray:string[] = []
-
-  for(let key in data?.entertaiments_prices){
-    pricesNameArray.push(key)
-    if(data){
-      pricesArray.push(data?.entertaiments_prices[key])
-    }
-  }
-
   return (
     <>
       <FaceBlock title="Развлечения" image={image}/>
@@ -48,13 +38,16 @@ const EntertainmentCurrent = () => {
           <hr className={styles.line} />
           <div className={styles.grid}>
             {
-              pricesNameArray.map((el,index) => {
-                return(
-                  <>
-                    <div>{el}</div>
-                    <div>{pricesArray[index]}</div>
-                  </>
-                )
+              data?.entertaiments_prices && data?.entertaiments_prices.map((el,index) => {
+                for (let key in el){
+                  return (
+                    <>
+                    <div>{key}</div>
+                      <div>{el[key]}</div>
+                    </>
+                  
+                  )
+                }
               })
             }
           </div>

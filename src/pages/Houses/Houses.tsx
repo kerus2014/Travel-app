@@ -48,6 +48,7 @@ export const Houses = () => {
                 objects_features={house.objects_features}
                 pers_num={house.pers_num}
                 beds_count={house.beds_count}
+                beds_types={house.beds_types}
               />
             );
           })}

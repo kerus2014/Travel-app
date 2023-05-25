@@ -35,7 +35,8 @@ const HouseBigCard = (props: House) => {
     price_holiday,
     objects_features,
     pers_num,
-    beds_count
+    beds_count,
+    beds_types
   } = props;
 
   return (
@@ -59,9 +60,15 @@ const HouseBigCard = (props: House) => {
             <span>{pers_num ? pers_num : null}</span>
             <Person/>
           </div>
-          {beds_count && beds_count != 0 ? <BigBed/> : null}
+          {beds_types && beds_types.map((el,index) => {
+            for (let key in el){
+              if(key === "Большая двухместная кровать"){
+                return <BigBed/>
+              }
+            }
+          })}
           {
-            objects_features?.map((elem, index) => {
+            objects_features?.slice(0,3).map((elem, index) => {
 
               switch(elem) {
                 case TELEVISOR:  
@@ -79,6 +86,9 @@ const HouseBigCard = (props: House) => {
               }
             }
           )}
+          {
+            objects_features && objects_features?.length > 3 ? <div className={styles["additional-features"]}>+</div> : null
+          }
         </div>
         <div className={styles.descriptionLong}>{description_long}</div>
         <div className={styles.infoContainer}>
