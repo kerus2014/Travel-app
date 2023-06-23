@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { IEntertainments } from "../../types";
 import { INearest } from "../../services/datas";
 
-const URL = `http://45.147.176.176/api/`;
+const URL = `http://eugenest.vh77.hosterby.com/api/`;
 
 export const houseData = createApi({
   reducerPath: "houseData",
@@ -14,25 +14,28 @@ export const houseData = createApi({
   }),
   endpoints: (build) => ({
     getDishes: build.query<any, void>({
-      query: () => `dishes`,
+      query: () => `dishes/`,
     }),
     getEntertainments: build.query<IEntertainments[], void>({
-      query: () => `entertaiments`,
+      query: () => `entertainments/`,
     }),
     getEntertainmentsCurrent: build.query<IEntertainments, string>({
       query: (id) => `entertaiments/${id}`,
     }),
     getFeedingInfo: build.query<any, void>({
-      query: () => `feeding-info`,
+      query: () => `feeding-info/`,
     }),
     getInfo: build.query<any, void>({
-      query: () => `info`,
+      query: () => `info/`,
     }),
     getObjects: build.query<any, void>({
       query: () => `objects/`,
     }),
     getNearest: build.query<INearest[], void>({
       query: () => `nearests/`,
+    }),
+    getGallery: build.query<any, void>({
+      query: () => `galeries/`,
     }),
   }),
 });
@@ -45,4 +48,5 @@ export const {
   useGetInfoQuery,
   useGetObjectsQuery,
   useGetNearestQuery,
+  useGetGalleryQuery,
 } = houseData;

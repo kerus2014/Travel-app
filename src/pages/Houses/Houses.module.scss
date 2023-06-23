@@ -18,6 +18,12 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: 50px;
+  
+
+  .preload{
+    font-weight: 700;
+    text-align: center;
+  }
 }
 
 @media screen and (max-width: 1000px) {

@@ -17,20 +17,22 @@ import { EntertainmentCard } from "../../components/cards/EntertainmentCard/Ente
 import { useEffect, useState } from "react";
 import { Settings } from "react-slick";
 import { House, IKitchenCard } from "../../types";
-import { useGetEntertainmentsQuery } from "../../reduxTools/requests/requests";
+import { useGetDishesQuery, useGetEntertainmentsQuery } from "../../reduxTools/requests/requests";
+import { useNavigate } from "react-router-dom";
 
 export const Home = () => {
   const [imageIndex, setImageIndex] = useState<number>(0);
   const [housesData,setHousesData] = useState<House[]>([]);
   const [kitchenData,setKitchenData] = useState<IKitchenCard[]>([]);
   const { data } = useGetEntertainmentsQuery();
+  const navigate = useNavigate()
 
-  const URL = `http://45.147.176.176/api/objects/`;
+  const URL = `http://eugenest.vh77.hosterby.com/api/objects/`;
   const request = new Request(URL, {
     method: "GET",
   });
 
-  const URL2 = `http://45.147.176.176/api/dishes/`;
+  const URL2 = `http://eugenest.vh77.hosterby.com/api/dishes/`;
   const request2 = new Request(URL2, {
     method: "GET",
   });
@@ -97,7 +99,6 @@ export const Home = () => {
         buttonValue="Найти домик"
         className={styles.form}
       />
-
       <HomeBlockTemplate title="Домики" className={styles.houses}>
         <p>Проживание - полный пансион!</p>
         <p>
@@ -121,7 +122,7 @@ export const Home = () => {
             );
           })}
         </div>
-        <MainButton value="Подробнее" />
+        <MainButton value="Подробнее" handler={() => navigate("/houses")}/>
       </HomeBlockTemplate>
 
       <HomeBlockTemplate title="Домашняя кухня">
@@ -168,6 +169,7 @@ export const Home = () => {
         <MainButton
           value="Подробнее"
           className={styles["entertainment-button"]}
+          handler={() => navigate("/entertainment")}
         />
       </HomeBlockTemplate>
       <HomeBlockTemplate>

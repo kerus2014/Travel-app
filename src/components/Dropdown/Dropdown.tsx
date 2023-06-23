@@ -11,11 +11,12 @@ export interface IDropdownData {
 
 interface IProps {
   dropdownData: IDropdownData[];
-  icon:React.ReactNode
+  icon:React.ReactNode;
+  error?:boolean
 }
 
 export const Dropdown = (props: IProps) => {
-  const { dropdownData,icon } = props;
+  const { dropdownData,icon,error } = props;
   const [open, setOpen] = useState<boolean>(false);
 
   const [value, setValue] = useState('');
@@ -36,26 +37,33 @@ export const Dropdown = (props: IProps) => {
   };
 
   return (
-    <div className={styles.dropdown} onClick={toggleDropdownMenu}>
-      <div className={styles.icon}>{icon}</div>
-      <div className={styles["dropdown__value"]}>{value}</div>
-      <div
-        className={cn(styles["dropdown__items"], {
-          [styles["dropdown__items_visible"]]: open,
-        })}
-      >
-        {dropdownData.map(({ title }) => (
-          <div className={styles["dropdown__item"]} key={title} onClick={(e) => clickDropdownItem(e, title)}>
-            {title}
+    <div className={styles["dropdown-container"]}>
+      <div className={error ? `${styles.dropdown} ${styles.error}` : styles.dropdown} onClick={toggleDropdownMenu}>
+        <div className={styles.icon}>{icon}</div>
+        <div className={styles["dropdown__value"]}>{value}</div>
+        <div className={cn(styles["dropdown__arrow"], { [styles["dropdown__arrow-open"]]: open, })}>
+          <div>
+            <LittleArrow/>
           </div>
-        ))}
-      </div>
-      <div className={cn(styles["dropdown__arrow"], { [styles["dropdown__arrow-open"]]: open, })}>
-        <div>
-          <LittleArrow/>
         </div>
+        {error && (
+          <div className={styles["error-icon"]}>!</div>
+        )}
+      </div>
+
+      <div
+      className={cn(styles["dropdown__items"], {
+        [styles["dropdown__items_visible"]]: open,
+      })}
+      >
+      {dropdownData.map(({ title }) => (
+        <div className={styles["dropdown__item"]} key={title} onClick={(e) => clickDropdownItem(e, title)}>
+          {title}
+        </div>
+      ))}
       </div>
     </div>
+    
   );
 };
 

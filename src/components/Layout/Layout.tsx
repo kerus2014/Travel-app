@@ -1,7 +1,7 @@
 import styles from "./Layout.module.scss";
 import { Header } from "../Header";
 import { Outlet } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, ChangeEventHandler } from "react";
 import { Arrow } from "../../assets/icons/Arrow";
 import { Footer } from "../Footer";
 import { useSelector } from "react-redux";
@@ -22,10 +22,11 @@ import { HouseIcon } from "../../assets/icons/inputIcons/HouseIcon";
 import { Name } from "../../assets/icons/inputIcons/Name";
 import { Passport } from "../../assets/icons/inputIcons/Passport";
 import { Adress } from "../../assets/icons/inputIcons/Adress";
-import * as fi from "date-fns/locale/fi";
-
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+import { format, isAfter, isBefore, isValid, parse } from 'date-fns';
+import { DateRange, DayPicker, SelectRangeEventHandler } from 'react-day-picker';
+import 'react-day-picker/dist/style.css';
+import { Calendar } from "../../assets/icons/inputIcons/Calendar";
+import { MainButton } from "../buttons/mainButton/MainButton";
 
 export const Layout = () => {
   const burgerIsOpen = useSelector((state:AppState) => state.burgerMenu.isOpen)
@@ -33,7 +34,74 @@ export const Layout = () => {
   const dispatch = useDispatch()
   const [visible, setVisible] = useState(false);
   const [housesData,setHousesData] = useState<House[]>([]);
-  const [startDate, setStartDate] = useState<Date | null>(new Date());
+  const [selectedRange, setSelectedRange] = useState<DateRange>();
+  const [fromValue, setFromValue] = useState<string>("");
+  const [toValue, setToValue] = useState<string>("");
+  const [isFocus, setIsFocus] = useState(false);
+  const [textareaValue, setTextareaValue] = useState("");
+  const textareaRef = useRef<any>(null);
+  const refCalendarOne = useRef<any>(null)
+
+  const resizeTextArea = () => {
+    textareaRef.current.style.height = "auto";
+    textareaRef.current.style.height = textareaRef.current.scrollHeight + "px";
+  };
+
+  useEffect(resizeTextArea, [textareaValue]);
+
+  const onChangeTextarea = (e:any) => {
+    setTextareaValue(e.target.value);
+  };
+  
+  const handleFromChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+    setFromValue(e.target.value);
+    const date = parse(e.target.value, 'y-MM-dd', new Date());
+    if (!isValid(date)) {
+      return setSelectedRange({ from: undefined, to: undefined });
+    }
+    if (selectedRange?.to && isAfter(date, selectedRange.to)) {
+      setSelectedRange({ from: selectedRange.to, to: date });
+    } else {
+      setSelectedRange({ from: date, to: selectedRange?.to });
+    }
+  };
+
+  const handleToChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+    setToValue(e.target.value);
+    const date = parse(e.target.value, 'y-MM-dd', new Date());
+    if (!isValid(date)) {
+      return setSelectedRange({ from: selectedRange?.from, to: undefined });
+    }
+    if (selectedRange?.from && isBefore(date, selectedRange.from)) {
+      setSelectedRange({ from: date, to: selectedRange.from });
+    } else {
+      setSelectedRange({ from: selectedRange?.from, to: date });
+    }
+  };
+
+  const handleRangeSelect: SelectRangeEventHandler = ( range: DateRange | undefined ) => {
+    setSelectedRange(range);
+    if (range?.from) {
+      setFromValue(format(range.from, 'y-MM-dd'));
+    } else {
+      setFromValue('');
+    }
+    if (range?.to) {
+      setToValue(format(range.to, 'y-MM-dd'));
+    } else {
+      setToValue('');
+    }
+  };
+
+  // const focusHandler = (event: React.FocusEvent<HTMLInputElement>) => {
+  //   setIsFocus(true);
+  //   setIsBlur(false);
+  // };
+
+  // const blurHandler = (event: React.FocusEvent<HTMLInputElement>) => {
+  //   setIsFocus(false);
+  //   setIsBlur(true);
+  // };
 
   const URL = `http://45.147.176.176/api/objects/`;
   const request = new Request(URL, {
@@ -62,6 +130,24 @@ export const Layout = () => {
       .catch(console.error);
   },[housesData]);
 
+  useEffect(() => {
+    document.addEventListener("keydown", hideOnEscape, true)
+    document.addEventListener("click",hideOnClickOutside,true)
+  })
+
+  const hideOnEscape = (e:KeyboardEvent) => {
+    if( e.key === "Escape"){
+      setIsFocus(false)
+    }
+  }
+
+  const hideOnClickOutside = (e:any) => {
+    if(refCalendarOne.current && !refCalendarOne.current.contains(e.target)){
+      setIsFocus(false)
+    }
+  }
+
+
   return (
     <div className={styles.layout}>
       <Header className={burgerIsOpen || visible ? styles["header-background"] : undefined} />
@@ -74,13 +160,11 @@ export const Layout = () => {
       >
         <Arrow />
       </div>
+
       <div className={isFormOpen ? styles.container : styles.hide}>
-        <div className={styles.form}>
+        <form className={styles.form}>
           <div className={styles["close-button"]} onClick={() =>{
-              const scrollY = document.body.style.top;
-              document.body.style.position = '';
-              document.body.style.top = '';
-              window.scrollTo(0, parseInt(scrollY || '0') * -1);
+              document.body.style.overflow = "visible"
               dispatch(closeFormStateAction())
             } 
           }>
@@ -93,6 +177,23 @@ export const Layout = () => {
             <div>
               <p className={styles.label}>Домик*</p>
               <Dropdown dropdownData={housesData} icon={<HouseIcon/>}/>
+            </div>
+            <div className={styles["from-date"]}>
+              <FormInput type="text" label="Дата заезда" required={true} value={fromValue} placeholder="2023-06-03" icon={<Calendar/>} onClick={() => setIsFocus(true)} onChange={handleFromChange}/>
+              <div ref={refCalendarOne} className={styles.calendar}>
+                {isFocus &&
+                <DayPicker
+                  mode="range"
+                  selected={selectedRange}
+                  onSelect={handleRangeSelect}
+                  showOutsideDays
+                />
+                }
+              </div>
+              
+            </div>
+            <div>
+              <FormInput type="text" label="Дата выезда" required={true} value={toValue} placeholder="2023-06-03" icon={<Calendar/>} onClick={() => setIsFocus(true)} onChange={handleToChange}/>
             </div>
             <FormInput type="text" label="Ф.И.О." required={true} placeholder="Иванов Иван Иванович" icon={<Name/>}/>
             <div>
@@ -117,14 +218,13 @@ export const Layout = () => {
             <FormInput type="text" label="Баня" required={true} placeholder="нуждается" icon={<Telegram/>}/>
             <FormInput type="text" label="Путешествуете с домашними животными?" required={true} placeholder="Собака породы Корги" icon={<Pets/>}/>
           </div>
-          <DatePicker 
-            onChange={(date) => {setStartDate(date)}}
-            id="startDate"
-            required={true}
-            locale="fi"
-            dateFormat="d.M.yyyy"
-          />
-        </div>
+
+          <div className={styles["textarea-container"]}>
+            <p>Комментарий</p>
+            <textarea placeholder="Комментарий" className={styles.textarea} ref={textareaRef} value={textareaValue} onChange={onChangeTextarea} rows={4}/>
+          </div>
+          <MainButton className={styles["submit-button"]} value={"Отправить"}/>
+        </form>
       </div>
     </div>
   );

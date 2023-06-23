@@ -10,31 +10,17 @@ import { House } from "../../types";
 import { FaceBlock } from "../../components/FaceBlock/FaceBlock";
 import { useGetObjectsQuery } from "../../reduxTools/requests/requests";
 import { FormForOrder } from "../../components/Form";
+import { BeatLoader } from "react-spinners";
 
 export const Houses = () => {
-  // const { data, error } = useGetObjectsQuery();
-  // console.log(data);
-
-  const [housesData, setHousesData] = useState<House[]>([]);
-
-  const URL = `http://45.147.176.176/api/objects/`;
-  const request = new Request(URL, {
-    method: "GET",
-  });
-
-  useEffect(() => {
-    fetch(request)
-      .then((res) => res.json())
-      .then((res) => setHousesData(res))
-      .catch(console.error);
-  }, [housesData]);
+  const { data, error } = useGetObjectsQuery();
 
   return (
     <>
       <FaceBlock title="Домики" image={image} />
       <HomeBlockTemplate title="">
         <div className={styles["houses-container"]}>
-          {housesData.map((house, index) => {
+          {data ? data.map((house:any, index:number) => {
             return (
               <HouseBigCard
                 key={index.toString()}
@@ -51,7 +37,12 @@ export const Houses = () => {
                 beds_types={house.beds_types}
               />
             );
-          })}
+          })
+        :
+        <div className={styles.preload}>
+          <BeatLoader color="#583711" />
+        </div>
+        }
         </div>
       </HomeBlockTemplate>
       <HomeBlockTemplate>

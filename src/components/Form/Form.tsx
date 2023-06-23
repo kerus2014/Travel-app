@@ -20,9 +20,10 @@ export const FormForOrder = (props: IProps) => {
     >
       <p>{value}</p>
       <MainButton value={buttonValue} handler={() =>{
-        document.body.style.position = 'fixed';
-        document.body.style.width = '100%';
-        document.body.style.top = `-${window.scrollY}px`;
+        // document.body.style.position = 'fixed';
+        // document.body.style.width = '100%';
+        // document.body.style.top = `-${window.scrollY}px`;
+        document.body.style.overflow = "hidden"
         dispatch(changeFormStateAction())
       }
       }/>

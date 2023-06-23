@@ -9,6 +9,7 @@ import { HouseItem } from "./pages/HouseItem/HouseItem";
 import Entertainment from "./pages/Entertainment/Entertainment";
 import EntertainmentCurrent from "./pages/EntertainmentCurrent/EntertainmentCurrent";
 import { Nearest } from "./pages/Nearest";
+import { Gallery } from "./pages/Gallery";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="contacts" element={<Contacts />} />
         <Route path="entertainment" element={<Entertainment />} />
         <Route path="entertainment/:id" element={<EntertainmentCurrent />} />
+        <Route path="gallery" element={<Gallery />} />
         <Route path="nearest" element={<Nearest />} />
       </Route>
     </Routes>

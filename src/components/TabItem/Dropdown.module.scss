@@ -1,9 +1,5 @@
 @import "../../styles/varaibles.scss";
 
-.dropdown-container{
-  position: relative;
-}
-
 .dropdown {
   position: relative;
   display: flex;
@@ -21,8 +17,6 @@
   max-width: 100%;
   height: 31px;
   background: none;
-  overflow: hidden;
-  text-overflow: ellipsis; 
   
   &__value {
     font-size: 15px;
@@ -30,12 +24,6 @@
     line-height: 18px;
     width: max-content;
     position: absolute;
-  }
-
-  &__value-container{
-    width: 100%;
-    overflow: hidden;
-    height: 18px;
   }
 
   &__items {
@@ -68,7 +56,6 @@
     font-size: 15px;
     font-weight: 500;
     line-height: 18px;
-    cursor: pointer;
 
     &:hover{
       color: black;
@@ -104,28 +91,4 @@
   position: absolute;
   left: 0px;
   bottom: 6px;
-}
-
-.error-icon{
-  position: absolute;
-  width: 18px;
-  height: 18px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 14px;
-  line-height: 14px;
-  font-weight: 700;
-  color: $secondaryColor;
-  background-color: #A01704;
-  border-radius: 100%;
-  right: 24px;
-  left: unset!important;
-  z-index: 4;
-}
-
-.error{
-    border-bottom: 3px solid #A01704;
-    position: relative;
-    display: block;
 }

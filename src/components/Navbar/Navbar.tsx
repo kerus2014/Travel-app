@@ -36,7 +36,7 @@ const Navbar = (props: ClassName) => {
     {
       id: 6,
       value: "Галерея",
-      path: "/galery",
+      path: "/gallery",
     },
     {
       id: 7,

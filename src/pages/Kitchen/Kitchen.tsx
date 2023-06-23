@@ -8,13 +8,14 @@ import styles from "./Kitchen.module.scss";
 import { MealTimeCard } from "../../components/cards/MealTimeCard";
 import { useEffect, useState } from "react";
 import { House, IKitchenCard } from "../../types";
+import { BeatLoader } from "react-spinners";
 
 export const Kitchen = () => {
   // const { data, error } = useGetObjectsQuery();
   // console.log(error);
   const [kitchenData,setKitchenData] = useState<IKitchenCard[]>([]);
 
-  const URL = `http://45.147.176.176/api/dishes/`;
+  const URL = `http://eugenest.vh77.hosterby.com/swagger-ui/dishes/`;
   const request = new Request(URL, {
     method: "GET",
   });
@@ -38,7 +39,7 @@ export const Kitchen = () => {
         </div>
         <div className={styles.title}>У нас можно попробовать</div>
         <div className={styles.grid}>
-          {kitchenData.map((el, index) => {
+          {kitchenData ? kitchenData.map((el, index) => {
             return (
               <KitchenCard
                 key={index.toString()}
@@ -47,7 +48,12 @@ export const Kitchen = () => {
                 description={el.description}
               />
             );
-          })}
+          })
+          :
+          <div className={styles.preload}>
+            <BeatLoader color="#583711" />
+          </div>
+          }
         </div>
       </HomeBlockTemplate>
       <HomeBlockTemplate>

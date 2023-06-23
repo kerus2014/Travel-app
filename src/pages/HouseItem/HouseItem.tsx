@@ -16,6 +16,7 @@ import { Fridge } from "../../assets/icons/features/Fridge";
 import { Shower } from "../../assets/icons/features/Shower";
 import { Internet } from "../../assets/icons/features/Internet";
 import { KitchenIcon } from "../../assets/icons/features/KitchenIcon";
+import { BeatLoader } from "react-spinners";
 
 export const HouseItem = () => {
   const {id} = useParams()
@@ -24,7 +25,7 @@ export const HouseItem = () => {
 
   const [houseItem,setHouseItem] = useState<House>({} as House);
 
-  const URL = `http://45.147.176.176/api/objects/${id}`;
+  const URL = `http://eugenest.vh77.hosterby.com/swagger-ui/objects/${id}`;
   const request = new Request(URL, {
     method: "GET",
   });
@@ -41,7 +42,6 @@ export const HouseItem = () => {
       {JSON.stringify(houseItem) != "{}" ?
       <>
         <FaceBlock title={houseItem.title} image={houseItem.objects_photos[0]} />
-
         <HomeBlockTemplate >
           <div className={styles.container}>
             <div className={styles["left-column"]}>
@@ -120,7 +120,7 @@ export const HouseItem = () => {
         </HomeBlockTemplate>
       </>
       :
-      <div>Загрузка...</div>
+      <div className={styles.preload}><BeatLoader color="#583711" /></div>
       }
     </>
     

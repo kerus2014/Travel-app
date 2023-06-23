@@ -27,12 +27,10 @@
 
   & :global(.image-gallery-slide){
     height: 488px;
-    width: 100%;
 
     img{
       object-fit: cover;
       height: 100%;
-      object-position: top;
     }
   }
 
@@ -40,10 +38,6 @@
     width:252px;
     height:157px;
     overflow: hidden;
-
-    &.active{
-
-    }
 
     img{
       object-fit: cover;
@@ -70,10 +64,49 @@
     left: 50%;
     transform: translate(-50%,-50%);
 
+    & :global(.image-gallery-slide .image-gallery-image){
+      width: unset;
+      height: unset;
+      max-height: 100%;
+      max-width: 100%;
+    }
+
+    & :global(.image-gallery-thumbnails){
+      display: none;
+    }
+
+    & :global(.image-gallery-fullscreen-button){
+      top:0px;
+      transform: translateY(-100%);
+      bottom:unset
+    }
+
+    & :global(.image-gallery-icon.image-gallery-fullscreen-button){
+      padding: 0px;
+
+      & svg{
+        display: none;
+      }
+
+      &::after{
+        content: "x";
+        color:black;
+        font-size: 30px;
+        color: white;
+        font-weight: 700;
+      }
+
+    }
+
     & :global(.image-gallery-thumbnails-container){
       display: none;
     }
   }
+
+  & :global(.image-gallery-content.fullscreen){
+    background: none;
+  }
+
 }
 
 .left-column{
@@ -102,6 +135,8 @@
         
         p{
           text-transform: uppercase;
+          flex-shrink: 0;
+          width: 100%;
         }
       }
     }
@@ -112,6 +147,8 @@
     font-weight: 500;
     line-height: 37px;
     text-transform: uppercase;
+    margin-right: 10px;
+    text-overflow: ellipsis; //образка длинных блоков с текстом
   }
 
   & .description{
@@ -223,6 +260,15 @@
       margin-bottom: 23px;
     }
   }
+}
+
+.preload{
+  margin: 0 auto;
+  text-align: center;
+}
+
+:global(:not(:root):fullscreen::backdrop){
+  background: rgba(0, 0, 0, 0.4);
 }
 
 @media screen and (max-width: 1000px) {
