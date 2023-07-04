@@ -1,7 +1,7 @@
 import styles from "./Price.module.scss";
 
 interface IProps {
-  price: string;
+  price: number;
   type: "weekday" | "weekend";
 }
 

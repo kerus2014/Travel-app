@@ -1,16 +1,16 @@
-import { FormForOrder } from "../../components/Form";
+import { ToFormButton } from './../../components/buttons/toFormButton/ToFormButton';
 import { HomeBlockTemplate } from "../../components/HomeBlockTemplate";
 import styles from "./Gallery.module.scss";
 import ImageViewer from 'react-simple-image-viewer';
 import React, { useState, useCallback } from 'react';
-import { useGetGalleryQuery } from "../../reduxTools/requests/requests";
+import { useGetGalleryQuery } from "../../reduxTools/requests";
 import { ArrowPrev } from "../../assets/icons/ArrowPrev";
 import { ArrowNext } from "../../assets/icons/ArrowNext";
 import { BeatLoader } from "react-spinners";
 
 export const Gallery = () => {
-  const { data, error } = useGetGalleryQuery();
-  const [value, setValue] = useState("Баня");
+  const { data } = useGetGalleryQuery();
+  const [value, setValue] = useState("");
   const [currentImage, setCurrentImage] = useState(0);
   const [isViewerOpen, setIsViewerOpen] = useState(false);
 
@@ -25,13 +25,18 @@ export const Gallery = () => {
   };
 
   let photosData:string[] = []
-  data && data.map((el:any) => {
+  if (!value && data){
+    data[0].photos.map ((el) => photosData.push(el)) 
+  } else {
+  data && data.map((el) => {
+    
     if (value == el.title){
-      el.galery_photos.map((el:any) => photosData.push(el))
+      el.photos.map((el) => photosData.push(el))
     }
-  }) 
+  })} 
+  console.log(data);
   console.log(value);
-  console.log(photosData);
+  
   
 
   return (
@@ -39,9 +44,9 @@ export const Gallery = () => {
       <div className={styles.header}></div>
       <HomeBlockTemplate title="Наша галерея">
         <div className={styles["tabs-grid"]}>
-          {data && data.map((el:any,index:number) => {
+          {data && data.map((el) => {
             return (
-              <div key={index.toString()} className={value == el.title ? `${styles["tab-item"]} ${styles.active}` : styles["tab-item"]} onClick={() => setValue(el.title)}>{el.title}</div>
+              <div key={el.id} className={value == el.title ? `${styles["tab-item"]} ${styles.active}` : styles["tab-item"]} onClick={() => setValue(el.title)}>{el.title}</div>
             )
           })}
         </div>
@@ -62,7 +67,7 @@ export const Gallery = () => {
         </div>
 
       </HomeBlockTemplate>
-      <FormForOrder className={styles.form}/>
+      <ToFormButton className={styles.form}/>
       {isViewerOpen && (
         <div className={styles["image-viewer"]}>
           <div className={styles["photo-view"]}>

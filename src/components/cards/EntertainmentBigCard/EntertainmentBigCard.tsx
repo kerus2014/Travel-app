@@ -1,6 +1,5 @@
 import { IEntertainments } from "../../../types";
 import Carousel from "../../Carousel";
-import { photoExample } from "../../../services/datas";
 import styles from "./EntertainmentBigCard.module.scss";
 import { useNavigate } from "react-router";
 
@@ -13,7 +12,7 @@ const housePhotosSettings = {
 };
 
 export const EntertainmentBigCard = (props: IEntertainments) => {
-  const { id, entertaiments_photos, title, entertaiments_prices, description_short } = props;
+  const { id, photos, title, entertaiments_prices, description_short } = props;
   const navigate = useNavigate();
   console.log(entertaiments_prices);
 
@@ -28,13 +27,13 @@ export const EntertainmentBigCard = (props: IEntertainments) => {
   return (
     <div className={styles.card} >
       <div className={styles.title} onClick={() => {
-        navigate(`/entertainment/${id}`);
+        navigate(`/entertainments/${id}`);
       }}>
         {title}
       </div>
 
       <Carousel settings={housePhotosSettings}>
-        {entertaiments_photos && entertaiments_photos.map((el, index) => {
+        {photos && photos.map((el, index) => {
           return (
             <div key={index}>
               <img className={styles.image} src={el} alt="" />
@@ -47,7 +46,7 @@ export const EntertainmentBigCard = (props: IEntertainments) => {
         {description_short}
       </p>
       <div className={styles.footer}>
-        <div className={styles.more} onClick={() => { navigate(`/entertainment/${id}`); }}>
+        <div className={styles.more} onClick={() => { navigate(`/entertainments/${id}`); }}>
           Подробнее ...
         </div>
         <div className={styles.price}>

@@ -1,13 +1,12 @@
 import { useParams } from "react-router";
-import { useGetEntertainmentsCurrentQuery } from "../../reduxTools/requests/requests";
+import { useGetEntertainmentsCurrentQuery } from "../../reduxTools/requests";
 import { HomeBlockTemplate } from "../../components/HomeBlockTemplate";
-import { photoExample } from "../../services/datas";
 import { MyGallery } from "../../components/ImageGalleryCarousel";
 import styles from "./EntertainmentCurrent.module.scss";
 import image from "../../assets/pics/Entertainment/Картинка.png";
 import { FaceBlock } from "../../components/FaceBlock";
 import { Container } from "../../components/Container";
-import { FormForOrder } from "../../components/Form";
+import { ToFormButton } from './../../components/buttons/toFormButton/ToFormButton';
 
 const EntertainmentCurrent = () => {
   const { id } = useParams();
@@ -23,9 +22,9 @@ const EntertainmentCurrent = () => {
         </p>
         <div className={styles.sliderContainer}>
           {
-            data?.entertaiments_photos
+            data?.photos
           ?
-            <MyGallery images={data.entertaiments_photos} thubnailPosition="right" />
+            <MyGallery images={data.photos} thubnailPosition="right" />
           :
             null
           }
@@ -53,7 +52,7 @@ const EntertainmentCurrent = () => {
           </div>
         </div>
       </Container>
-      <FormForOrder/>
+      <ToFormButton/>
     </>
     
   );

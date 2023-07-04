@@ -1,4 +1,4 @@
-import { INearest } from "../../../services/datas";
+import { INearest } from "../../../types";
 import Carousel from "../../Carousel";
 import styles from "./NearestCard.module.scss";
 

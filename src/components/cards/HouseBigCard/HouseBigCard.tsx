@@ -30,13 +30,14 @@ const HouseBigCard = (props: House) => {
     title,
     description_short,
     description_long,
-    objects_photos,
+    photos,
     price_weekday,
     price_holiday,
-    objects_features,
+    features,
     pers_num,
-    beds_count,
-    beds_types
+    bed_count,
+    beds_types,
+    rooms_types
   } = props;
 
   return (
@@ -44,9 +45,9 @@ const HouseBigCard = (props: House) => {
       <div className={styles["card-left"]}>
         <h2 className={styles.title}>{title}</h2>
         <Carousel settings={housePhotosSettings}>
-          {objects_photos.map((el, index) => {
+          {photos.map((el) => {
             return (
-              <div key={index}>
+              <div key={el}>
                 <img className={styles.image} src={el} alt="" />
               </div>
             );
@@ -68,7 +69,7 @@ const HouseBigCard = (props: House) => {
             }
           })}
           {
-            objects_features?.slice(0,3).map((elem, index) => {
+            features?.slice(0,3).map((elem, index) => {
 
               switch(elem) {
                 case TELEVISOR:  
@@ -87,7 +88,7 @@ const HouseBigCard = (props: House) => {
             }
           )}
           {
-            objects_features && objects_features?.length > 3 ? <div className={styles["additional-features"]}>+</div> : null
+            features && features?.length > 3 ? <div className={styles["additional-features"]}>+</div> : null
           }
         </div>
         <div className={styles.descriptionLong}>{description_long}</div>

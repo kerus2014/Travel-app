@@ -5,26 +5,27 @@ import { Houses } from "./pages/Houses";
 import { Kitchen } from "./pages/Kitchen";
 import { Rules } from "./pages/Rules";
 import { Contacts } from "./pages/Contacts";
-import { HouseItem } from "./pages/HouseItem/HouseItem";
+import { HouseItem } from "./pages/HouseItem";
 import Entertainment from "./pages/Entertainment/Entertainment";
 import EntertainmentCurrent from "./pages/EntertainmentCurrent/EntertainmentCurrent";
 import { Nearest } from "./pages/Nearest";
 import { Gallery } from "./pages/Gallery";
 
 function App() {
+  
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
-        <Route index element={<Home />} />
+        <Route index element={<Home />}/>
         <Route path="houses" element={<Houses />} />
         <Route path="houses/:id" element={<HouseItem />} />
-        <Route path="kitchen" element={<Kitchen />} />
-        <Route path="rules" element={<Rules />} />
-        <Route path="contacts" element={<Contacts />} />
-        <Route path="entertainment" element={<Entertainment />} />
-        <Route path="entertainment/:id" element={<EntertainmentCurrent />} />
-        <Route path="gallery" element={<Gallery />} />
-        <Route path="nearest" element={<Nearest />} />
+        <Route path="dish" element={<Kitchen />} />
+        <Route path="rule" element={<Rules />} />
+        <Route path="info" element={<Contacts />} />
+        <Route path="entertainments" element={<Entertainment />} />
+        <Route path="entertainments/:id" element={<EntertainmentCurrent />} />
+        <Route path="galleries" element={<Gallery />} />
+        <Route path="nearests" element={<Nearest />} />
       </Route>
     </Routes>
   );

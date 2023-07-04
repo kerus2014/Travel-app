@@ -3,10 +3,15 @@ import { closeMenuStateAction } from "../../reduxTools/burgerMenu/actions";
 import { ClassName, INavbarData } from "../../types";
 import styles from "./Navbar.module.scss";
 import { NavLink } from "react-router-dom";
+import {useDatas} from "../../services/useDatas"
+// import { titleHouse, titleKitchen, titleEntertainment} from "./../../services/datas";
 
 const Navbar = (props: ClassName) => {
   const dispatch = useDispatch();
+  const datas = useDatas();
+  const {titleHouse, titleKitchen, titleEntertainment} = datas
 
+  
   const navbarData: INavbarData[] = [
     {
       id: 1,
@@ -15,38 +20,38 @@ const Navbar = (props: ClassName) => {
     },
     {
       id: 2,
-      value: "Домики",
+      value: titleHouse,  
       path: "/houses",
     },
     {
       id: 3,
-      value: "Домашняя Кухня",
-      path: "/kitchen",
+      value: titleKitchen,  
+      path: "/dish",
     },
     {
       id: 4,
-      value: "Развлечения",
-      path: "/entertainment",
+      value: titleEntertainment,  
+      path: "/entertainments",
     },
     {
       id: 5,
       value: "Что рядом",
-      path: "/nearest",
+      path: "/nearests",
     },
     {
       id: 6,
       value: "Галерея",
-      path: "/gallery",
+      path: "/galleries",
     },
     {
       id: 7,
       value: "Правила",
-      path: "/rules",
+      path: "/rule",
     },
     {
       id: 8,
       value: "Контакты",
-      path: "/contacts",
+      path: "/info",
     },
   ];
 
@@ -60,7 +65,7 @@ const Navbar = (props: ClassName) => {
     >
       {navbarData.map(({ id, value, path }) => (
         <NavLink
-          key={id.toString()}
+          key={id}
           to={path}
           className={({ isActive }: { isActive: boolean }): string =>
             isActive

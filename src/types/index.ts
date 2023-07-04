@@ -2,41 +2,40 @@ export interface ClassName {
   className?: string;
 }
 
-export interface IKitchenCard {
-  id?: number;
-  photo: string;
+export interface IDishCard {
+  id: number;
   title: string;
   description: string;
+  photo: string;
 }
 
 export interface IEntertainmentCard {
-  id?: number;
-  entertaiments_photos?: string[];
-  title: string;
+  id: number;
+  photos?: string[];
+  title: string;  
 }
 
 export interface IEntertainmentPrices{
-    [key: string]: string;
+    [key: string]: number;
 }
 
 export interface IEntertainments extends IEntertainmentCard {
   entertaiments_prices: IEntertainmentPrices[];
   description_short?: string;
-  description_long?: string;
-  price_desription?: string;
+  description_long?: string;  
 }
 
 export interface INavbarData {
   id: number;
-  value: NavLinkValueType;
+  value: string;
   path: string;
 }
 
-interface Meal {
-  [key: string]: {
-    time: string;
-    cost: string;
-  };
+export interface IMeal {
+  id: number,
+  title: string,
+  time: string,
+  price?: string,  
 }
 
 export const INTERNET = "Интернет";
@@ -56,48 +55,37 @@ type Feature =
   | typeof MANGAL
   | typeof DETSKAYA_PLOSCHADKA;
 
-interface Rooms {
-  "Спальня"?:string;
-  "Гостинная"?:string;
+interface IRoomTypes {
+  [key: string]:number;  
 }
 
-interface IBedsTypes{
-  "Односпальная кровать"?:string;
-  "Большая двухместная кровать"?:string;
-  "Детская кровать"?:string
+interface IBedTypes{
+  [key: string]:number;
 }
 
 export interface House {
-  id?: number;
+  id: number;
+  photos: string[];
+  features?: Feature[];
+  bed_count?: number;
   title: string;
-  pers_num?: number;
+  pers_num: number;
   description_short: string;
   description_long?: string;
-  rooms_count?: Rooms[];
-  kitchen?: Meal[];
-  price_weekday?: string;
-  price_holiday?: string;
-  objects_photos: string[];
-  objects_features?: Feature[];
-  beds_count?: number;
-  created_date?: string;
-  beds_types?:IBedsTypes[];
-  is_reserved?:boolean;
+  price_weekday?: number;
+  price_holiday?: number;
+  beds_types?: IBedTypes[];  
+  rooms_types?: IRoomTypes[];
 }
 
-export type NavLinkValueType =
-  | "Главная"
-  | "Домики"
-  | "Домашняя Кухня"
-  | "Развлечения"
-  | "Что рядом"
-  | "Галерея"
-  | "Правила"
-  | "Контакты";
-
-export interface Rule {
+export interface IRule {
   id?: number;
   content: string;
+}
+export interface IGallery {
+  id: number;
+  photos:string[];
+  title: string;
 }
 
 export interface ImagesGallery {
@@ -105,6 +93,55 @@ export interface ImagesGallery {
   thumbnail: string;
 }
 
-export interface ISexData {
+export enum Gender {
+  "Мужской", "Женский"
+}
+
+export interface IBackPhotos {
+  id: number;
+  photo_m: string;
+  photo_h: string;
+  photo_k: string;
+  photo_e: string;
+}
+
+export interface IMainPage {
+  id: number;
+  photos: string[];
   title: string;
+  description: string;
+  house_title: string;
+  house_description: string;
+  kitchen_title: string;
+  kitchen_description: string;
+  entertainment_title: string;
+  entertainment_description: string;
+}
+
+export interface INearest {
+  id: number;
+  places_photos: string[];
+  title: string;
+  description: string;
+  location: string;
+}
+
+export interface IInfo {
+  id: number;
+  social: [
+    {
+      [key: string]: string
+    },
+    {
+      [key: string]: string
+    }
+  ],
+  phones: [
+    string,
+    string
+  ],
+  address: string,
+  comment: string,
+  geolocation: string,
+  currency: string
 }

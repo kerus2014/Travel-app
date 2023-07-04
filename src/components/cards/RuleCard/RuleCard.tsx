@@ -1,9 +1,10 @@
 import { ShipIcon } from "../../../assets/icons/Ship";
-import { Rule } from "../../../types";
+import { IRule } from "../../../types";
 import styles from "./RuleCard.module.scss";
 
-export const RuleCard = (props: Rule) => {
+export const RuleCard = (props: IRule) => {
   const { content } = props;
+  console.log(content)
   return (
     <div className={styles.flag}>
       <div>

@@ -3,8 +3,8 @@ import { HomeBlockTemplate } from "../../components/HomeBlockTemplate";
 import { useState, useEffect } from "react";
 import { DUSH, House, INTERNET, KUHNIYA, MANGAL, TELEVISOR } from "../../types";
 import { FaceBlock } from "../../components/FaceBlock/FaceBlock";
-import { useGetObjectsQuery } from "../../reduxTools/requests/requests";
-import { FormForOrder } from "../../components/Form";
+import { useGetObjectCurrentQuery } from "../../reduxTools/requests";
+import { ToFormButton } from '../../components/buttons/toFormButton';
 import { useParams } from "react-router";
 import { MyGallery } from "../../components/ImageGalleryCarousel";
 import { Person } from "../../assets/icons/features/Person";
@@ -19,39 +19,26 @@ import { KitchenIcon } from "../../assets/icons/features/KitchenIcon";
 import { BeatLoader } from "react-spinners";
 
 export const HouseItem = () => {
-  const {id} = useParams()
-  // const { data, error } = useGetObjectsQuery();
-  // console.log(data);
-
-  const [houseItem,setHouseItem] = useState<House>({} as House);
-
-  const URL = `http://eugenest.vh77.hosterby.com/swagger-ui/objects/${id}`;
-  const request = new Request(URL, {
-    method: "GET",
-  });
-
-  useEffect(() => {
-    fetch(request)
-      .then(res => res.json())
-      .then(res => setHouseItem(res))
-      .catch(console.error);
-  },[houseItem])
-
+  const {id} = useParams();
+  const { data } = useGetObjectCurrentQuery(id!);
+  
+  if (!data) return null
+  console.log(data)
   return (
     <>
-      {JSON.stringify(houseItem) != "{}" ?
+      {JSON.stringify(data) != "{}" ?
       <>
-        <FaceBlock title={houseItem.title} image={houseItem.objects_photos[0]} />
+        <FaceBlock title={data.title} image={data.photos[0]} />
         <HomeBlockTemplate >
           <div className={styles.container}>
             <div className={styles["left-column"]}>
               <div className={styles["first-row"]}>
-                <h1>{houseItem.title}</h1>
+                <h1>{data.title}</h1>
                 <div>
-                  <span>{houseItem.pers_num}</span>
+                  <span>{data.pers_num}</span>
                   <Person/>
                   <div className={styles["beds-container"]}>
-                    {houseItem.rooms_count && houseItem.rooms_count.map((el:any,index) => {
+                    {data.rooms_types && data.rooms_types.map((el,index) => {
                       for(let key in el){
                         if (key === "Спальня"){
                           return (<p>{el[key]} {+el[key] > 1 ? "спальни(ен)" : "спальня"}</p>)
@@ -64,14 +51,14 @@ export const HouseItem = () => {
                   </div>
                 </div>
               </div>
-              <MyGallery images={houseItem.objects_photos}/>
+              <MyGallery images={data.photos}/>
               <div className={styles.features}>
                 <h1>Удобства в домике</h1>
                 <hr />
                 <div className={styles.grid}>
-                  {houseItem.beds_count && houseItem.beds_count > 0 ? <div className={styles["grid-item"]}><BigBed littleIcon={true}/> {houseItem.beds_count} {houseItem.beds_count == 1 ? "кровать" : "кровати(ей)"}</div> : null }
+                  {data.bed_count && data.bed_count > 0 ? <div className={styles["grid-item"]}><BigBed littleIcon={true}/> {data.bed_count} {data.bed_count == 1 ? "кровать" : "кровати(ей)"}</div> : null }
                   {
-                    houseItem.objects_features?.map((elem, index) => {
+                    data.features?.map((elem, index) => {
                       switch(elem) {
                         case TELEVISOR:  
                           return <div className={styles["grid-item"]}><TV littleIcon={true}/> {TELEVISOR}</div>;
@@ -91,18 +78,18 @@ export const HouseItem = () => {
                 </div>
               </div>
               
-              <p className={styles["description"]}>{houseItem.description_long}</p>
+              <p className={styles["description"]}>{data.description_long}</p>
             </div>
             <div className={styles["right-column"]}>
-              <p>{houseItem.description_short}</p>
-              <FormForOrder value="Забронировать домик" buttonValue="Забронировать" className={styles.form}/>
+              <p>{data.description_short}</p>
+              <ToFormButton value="Забронировать домик" buttonValue="Забронировать" className={styles.form}/>
               <div className={styles.prices}>
                 <FlagItem value="За дом в сутки" className={styles.flag}/>
                 <div className={styles.row}>
-                  от <span>{houseItem.price_weekday?.slice(0,houseItem.price_weekday?.length-3)}</span> BYN будние дни
+                  от <span>{data.price_weekday}</span> BYN будние дни 
                 </div>
                 <div className={styles.row}>
-                  от <span>{houseItem.price_holiday?.slice(0,houseItem.price_holiday?.length-3)}</span> BYN выходные дни
+                  от <span>{data.price_holiday}</span> BYN выходные дни
                 </div>
               </div>
               <div className={styles.kitchen}>
@@ -116,7 +103,7 @@ export const HouseItem = () => {
         </HomeBlockTemplate>
 
         <HomeBlockTemplate>
-          <FormForOrder value="Заповедный остров" buttonValue="Найти домик" />
+          <ToFormButton value="Заповедный остров" buttonValue="Найти домик" />
         </HomeBlockTemplate>
       </>
       :
@@ -126,3 +113,5 @@ export const HouseItem = () => {
     
   );
 };
+//// ?.slice(0,data.price_weekday?.length-3)
+//?.slice(0,data.price_holiday?.length-3)

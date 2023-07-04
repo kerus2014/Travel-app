@@ -1,6 +1,6 @@
 import { PriceIcon } from "../../../assets/icons/Price";
 import { TimeIcon } from "../../../assets/icons/Time";
-import { IKitchenCard } from "../../../types";
+import { IDishCard } from "../../../types";
 import { FlagItem } from "../../FlagItem";
 import styles from "./LittleMealTimeCard.module.scss";
 

@@ -1,5 +1,5 @@
 import { ClassName } from "../../types";
-import { BackgroundBlockImage } from "../BackgroundBlockImage";
+import { BackgroundBlockImage } from "../BackgroundBlockImage/BackgroundBlockImage";
 import { Container } from "../Container";
 import styles from "./FaceBlock.module.scss";
 

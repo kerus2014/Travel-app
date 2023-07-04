@@ -1,5 +1,5 @@
 import { TimeIcon } from "../../../assets/icons/Time";
-import { IKitchenCard } from "../../../types";
+import { IDishCard } from "../../../types";
 import { FlagItem } from "../../FlagItem";
 import styles from "./MealTimeCard.module.scss";
 

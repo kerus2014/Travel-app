@@ -1,12 +1,12 @@
-import { FormForOrder } from "../../components/Form";
+import { ToFormButton } from './../../components/buttons/toFormButton/ToFormButton';
 import { HomeBlockTemplate } from "../../components/HomeBlockTemplate";
 import { NearestCard } from "../../components/cards/NearestCard";
-import { useGetNearestQuery } from "../../reduxTools/requests/requests";
+import { useGetNearestsQuery } from "../../reduxTools/requests";
 import styles from "./Nearest.module.scss";
 import { BeatLoader } from "react-spinners";
 
 const Nearest = () => {
-  const { data } = useGetNearestQuery();
+  const { data } = useGetNearestsQuery();
   console.log(data);
 
   return (
@@ -25,7 +25,7 @@ const Nearest = () => {
         </div>
       </HomeBlockTemplate>{" "}
       <HomeBlockTemplate>
-        <FormForOrder value="Заповедный остров" buttonValue="Найти домик" />
+        <ToFormButton value="Заповедный остров" buttonValue="Найти домик" />
       </HomeBlockTemplate>
     </>
   );

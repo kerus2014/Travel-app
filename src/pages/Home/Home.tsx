@@ -2,40 +2,29 @@ import styles from "./Home.module.scss";
 import { Container } from "../../components/Container/Container";
 import { KitchenCard } from "../../components/cards/KitchenCard";
 import { MainButton } from "../../components/buttons/mainButton/MainButton";
-import { BackgroundBlockImage } from "../../components/BackgroundBlockImage";
-import image from "../../assets/pics/Home/faceBlock/20200806_154912 1.png";
-import { FormForOrder } from "../../components/Form/Form";
+import BackgroundBlockImage from "../../components/BackgroundBlockImage";
+import { ToFormButton } from './../../components/buttons/toFormButton/ToFormButton';
 import { HomeBlockTemplate } from "../../components/HomeBlockTemplate/HomeBlockTemplate";
-import {
-  entertainmentCardData,
-  faceBlockCarouselImages,
-  // housesData,
-} from "../../services/datas";
-import { HouseLittleCard } from "../../components/cards/HouseLittleCard/HouseLittleCard";
+import { HouseLittleCard } from "../../components/cards/HouseLittleCard";
 import { Carousel } from "../../components/Carousel/Carousel";
 import { EntertainmentCard } from "../../components/cards/EntertainmentCard/EntertainmentCard";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Settings } from "react-slick";
-import { House, IKitchenCard } from "../../types";
-import { useGetDishesQuery, useGetEntertainmentsQuery } from "../../reduxTools/requests/requests";
+import { useGetDishesQuery, useGetEntertainmentsQuery, useGetObjectsQuery, 
+  useGetMainPageQuery } from "../../reduxTools/requests";
 import { useNavigate } from "react-router-dom";
+import {useDatas} from "../../services/useDatas"
 
 export const Home = () => {
   const [imageIndex, setImageIndex] = useState<number>(0);
-  const [housesData,setHousesData] = useState<House[]>([]);
-  const [kitchenData,setKitchenData] = useState<IKitchenCard[]>([]);
-  const { data } = useGetEntertainmentsQuery();
+  const { data:houses, isError:houseErr, isLoading:houseLoad} = useGetObjectsQuery();
+  const { data:dishes, isError:dishErr, isLoading:dishLoad} = useGetDishesQuery();
+  const { data:entertainments, isError:entErr, isLoading:entLoad} = useGetEntertainmentsQuery();
+  const { data:mainPage, isError:pageErr, isLoading:pageLoad } = useGetMainPageQuery();
   const navigate = useNavigate()
+  const datas = useDatas();
 
-  const URL = `http://eugenest.vh77.hosterby.com/api/objects/`;
-  const request = new Request(URL, {
-    method: "GET",
-  });
-
-  const URL2 = `http://eugenest.vh77.hosterby.com/api/dishes/`;
-  const request2 = new Request(URL2, {
-    method: "GET",
-  });
+  const {title, titleHouse, titleKitchen, titleEntertainment, main_back, nameForSearchButton} = datas
 
   const sliderFaceBlockSettings: Settings = {
     slidesToShow: 1,
@@ -55,91 +44,70 @@ export const Home = () => {
     arrows: true,
     infinite: true,
   };
+  const mainDescriptions = mainPage ? mainPage[0].description: ""
+  const houseDescription = mainPage ? mainPage[0].house_description : ""
+  const kitchenDescription = mainPage ? mainPage[0].kitchen_description : ""
+  const entertainmentDescription = mainPage ? mainPage[0].entertainment_description : ""
 
-  useEffect(() => {
-    fetch(request)
-      .then(res => res.json())
-      .then(res => setHousesData(res))
-      .catch(console.error);
-    fetch(request2)
-    .then(res => res.json())
-    .then(res => setKitchenData(res))
-    .catch(console.error);
-  },[housesData,kitchenData])
-
+  // if(houseErr||dishErr||entErr||pageErr){
+  //   return <div>Error...</div>;
+  // }
+  
   return (
     <>
       <div className={styles["face-block"]}>
-        <BackgroundBlockImage image={image} />
+        <BackgroundBlockImage image={main_back} />
         <Container>
           <div className={styles["content-container"]}>
             <div className={styles["left-side"]}>
-              <div className={styles.title}>Заповедный остров</div>
-              <p>
-                Уникальное и красивейший уголо к Беларуси – на настоящем
-                островке между двух озер Ивесь и Озерко. Ручьи и болота отделяют
-                это место от всего мира: лишь стоит пересечь небольшой ручеек,
-                как вы попадете в совершенно другую стихию – без шума, суеты и
-                забот. Большая территория усадьбы «Заповедный остров»
-                располагает к множеству занятий различного рода.
-              </p>
+              <div className={styles.title}>{title}</div>
+              <p>{mainDescriptions}</p>
             </div>
             <div className={styles["right-side"]}>
               <Carousel settings={sliderFaceBlockSettings}>
-                {faceBlockCarouselImages.map((el, index) => {
-                  return <img key={index.toString()} src={el.image} alt="" />;
+                {mainPage && mainPage[0].photos.map((el, index) => {
+                  return <img key={index.toString()} src={el} alt="image" />;
                 })}
               </Carousel>
             </div>
           </div>
         </Container>
       </div>
-      <FormForOrder
-        value="Заповедный остров"
-        buttonValue="Найти домик"
+      <ToFormButton
+        value={title}
+        buttonValue={nameForSearchButton}
         className={styles.form}
       />
-      <HomeBlockTemplate title="Домики" className={styles.houses}>
-        <p>Проживание - полный пансион!</p>
-        <p>
-          Стоимость на аренду меняется в зависимости от времени года,
-          продолжительности отдыха и дней недели.
-        </p>
-        <p>
-          У нас представлены разные варианты отдыха от эконом до VIP. Бывают
-          спец.предложения и "форточки".
-        </p>
+      <HomeBlockTemplate title= {titleHouse} className={styles.houses}>
+        <p>{houseDescription}</p>
         <div className={styles.cards}>
-          {housesData.slice(0,3).map((el, index) => {
+          {houses && houses.slice(0,3).map((el) => {
+            
             return (
               <HouseLittleCard
-                key={index.toString()}
+                key={el.id}
+                id={el.id}
+                pers_num={el.pers_num}
                 title={el.title}
                 description_short={el.description_short}
-                objects_photos={el.objects_photos}
-                price_weekday={el.price_weekday}
-              />
+                photos={el.photos}
+                price_weekday={el.price_weekday} beds_types={[]} rooms_types={[]}              />
             );
           })}
         </div>
-        <MainButton value="Подробнее" handler={() => navigate("/houses")}/>
+        <MainButton value="Подробнее" handler={() => navigate("/objects")}/>
       </HomeBlockTemplate>
 
-      <HomeBlockTemplate title="Домашняя кухня">
-        <p>
-          Полноценный отдых не обойдется без хорошего питания! Мы готовы
-          угостить наших гостей домашней кухней.{" "}
-        </p>
-        <p>
-          У нас имеется свое подворье и огород. Некоторые блюда готовятся в
-          русской печи, а что-то и на мангале, костре.
-        </p>
+      <HomeBlockTemplate title={titleKitchen}>
+        <p>{kitchenDescription}</p>
+        
         <div className={styles["carousel-container"]}>
           <Carousel settings={kitchenSliderSettings}>
-            {kitchenData.map((el, index) => {
+            {dishes && dishes.map((el) => {
               return (
                 <KitchenCard
-                  key={index.toString()}
+                  key={el.id}
+                  id = {el.id}
                   photo={el.photo}
                   title={el.title}
                   description={el.description}
@@ -149,19 +117,16 @@ export const Home = () => {
           </Carousel>
         </div>
       </HomeBlockTemplate>
-      <HomeBlockTemplate title="Развлечения">
-        <p>
-          Развлечения на территории нашей усадьбы словно Вы оказались в деревне
-          у бабушки.
-        </p>
-        <p>Каждая минута наполнена яркими событиями</p>
+      <HomeBlockTemplate title={titleEntertainment}>
+        <p> {entertainmentDescription} </p>        
         <div className={styles["entertainment-container"]}>
-          {data && data.slice(0, 6).map((el, index) => {
+          {entertainments && entertainments.slice(0, 6).map((el, index) => {
             return (
               <EntertainmentCard
                 title={el.title}
-                entertaiments_photos={el.entertaiments_photos}
-                key={index.toString()}
+                photos={el.photos}
+                key={el.id} 
+                id={el.id}
               />
             );
           })}
@@ -173,7 +138,7 @@ export const Home = () => {
         />
       </HomeBlockTemplate>
       <HomeBlockTemplate>
-        <FormForOrder value="Заповедный остров" buttonValue="Найти домик" />
+        <ToFormButton value={title} buttonValue={nameForSearchButton} />
       </HomeBlockTemplate>
     </>
   );
