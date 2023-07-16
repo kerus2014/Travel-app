@@ -1,0 +1,15 @@
+@mixin text ($color, $fontSize, $fontWeight, $lineHeight, $textTransform) {
+  color: $color;
+  font-size: $fontSize;
+  font-weight: $fontWeight;
+  line-height: $lineHeight;
+  text-transform: $textTransform;
+};
+
+@mixin flex ($direction, $justifyContent, $alignItems, $wrap) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justifyContent;
+  align-items: $alignItems;
+  flex-wrap: $wrap;
+};

@@ -2,16 +2,62 @@
   width: 100%;
   height: 277px;
   position: relative;
+  @media (max-width: 768px) {
+    height: auto;
+
+
+  }
 
   img{
     height: 100%;
     object-fit: cover;
+    @media (max-width: 768px) {
+      display: none;
+
+    }
+  }
+  .flag {
+    position: absolute;
+    bottom: 10px;
+    left: -15px;
+    width: 80%;
+    @media (max-width: 768px) {
+      position: static;
+      height: 30px;
+      width: 95%;
+
+    }
+    @media (max-width: 450px) {
+      width: 97%;
+
+    }
+
+    &::before {
+      @media (max-width: 768px) {
+        right: 2px;
+      }
+      @media (max-width: 670px) {
+        right: 0px;
+      }
+      @media (max-width: 505px) {
+        right: -4px;
+      }
+    }
+
+    &::after {
+      @media (max-width: 768px) {
+        right: 2px;
+      }
+      @media (max-width: 670px) {
+        right: 0px;
+      }
+      @media (max-width: 505px) {
+        right: -4px;
+      }
+    }
+    & p {
+      font-size: 16px;
+    }
   }
 }
 
-.flag{
-  position: absolute;
-  bottom: 10px;
-  left: -15px;
-  width: 280px;
-}

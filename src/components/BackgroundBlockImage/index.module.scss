@@ -1,10 +1,19 @@
 .image{
+  width: 100%;
   position: absolute;
   z-index: -2;
   top:-84px;
   left: 0px;
   bottom: 0px;
   right: 0px;
+  @media (max-width: 768px) {
+    height: 391px;
+    top:-80px;
+  }
+  @media (max-width: 360px) {
+    height: 225px;
+    top:-45px;
+  }
 
   img{
     height: 100%;
@@ -13,6 +22,7 @@
 }
 
 .background{
+  width: 100%;
   position: absolute;
   top:-84px;
   left: 0px;
@@ -20,4 +30,15 @@
   right: 0px;
   background: rgba(0, 0, 0, 0.7);
   z-index: -1;
+  @media (max-width: 768px) {
+    height: 391px;
+    top:-80px;
+  }
+  @media (max-width: 360px) {
+    height: 225px;
+    top:-45px;
+  }
+  //@media (max-width: 768px) {
+  //  top:-80px;
+  //}
 }

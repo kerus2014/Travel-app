@@ -1,0 +1,9 @@
+@import "varaibles.scss";
+
+%slickActive {
+  color: white !important;
+  border: solid 1px $text-color;
+  top: -1px;
+  border-radius: 50%;
+  transform: scale(0.5);
+}

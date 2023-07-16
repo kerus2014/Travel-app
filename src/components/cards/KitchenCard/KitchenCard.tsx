@@ -11,7 +11,7 @@ export const KitchenCard = (props: IKitchenCard) => {
       <div className={styles["card__info"]}>
         <div className={styles["card__info-wrapper"]}>
           <h3 className={styles["card__title"]}>{title}</h3>
-          <p>{description}</p>
+          <p className={styles["card__description"]}>{description}</p>
         </div>
       </div>
     </div>

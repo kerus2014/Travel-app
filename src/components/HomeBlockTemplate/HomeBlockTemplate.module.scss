@@ -1,14 +1,22 @@
-.block{
-  padding-top: 55px;
+@import "../../styles/varaibles.scss";
+@import "../../styles/mixins.scss";
 
-  @media (max-width:576px) {
-    padding-top: 55px;
+.block{
+  height: auto;
+  margin-top: 50px;
+  @media (max-width: 768px) {
+    margin-top: 25px;
+  }
+  .title{
+    @include text($text-color, 50px, 500, normal, uppercase);
+    margin-bottom: 10px;
+    @media (max-width: 768px) {
+      font-size: 25px;
+      margin-bottom: 0px;
+    }
+    @media (max-width: 360px) {
+      font-size: 18px;
+    }
   }
 }
 
-.title{
-  font-size: 50px;
-  line-height: 61px;
-  margin-bottom: 10px;
-  text-transform: uppercase;
-}

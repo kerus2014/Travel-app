@@ -20,7 +20,8 @@ export const Houses = () => {
       <FaceBlock title="Домики" image={image} />
       <HomeBlockTemplate title="">
         <div className={styles["houses-container"]}>
-          {data ? data.map((house:any, index:number) => {
+          {/*{data ? data.map((house:any, index:number) => {*/}
+          {housesData ? housesData.map((house:any, index:number) => {
             return (
               <HouseBigCard
                 key={index.toString()}
@@ -28,7 +29,7 @@ export const Houses = () => {
                 title={house.title}
                 description_short={house.description_short}
                 description_long={house.description_long}
-                objects_photos={house.objects_photos}
+                photos={house.photos}
                 price_weekday={house.price_weekday}
                 price_holiday={house.price_holiday}
                 objects_features={house.objects_features}

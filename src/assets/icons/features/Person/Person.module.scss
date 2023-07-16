@@ -5,4 +5,17 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  @media (max-width: 768px) {
+    width: 26px;
+    height: 26px;
+  }
+
+  svg {
+    width: 30px;
+    height: 32px;
+    @media (max-width: 768px) {
+      width: 26px;
+      height: 26px;
+    }
+  }
 }

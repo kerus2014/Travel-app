@@ -2,6 +2,13 @@ export interface ClassName {
   className?: string;
 }
 
+export interface HeaderProps {
+  visible: boolean;
+}
+export interface BurgerProps {
+  visible: boolean;
+}
+
 export interface IKitchenCard {
   id?: number;
   photo: string;
@@ -77,7 +84,7 @@ export interface House {
   kitchen?: Meal[];
   price_weekday?: string;
   price_holiday?: string;
-  objects_photos: string[];
+  photos: string[];
   objects_features?: Feature[];
   beds_count?: number;
   created_date?: string;

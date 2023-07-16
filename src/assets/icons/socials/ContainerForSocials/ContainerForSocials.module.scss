@@ -1,10 +1,14 @@
+@import "../../../../styles/mixins.scss";
+
 .container{
-  width: 60px;
-  height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  max-width: 60px;
+  max-height: 60px;
+  @include flex(row, center, center, nowrap);
   cursor: pointer;
+  @media (max-width: 768px) {
+    max-width: 39px;
+    max-height: 39px;
+  }
 
   &:hover{
     opacity: 0.7;

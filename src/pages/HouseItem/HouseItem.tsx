@@ -41,7 +41,7 @@ export const HouseItem = () => {
     <>
       {JSON.stringify(houseItem) != "{}" ?
       <>
-        <FaceBlock title={houseItem.title} image={houseItem.objects_photos[0]} />
+        <FaceBlock title={houseItem.title} image={houseItem.photos[0]} />
         <HomeBlockTemplate >
           <div className={styles.container}>
             <div className={styles["left-column"]}>
@@ -64,7 +64,7 @@ export const HouseItem = () => {
                   </div>
                 </div>
               </div>
-              <MyGallery images={houseItem.objects_photos}/>
+              <MyGallery images={houseItem.photos}/>
               <div className={styles.features}>
                 <h1>Удобства в домике</h1>
                 <hr />

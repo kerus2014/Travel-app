@@ -1,8 +1,16 @@
 @import "../../styles/varaibles.scss";
 
 .layout{
+  width: 100%;
   padding-top: 84px;
   overflow: hidden;
+  position: relative;
+  @media (max-width: 768px) {
+    padding-top: 80px;
+  }
+  @media (max-width: 360px) {
+    padding-top: 45px;
+  }
 }
 
 .arrow-top{
@@ -22,8 +30,9 @@
   border-radius: 100px;
   transition-duration: 0.25s;
 
-  @media (max-width:1000px) {
-    display: none;
+  @media (max-width:768px) {
+    width: 45px;
+    height: 45px;
   }
 
   &:hover{
@@ -37,6 +46,8 @@
   }
 
   svg{
+    width: 50%;
+    height: 35%;
     position: relative;
     top:-3px
   }
@@ -47,9 +58,9 @@
   height: 0px;
 }
 
-.header-background{
-  background-color: $primaryColor;
-}
+//.header-background{
+//  background-color: $primaryColor;
+//}
 
 .container{
   position: fixed;

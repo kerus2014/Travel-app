@@ -1,70 +1,45 @@
 @import "../../styles/varaibles.scss";
+@import "../../styles/mixins.scss";
 
 .header{
   height: 84px;
-  display: flex;
-  align-items: center;
   position: fixed;
   top: 0px;
   width: 100%;
   z-index: 2;
   transition-duration: 0.25s;
-}
-
-.content-container{
-  align-items: center;
-  display: flex;
-  justify-content: space-between;
-
-  & .navigation{
-
-    @media (max-width:1200px) {
-      display: none;
+  padding-top: 10px;
+  @media (max-width:360px) {
+    padding-top: 2px;
+  }
+  &.headerBg {
+    background-color: $text-color;
+  }
+  @media (max-width:768px) {
+    height: 80px;
+    background-color: $text-color;
+  }
+  @media (max-width:360px) {
+    height: 45px;
+  }
+  .content-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    //padding: 10px 0px;
+    @include flex(row, space-between, center, nowrap);
+    @media (max-width:360px) {
+      position: static;
+      //padding: 5px 0px;
+    }
+    .navigation {
+      width: 73%;
+      @media (max-width:1200px) {
+        display: none;
+      }
     }
   }
-}
-.menu-button-container{
-  width: 48px;
-  height: 48px;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  display: none;
-
-  @media (max-width:1200px) {
-    display: flex;
-  }
-}
-
-.menu-button {
-  height: fit-content;
-  width: 30px;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.line,
-.line::before,
-.line::after {
-  display: block;
-  background-color: #fff;
-  position: absolute;
-  height: 4px;
-  width: 30px;
-  transition: transform 400ms cubic-bezier(0.23, 1, 0.32, 1);
-  border-radius: 2px;
-}
-
-.line::before {
-  content: '';
-  margin-top: -8px;
-}
-
-.line::after {
-  content: '';
-  margin-top: 8px;
-}
+};
 
 .menu{
   position: absolute;
@@ -76,58 +51,40 @@
   width: 100%;
   background-color: $primaryColor;
   transition-duration: 0.25s;
+  @media (max-width:768px) {
+    top:80px;
+  }
+  @media (max-width:360px) {
+    top:45px;
+  }
 
   &.menu-open{
     height: fit-content;
     opacity: 1;
   }
-
   nav{
     padding: 10px 0px;
-    flex-direction: column;
-    align-items: center;
-    
-  }
-
-  a{
-    display: flex;
-    justify-content: center;
-    border-bottom: 1px solid $secondaryColor;
-    width: 100%;
-    flex-direction: column;
-    height: 48px;
-
-    &::after{
-      display: none;
+    gap: 10px;
+    @include flex(column, null, flex-start, null);
+    @media (max-width: 360px) {
+      gap: 5px;
     }
+    a{
+      border-bottom: 1px solid $secondaryColor;
+      width: 100%;
+      height: auto;
+      @include flex(column, center, null, null);
+      &::after{
+        display: none;
+      }
 
-    &:hover{
-      font-weight: 600;
-    }
+      &:hover{
+        font-weight: 600;
+      }
 
-    &:last-child{
-      border-bottom: none;
+      &:last-child{
+        border-bottom: none;
+      }
     }
   }
-}
-
-.menu-open{
-
-  .line::before {
-    margin-top: 0px;
-    transform: rotate(45deg);
-  }
-  
-  .line {
-    background: rgba(255, 255, 255, 0);
-  }
-  
-  .line::after {
-    margin-top: 0px;
-    transform: rotate(-45deg);
-  }
-}
-
-.navigation-adaptiv{
-  
 }

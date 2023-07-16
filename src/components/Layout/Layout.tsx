@@ -103,7 +103,7 @@ export const Layout = () => {
   //   setIsBlur(true);
   // };
 
-  const URL = `http://45.147.176.176/api/objects/`;
+  const URL = `http://eugenest.vh77.hosterby.com/api/objects/`;
   const request = new Request(URL, {
     method: "GET",
   });
@@ -147,10 +147,9 @@ export const Layout = () => {
     }
   }
 
-
   return (
     <div className={styles.layout}>
-      <Header className={burgerIsOpen || visible ? styles["header-background"] : undefined} />
+      <Header  visible={visible}/>
       <Outlet />
       <Footer/>
       <div

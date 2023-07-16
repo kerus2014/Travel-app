@@ -1,165 +1,375 @@
 @import "../../styles/varaibles.scss";
+@import "../../styles/mixins.scss";
+@import "../../styles/extensions.scss";
 
-.face-block{
+.face-block {
   width: 100%;
-  height: 718px;
+  height: 634px;
   position: relative;
+  @media (max-width: 768px) {
+    height: 100%;
+    min-height: 541px;
+  }
+  @media (max-width: 360px) {
+    min-height: 290px;
+  }
+
+  .content-container {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(300px, 546px));
+    gap: 106px;
+    position: relative;
+    @media (max-width: 1200px) {
+      gap: 30px;
+    }
+    @media (max-width: 768px) {
+      grid-template-columns: 52% 48%;
+      gap: 19px;
+    }
+    @media (max-width: 550px) {
+      grid-template-columns: 100%;
+    }
+
+    .left-side {
+      margin-top: 101px;
+      @media (max-width: 768px) {
+        margin-top: 115px;
+      }
+      @media (max-width: 360px) {
+        margin-top: 35px;
+      }
+
+      .title {
+        width: 100%;
+        @include text($colorWhite, 80px, 700, 80px, null);
+        @media (max-width: 1250px) and (min-width: 360px) {
+          font-size: calc(1.75rem + 52 * (100vw - 360px) / 890);
+        }
+        @media (max-width: 768px) {
+          line-height: 50px;
+          padding: 0px 47px;
+        }
+        @media (max-width: 360px) {
+          @include text($colorWhite, 28px, 700, 35px, null);
+          padding-left: 27px;
+        }
+      }
+
+      .descriptionTitle {
+        @include text($colorWhite, 16px, 600, normal, null);
+        margin-top: 30px;
+        text-align: justify;
+        @media (max-width: 768px) {
+          @include text($text-color, 16px, 500, normal, null);
+        }
+        @media (max-width: 768px) {
+          margin-top: 121px;
+        }
+        @media (max-width: 360px) {
+          display: none;
+        }
+      }
+    }
+
+    .right-side {
+      margin-top: 101px;
+      height: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      color: white;
+      max-width: 546px;
+      position: relative;
+      @media (max-width: 1100px) {
+        height: 100%;
+      }
+
+      & :global(.slick-slider) {
+        width: 100%;
+        height: auto;
+      }
+
+      & :global(.slick-dots li button:before) {
+        font-size: 10px;
+        color: white;
+      }
+
+      & :global(.slick-dots li.slick-active button:before) {
+        opacity: 1;
+        color: white !important;
+      }
+
+      & :global(.slick-dots) {
+        position: static;
+        margin-top: 65px;
+      }
+
+      & .container {
+
+        & img {
+          object-fit: cover;
+          height: 100%;
+          width: 100%;
+        }
+      }
+
+      & :global(.slick-track) {
+        display: flex !important;
+      }
+
+      & :global(.slick-slide) {
+        box-shadow: 0px 4px 30px 10px rgba(0, 0, 0, 0.5);
+        transition-duration: 0.25s;
+        max-height: 320px;
+
+        div {
+          height: 100%;
+          width: 100%;
+          @media (max-width: 950px) {
+            width: 150px;
+          }
+
+          img {
+            width: 100%;
+            max-width: 272px;
+            height: 100%;
+            max-height: 320px;
+            object-fit: cover;
+          }
+        }
+      }
+
+      & :global(.slick-active) {
+
+        div {
+          transform: scale(1.28);
+          z-index: 2;
+        }
+      }
+
+      & :global(.slick-list) {
+        overflow: visible;
+        overflow-x: clip;
+      }
+
+      @media (max-width: 768px) {
+        display: none;
+      }
+    }
+  }
 }
 
-.content-container{
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 106px;
-}
-
-.title{
-  font-size: 50px;
-  line-height: 61px;
-  font-weight: 500;
-}
-
-.left-side{
-  padding-top: 100px;
-
-  .title{
-    color: white;
-    font-size: 80px;
-    line-height: 80px;
-    font-weight: 700;
-  }
-
-  p{
-   color: white;
-   margin-top: 30px; 
-  }
-}
-
-.right-side{
-  padding-top: 101px;
-  color: white;
-  width: 500px;
-
-  & :global(.slick-dots li button:before) {
-    font-size: 10px;
-    color: white;
-  }
-
-  & :global(.slick-dots li.slick-active button:before) {
-    opacity: 1;
-    color: white!important;
-  }
-
-  & :global(.slick-dots){
-    position: static;
-    margin-top: 65px;
-  }
-
-  & .container{
-
-    & img{
-      object-fit: cover;
-      height: 100%;
+.form {
+  position: absolute;
+  top: 581px;
+  left: 50%;
+  width: 100%;
+  height: 106px;
+  transform: translateX(-50%);
+  @media (max-width: 768px) {
+    top: 353px;
+    left: 76%;
+    width: 43%;
+    height: 127px;
+    flex-direction: column;
+    padding: 20px 28px;
+    @media (max-width: 550px) {
+      flex-direction: row;
       width: 100%;
+      height: 78px;
+      padding: 19px 90px;
+      position: relative;
+      top: 25px;
+      left: 50%;
+    }
+    @media (max-width: 360px) {
+      top: 55px;
     }
   }
 
-  & :global(.slick-track){
-    display: flex!important;
-  }
-
-  & :global(.slick-slide){
-    box-shadow: 0px 4px 30px 10px rgba(0, 0, 0, 0.5);
-    transition-duration: 0.25s;
-    height: 320px;
-
-    div{
-      height: 100%;
-
-      img{
-        height: 100%;
-        object-fit: cover;
+  p {
+    @media (max-width: 768px) {
+      align-self: flex-start;
+      @media (max-width: 550px) {
+        align-self: center;
+        margin-bottom: 0px;
+      }
+      @media (max-width: 450px) {
+        align-self: flex-start;
       }
     }
   }
 
-  & :global(.slick-active){
-
-    div{
-      transform: scale(1.28);
-      z-index: 2;
+  & button {
+    @media (max-width: 768px) {
+      //width: 100%;
+      max-width: 274px;
     }
-    
-  }
-
-  & :global(.slick-list){
-    overflow: visible;
-    overflow-x: clip;
+    @media (max-width: 550px) {
+      max-width: 181px;
+    }
   }
 }
 
-.form{
-  position: absolute;
-  top:749px;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.houses{
-  padding-top: 104px!important;
-
-  .cards{
-    display: grid;
-    margin-top: 20px;
-    margin-bottom: 30px;
-    position: relative;
-    grid-template-columns: 1fr 1fr 1fr;   
+.houses {
+  padding-top: 54px;
+  @include flex(column, center, flex-start, null);
+  @media (max-width: 768px) {
+    padding-top: 0px;
+  }
+  @media (max-width: 550px) {
+    padding-top: 25px;
+  }
+  @media (max-width: 360px) {
+    padding-top: 0px;
   }
 
-  button{
+  .houses-carousel {
+    margin: 20px 0 60px 0;
+    min-height: 401px;
+    @media (max-width: 768px) {
+      margin-bottom: 10px;
+    }
+
+    & :global(.slick-slide) {
+      margin: 0 15px;
+      @media (max-width: 440px) {
+        width: 100% !important;
+      }
+    }
+
+    & :global(.slick-list) {
+      margin-right: -15px;
+      margin-left: -15px;
+      overflow: visible;
+    }
+
+    & :global(.slick-track) {
+      display: flex;
+      justify-content: center;
+      @media (max-width: 768px) {
+      }
+      @media (max-width: 440px) {
+        flex-wrap: wrap;
+      }
+      @media (max-width: 360px) {
+        align-items: center;
+      }
+    }
+
+    & :global(.slick-dots) {
+      bottom: -40px;
+    }
+
+    & :global(.slick-dots li button:before) {
+      font-size: 10px;
+      color: $text-color !important;
+      opacity: 1;
+    }
+
+    & :global(.slick-dots li.slick-active button:before) {
+      @extend %slickActive;
+    }
+  }
+
+  button {
     margin: 0 auto;
-    // width: 140px!important;
   }
 }
 
-.carousel-container{
+.kitchen {
+
+  .carousel-container {
+    margin-top: 20px;
+
+    & :global(.slick-slide) {
+      padding: 0 20px;
+      display: flex !important;
+      flex-direction: column;
+      row-gap: 20px;
+      @media (max-width: 550px) {
+        padding: 0 10px;
+      }
+      @media (max-width: 450px) {
+        padding: 0 10px;
+        row-gap: 0px;
+      }
+
+      & div:first-child {
+        @media (max-width: 450px) {
+          margin-bottom: 15px;
+        }
+      }
+    }
+
+    & :global(.slick-list) {
+      margin: 0 -20px;
+      overflow: visible;
+      overflow-x: clip;
+      @media (max-width: 550px) {
+        margin: 0 -10px;
+      }
+    }
+
+    & :global(.slick-dots li button:before) {
+      color: $text-color !important;
+      opacity: 1;
+      font-size: 10px;
+    }
+
+    & :global(.slick-dots li.slick-active button:before) {
+      @extend %slickActive;
+    }
+
+    & :global(.slick-dots) {
+      position: static;
+      margin-top: 21px;
+      @media (max-width: 768px) {
+        margin-top: 15px;;
+      }
+      @media (max-width: 450px) {
+        margin-top: 25px;;
+      }
+    }
+  }
+
+}
+
+.blockDescription {
+  & p {
+    @include text($text-color, 16px, 400, normal, null);
+  }
+
+  @media (max-width: 768px) {
+    display: none;
+  }
+}
+
+.entertainment-container {
   margin-top: 20px;
-
-  & :global(.slick-slide){
-    padding: 0 20px;
-    display: flex!important;
-    flex-direction: column;
-    row-gap: 20px;
-  }
-
-  & :global(.slick-list){
-    margin: 0 -20px;
-    overflow: visible!important;
-    overflow-x: clip!important;
-  }
-
-  & :global(.slick-dots li button:before) {
-    font-size: 10px;
-  }
-
-  & :global(.slick-dots li.slick-active button:before) {
-    opacity: 1;
-    color: $primaryColor!important;
-  }
-
-  & :global(.slick-dots){
-    position: static;
-    margin-top: 21px;
-  }
-}
-
-.entertainment-container{
-  margin-top: 15px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-gap:30px;
+  grid-gap: 30px;
+  margin-bottom: 30px;
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 15px;
+    margin-bottom: 15px;
+  }
+  @media (max-width: 450px) {
+    grid-template-columns: 1fr;
+    margin-bottom: 20px;
+  }
 }
 
-.entertainment-button{
-  margin-top: 30px!important;
+.entertainment-button {
   margin: 0 auto;
 }
+
+.formFooter {
+  @media (max-width: 768px) {
+    height: 78px;
+    padding: 19px 90px;
+  }
+}
+

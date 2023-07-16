@@ -1,26 +1,14 @@
 .container{
-  width: 1200px;
+  width: 100%;
+  max-width: 1200px;
   margin: 0 auto;
-
-  @media (max-width:1256px) {
-    width: 100%;
-    padding-left: 28px;
-    padding-right: 28px;
-  }  
-
-  @media (max-width:1000px) {
-    width: 100%;
-    padding-left: 28px;
-    padding-right: 28px;
-  }
-
-  @media (max-width:576px) {
-      padding-left: 24px;
-      padding-right: 24px;
-  }
-
-  @media (max-width:480px) {
-    padding-left: 18px;
+  //height: 100%;
+  @media (max-width: 1250px) {
     padding-right: 18px;
+    padding-left: 18px ;
+  }
+  @media (max-width: 360px) {
+    padding-right: 15px;
+    padding-left: 15px ;
   }
 }
