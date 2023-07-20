@@ -5,8 +5,8 @@ export interface ClassName {
 export interface IDishCard {
   id: number;
   title: string;
-  description: string;
-  photo: string;
+  description?: string;
+  photo?: string;
 }
 
 export interface IEntertainmentCard {
@@ -20,8 +20,8 @@ export interface IEntertainmentPrices{
 }
 
 export interface IEntertainments extends IEntertainmentCard {
-  entertaiments_prices: IEntertainmentPrices[];
-  description_short?: string;
+  prices?: IEntertainmentPrices[];
+  description_short: string;
   description_long?: string;  
 }
 
@@ -35,7 +35,7 @@ export interface IMeal {
   id: number,
   title: string,
   time: string,
-  price?: string,  
+  price?: number,  
 }
 
 export const INTERNET = "Интернет";
@@ -72,7 +72,7 @@ export interface House {
   pers_num: number;
   description_short: string;
   description_long?: string;
-  price_weekday?: number;
+  price_weekday: number;
   price_holiday?: number;
   beds_types?: IBedTypes[];  
   rooms_types?: IRoomTypes[];

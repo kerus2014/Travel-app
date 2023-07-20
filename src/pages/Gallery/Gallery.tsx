@@ -3,7 +3,7 @@ import { HomeBlockTemplate } from "../../components/HomeBlockTemplate";
 import styles from "./Gallery.module.scss";
 import ImageViewer from 'react-simple-image-viewer';
 import React, { useState, useCallback } from 'react';
-import { useGetGalleryQuery } from "../../reduxTools/requests";
+import { useGetGalleryQuery } from "../../reduxTools/requests/apiRequests";
 import { ArrowPrev } from "../../assets/icons/ArrowPrev";
 import { ArrowNext } from "../../assets/icons/ArrowNext";
 import { BeatLoader } from "react-spinners";
@@ -34,15 +34,11 @@ export const Gallery = () => {
       el.photos.map((el) => photosData.push(el))
     }
   })} 
-  console.log(data);
-  console.log(value);
-  
-  
-
+ 
   return (
     <>
       <div className={styles.header}></div>
-      <HomeBlockTemplate title="Наша галерея">
+      <HomeBlockTemplate title="">
         <div className={styles["tabs-grid"]}>
           {data && data.map((el) => {
             return (

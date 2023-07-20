@@ -13,7 +13,7 @@ import { VisaSecure } from "../../assets/icons/payments/VisaSecure"
 import { YPay } from "../../assets/icons/payments/YPay"
 import { Facebook } from "../../assets/icons/socials/Facebook"
 import { Instagram } from "../../assets/icons/socials/Instagram"
-import { useGetInfoQuery } from "../../reduxTools/requests"
+import { useGetInfoQuery } from "../../reduxTools/requests/apiRequests"
 import { ClassName } from "../../types"
 import styles from "./ContactsInfo.module.scss"
 

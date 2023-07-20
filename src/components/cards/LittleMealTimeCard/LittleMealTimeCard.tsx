@@ -1,17 +1,19 @@
 import { PriceIcon } from "../../../assets/icons/Price";
 import { TimeIcon } from "../../../assets/icons/Time";
-import { IDishCard } from "../../../types";
+import { IMeal } from "../../../types";
 import { FlagItem } from "../../FlagItem";
 import styles from "./LittleMealTimeCard.module.scss";
 
-interface IProps {
-  title?: string;
-  time?: string;
-  price?: string;
+interface IProps extends IMeal {
+  cur_scale: number,
+  cur_rate: number
 }
 
 export const LittleMealTimeCard = (props: IProps) => {
-  const { time = "9:00", title = "Завтрак", price = 15 } = props;
+  const { time , title , price, cur_rate, cur_scale } = props;
+  const priceBYN = price ? 
+  `${Math.round (Number(price) / cur_scale * cur_rate)} BYN`
+  : "цену уточняйте"
   return (
     <div className={styles.card}>
       <p className={styles.title}>{title}</p>
@@ -26,7 +28,7 @@ export const LittleMealTimeCard = (props: IProps) => {
           <div>
             <PriceIcon/>
           </div>
-          <p>{price} <span>BYN</span></p>
+          <p><span>{priceBYN}</span></p>
         </div>
       </div>
       

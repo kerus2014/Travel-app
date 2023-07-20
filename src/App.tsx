@@ -10,24 +10,27 @@ import Entertainment from "./pages/Entertainment/Entertainment";
 import EntertainmentCurrent from "./pages/EntertainmentCurrent/EntertainmentCurrent";
 import { Nearest } from "./pages/Nearest";
 import { Gallery } from "./pages/Gallery";
+import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
 
 function App() {
   
   return (
-    <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route index element={<Home />}/>
-        <Route path="houses" element={<Houses />} />
-        <Route path="houses/:id" element={<HouseItem />} />
-        <Route path="dish" element={<Kitchen />} />
-        <Route path="rule" element={<Rules />} />
-        <Route path="info" element={<Contacts />} />
-        <Route path="entertainments" element={<Entertainment />} />
-        <Route path="entertainments/:id" element={<EntertainmentCurrent />} />
-        <Route path="galleries" element={<Gallery />} />
-        <Route path="nearests" element={<Nearest />} />
-      </Route>
-    </Routes>
+    <ErrorBoundary>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />}/>
+          <Route path="houses" element={<Houses />} />
+          <Route path="houses/:id" element={<HouseItem />} />
+          <Route path="dish" element={<Kitchen />} />
+          <Route path="rule" element={<Rules />} />
+          <Route path="info" element={<Contacts />} />
+          <Route path="entertainments" element={<Entertainment />} />
+          <Route path="entertainments/:id" element={<EntertainmentCurrent />} />
+          <Route path="galleries" element={<Gallery />} />
+          <Route path="nearests" element={<Nearest />} />
+        </Route>
+      </Routes>
+    </ErrorBoundary>
   );
 }
 

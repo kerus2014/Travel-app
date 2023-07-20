@@ -3,7 +3,7 @@ import { Container } from "../../components/Container/Container";
 import { KitchenCard } from "../../components/cards/KitchenCard";
 import { MainButton } from "../../components/buttons/mainButton/MainButton";
 import BackgroundBlockImage from "../../components/BackgroundBlockImage";
-import { ToFormButton } from './../../components/buttons/toFormButton/ToFormButton';
+import { ToFormButton } from './../../components/buttons/toFormButton';
 import { HomeBlockTemplate } from "../../components/HomeBlockTemplate/HomeBlockTemplate";
 import { HouseLittleCard } from "../../components/cards/HouseLittleCard";
 import { Carousel } from "../../components/Carousel/Carousel";
@@ -11,20 +11,23 @@ import { EntertainmentCard } from "../../components/cards/EntertainmentCard/Ente
 import { useState } from "react";
 import { Settings } from "react-slick";
 import { useGetDishesQuery, useGetEntertainmentsQuery, useGetObjectsQuery, 
-  useGetMainPageQuery } from "../../reduxTools/requests";
+  useGetMainPageQuery } from "../../reduxTools/requests/apiRequests";
 import { useNavigate } from "react-router-dom";
 import {useDatas} from "../../services/useDatas"
+import { useRate } from "../../services/useRate";
 
 export const Home = () => {
   const [imageIndex, setImageIndex] = useState<number>(0);
-  const { data:houses, isError:houseErr, isLoading:houseLoad} = useGetObjectsQuery();
-  const { data:dishes, isError:dishErr, isLoading:dishLoad} = useGetDishesQuery();
-  const { data:entertainments, isError:entErr, isLoading:entLoad} = useGetEntertainmentsQuery();
-  const { data:mainPage, isError:pageErr, isLoading:pageLoad } = useGetMainPageQuery();
+  const { data:houses, isLoading:houseLoad} = useGetObjectsQuery();
+  const { data:dishes, isLoading:dishLoad} = useGetDishesQuery();
+  const { data:entertainments, isLoading:entLoad} = useGetEntertainmentsQuery();
+  const { data:mainPage, isLoading:pageLoad } = useGetMainPageQuery();
   const navigate = useNavigate()
   const datas = useDatas();
-
-  const {title, titleHouse, titleKitchen, titleEntertainment, main_back, nameForSearchButton} = datas
+  const rate = useRate();
+   
+  const {title, titleHouse, titleKitchen, titleEntertainment, main_back, nameForSearchButton} = datas;
+  const {cur_rate, cur_scale } = rate;
 
   const sliderFaceBlockSettings: Settings = {
     slidesToShow: 1,
@@ -49,10 +52,6 @@ export const Home = () => {
   const kitchenDescription = mainPage ? mainPage[0].kitchen_description : ""
   const entertainmentDescription = mainPage ? mainPage[0].entertainment_description : ""
 
-  // if(houseErr||dishErr||entErr||pageErr){
-  //   return <div>Error...</div>;
-  // }
-  
   return (
     <>
       <div className={styles["face-block"]}>
@@ -91,11 +90,16 @@ export const Home = () => {
                 title={el.title}
                 description_short={el.description_short}
                 photos={el.photos}
-                price_weekday={el.price_weekday} beds_types={[]} rooms_types={[]}              />
+                price_weekday={el.price_weekday} 
+                beds_types={el.beds_types} 
+                rooms_types={el.rooms_types}
+                cur_scale = {cur_scale}
+                cur_rate = {cur_rate}
+              />
             );
           })}
         </div>
-        <MainButton value="Подробнее" handler={() => navigate("/objects")}/>
+        <MainButton value="Подробнее" handler={() => navigate("/houses")}/>
       </HomeBlockTemplate>
 
       <HomeBlockTemplate title={titleKitchen}>
@@ -134,7 +138,7 @@ export const Home = () => {
         <MainButton
           value="Подробнее"
           className={styles["entertainment-button"]}
-          handler={() => navigate("/entertainment")}
+          handler={() => navigate("/entertainments")}
         />
       </HomeBlockTemplate>
       <HomeBlockTemplate>

@@ -20,10 +20,10 @@ export const api = createApi({
       query: () => `entertainments/`,
     }),
     getEntertainmentsCurrent: build.query<IEntertainments, string>({
-      query: (id) => `entertaiments/${id}`,
+      query: (id) => `entertainments/${id}`,
     }),
     getFeedingInfo: build.query<IMeal[], void>({
-      query: () => `feeding-info/`,
+      query: () => `meal/`,
     }),
     getGallery: build.query<IGallery[], void>({
       query: () => `galeries/`,

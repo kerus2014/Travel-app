@@ -21,8 +21,12 @@ const housePhotosSettings = {
   dots: true,
   infinite: true,
 };
+interface IProps extends House {
+  cur_scale: number,
+  cur_rate: number
+}
 
-const HouseBigCard = (props: House) => {
+const HouseBigCard = (props: IProps) => {
   const navigate = useNavigate()
 
   const {
@@ -37,8 +41,16 @@ const HouseBigCard = (props: House) => {
     pers_num,
     bed_count,
     beds_types,
-    rooms_types
+    rooms_types,
+    cur_rate,
+    cur_scale
   } = props;
+  const priceBYN_weekday = price_weekday?
+  Math.round(Number(price_weekday) / cur_scale * cur_rate/10)* 10: 0
+ 
+  const priceBYN_holiday = price_holiday?
+  Math.round(Number(price_holiday) / cur_scale * cur_rate/10) * 10 : priceBYN_weekday
+  
 
   return (
     <div className={styles.card}>
@@ -70,18 +82,18 @@ const HouseBigCard = (props: House) => {
           })}
           {
             features?.slice(0,3).map((elem, index) => {
-
+              
               switch(elem) {
                 case TELEVISOR:  
-                  return <TV/>;
+                  return <TV key = {index}/>;
                 case MANGAL:  
-                  return <Fridge/>;
+                  return <Fridge key = {index}/>;
                 case KUHNIYA:  
-                  return <KitchenIcon/>;
+                  return <KitchenIcon key = {index}/>;
                 case DUSH:  
-                  return <Shower/>;
+                  return <Shower key = {index}/>;
                 case INTERNET:  
-                  return <Internet/>;
+                  return <Internet key = {index}/>;
                 default:
                   return null;
               }
@@ -97,10 +109,10 @@ const HouseBigCard = (props: House) => {
             <p className={styles.priceText}>За дом в сутки:</p>
             <div className={styles.priceContainerContainer}>
               <div className={styles.priceContainer}>
-                <Price price={price_weekday!} type="weekday" />
+                <Price price={priceBYN_weekday} type="weekday" />
               </div>
               <div className={styles.priceContainer}>
-                <Price price={price_holiday!} type="weekend" />
+                <Price price={priceBYN_holiday} type="weekend" />
               </div>
             </div>
           </div>

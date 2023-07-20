@@ -7,13 +7,15 @@ import { Arrow } from "../../assets/icons/Arrow";
 import { Footer } from "../Footer";
 import { useSelector } from "react-redux";
 import { AppState } from "../../reduxTools/store";
-import { useGetObjectsQuery } from "../../reduxTools/requests";
+import { useGetObjectsQuery } from "../../reduxTools/requests/apiRequests";
+
 
 export const Layout = () => {
   const { data } = useGetObjectsQuery();
   const burgerIsOpen = useSelector((state:AppState) => state.burgerMenu.isOpen)
   const isFormOpen = useSelector((state:AppState) => state.form.isFormOpen)
   const [visible, setVisible] = useState(false);
+
   
   const handleClick = () => {
     const element = document.body;

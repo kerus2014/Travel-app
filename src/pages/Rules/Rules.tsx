@@ -2,7 +2,7 @@ import { FaceBlock } from "../../components/FaceBlock";
 import { ToFormButton } from './../../components/buttons/toFormButton/ToFormButton';
 import { HomeBlockTemplate } from "../../components/HomeBlockTemplate";
 import { RuleCard } from "../../components/cards/RuleCard";
-import { useGetRuleQuery } from "../../reduxTools/requests";
+import { useGetRuleQuery } from "../../reduxTools/requests/apiRequests";
 import styles from "./Rules.module.scss";
 
 

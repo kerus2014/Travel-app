@@ -1,9 +1,9 @@
 import styles from "./HouseItem.module.scss";
 import { HomeBlockTemplate } from "../../components/HomeBlockTemplate";
 import { useState, useEffect } from "react";
-import { DUSH, House, INTERNET, KUHNIYA, MANGAL, TELEVISOR } from "../../types";
+import { DUSH, House, IMeal, INTERNET, KUHNIYA, MANGAL, TELEVISOR } from "../../types";
 import { FaceBlock } from "../../components/FaceBlock/FaceBlock";
-import { useGetObjectCurrentQuery } from "../../reduxTools/requests";
+import { useGetFeedingInfoQuery, useGetObjectCurrentQuery } from "../../reduxTools/requests/apiRequests";
 import { ToFormButton } from '../../components/buttons/toFormButton';
 import { useParams } from "react-router";
 import { MyGallery } from "../../components/ImageGalleryCarousel";
@@ -17,16 +17,31 @@ import { Shower } from "../../assets/icons/features/Shower";
 import { Internet } from "../../assets/icons/features/Internet";
 import { KitchenIcon } from "../../assets/icons/features/KitchenIcon";
 import { BeatLoader } from "react-spinners";
+import { useDatas } from "../../services/useDatas";
+import { useRate } from "../../services/useRate";
 
 export const HouseItem = () => {
   const {id} = useParams();
   const { data } = useGetObjectCurrentQuery(id!);
-  
-  if (!data) return null
+  const { data:meal} = useGetFeedingInfoQuery();
+  const datas = useDatas();
+  const {title, nameForSearchButton} = datas;
+  const rate = useRate();
+  const price_weekday = data?.price_weekday?
+  `от ${Math.round (Number(data.price_weekday) / rate.cur_scale * rate.cur_rate/10) * 10} BYN будние дни`
+  : "цену уточняйте"
+  const price_holiday = data?.price_holiday?
+  `от ${Math.round (Number(data.price_holiday) / rate.cur_scale * rate.cur_rate/10) * 10} BYN выходные дни`
+  : price_weekday
+
+
+  if (!data) return(
+  <div className={styles.preload}><BeatLoader color="#583711" /></div>
+  )
   console.log(data)
   return (
     <>
-      {JSON.stringify(data) != "{}" ?
+      {JSON.stringify(data) !== "{}" ?
       <>
         <FaceBlock title={data.title} image={data.photos[0]} />
         <HomeBlockTemplate >
@@ -82,28 +97,40 @@ export const HouseItem = () => {
             </div>
             <div className={styles["right-column"]}>
               <p>{data.description_short}</p>
-              <ToFormButton value="Забронировать домик" buttonValue="Забронировать" className={styles.form}/>
+              <ToFormButton value={title} buttonValue={nameForSearchButton} className={styles.form}/>
               <div className={styles.prices}>
                 <FlagItem value="За дом в сутки" className={styles.flag}/>
                 <div className={styles.row}>
-                  от <span>{data.price_weekday}</span> BYN будние дни 
+                  {price_weekday}  
                 </div>
                 <div className={styles.row}>
-                  от <span>{data.price_holiday}</span> BYN выходные дни
+                  {price_holiday} 
                 </div>
               </div>
               <div className={styles.kitchen}>
                 <h2>Кухня</h2>
-                <LittleMealTimeCard/>
-                <LittleMealTimeCard title="Обед" time="14:00"/>
-                <LittleMealTimeCard title="Ужин" time="19:00" price="20"/>
+                {meal && meal.map((el:IMeal) => {
+                  return (
+                <LittleMealTimeCard
+                  key={el.id}
+                  id = {el.id}
+                  time={el.time}
+                  title={el.title}
+                  price={el.price}
+                  cur_rate = {rate.cur_rate}
+                  cur_scale = {rate.cur_scale}
+                />
+                );
+              })
+            }
+               
               </div>
             </div>
           </div>
         </HomeBlockTemplate>
 
         <HomeBlockTemplate>
-          <ToFormButton value="Заповедный остров" buttonValue="Найти домик" />
+          <ToFormButton value={title} buttonValue={nameForSearchButton}  />
         </HomeBlockTemplate>
       </>
       :
@@ -113,5 +140,3 @@ export const HouseItem = () => {
     
   );
 };
-//// ?.slice(0,data.price_weekday?.length-3)
-//?.slice(0,data.price_holiday?.length-3)

@@ -1,7 +1,7 @@
 import { ToFormButton } from './../../components/buttons/toFormButton/ToFormButton';
 import { HomeBlockTemplate } from "../../components/HomeBlockTemplate";
 import { NearestCard } from "../../components/cards/NearestCard";
-import { useGetNearestsQuery } from "../../reduxTools/requests";
+import { useGetNearestsQuery } from "../../reduxTools/requests/apiRequests";
 import styles from "./Nearest.module.scss";
 import { BeatLoader } from "react-spinners";
 

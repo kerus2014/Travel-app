@@ -4,18 +4,21 @@ import styles from "./Houses.module.scss";
 import { HomeBlockTemplate } from "../../components/HomeBlockTemplate";
 import { House } from "../../types";
 import { FaceBlock } from "../../components/FaceBlock/FaceBlock";
-import { useGetObjectsQuery, useGetMainPageQuery } from "../../reduxTools/requests";
+import { useGetObjectsQuery, useGetMainPageQuery } from "../../reduxTools/requests/apiRequests";
 import { BeatLoader } from "react-spinners";
 import { ToFormButton } from "../../components/buttons/toFormButton";
 import { useDatas} from "../../services/useDatas";
+import { useRate } from "../../services/useRate";
+
 
 export const Houses = () => {
   const { data, isError:houseErr, isLoading:houseLoad} = useGetObjectsQuery();
   const datas = useDatas();
+  const rate = useRate();
 
   const {title, titleHouse, house_back, nameForSearchButton} = datas
-  console.log(house_back);
-  
+  const {cur_rate, cur_scale} = rate;
+    
   return (
     <>
       <FaceBlock title={titleHouse} image={house_back} />
@@ -36,7 +39,10 @@ export const Houses = () => {
                 pers_num={house.pers_num}
                 bed_count={house.bed_count}
                 beds_types={house.beds_types} 
-                rooms_types={house.rooms_types}              />
+                rooms_types={house.rooms_types}
+                cur_rate = {cur_rate}
+                cur_scale = {cur_scale}
+              />
             );
           })
         :

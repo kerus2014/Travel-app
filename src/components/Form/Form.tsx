@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppState } from "../../reduxTools/store";
 // import { changeFormStateAction } from "../../reduxTools/formForOrderHouse/actions";
 import { closeFormStateAction } from "../../reduxTools/formForOrderHouse/actions";
-import { useGetObjectsQuery } from "../../reduxTools/requests";
+import { useGetObjectsQuery } from "../../reduxTools/requests/apiRequests";
 import { HouseIcon } from "../../assets/icons/inputIcons/HouseIcon";
 import { FormInput } from "../FormInput";
 import { Calendar } from "../../assets/icons/inputIcons/Calendar";

@@ -1,4 +1,4 @@
-import { useGetMainPageQuery, useGetBackPhotosQuery } from "../reduxTools/requests";
+import { useGetMainPageQuery, useGetBackPhotosQuery } from "../reduxTools/requests/apiRequests";
 
 export const useDatas = () =>{
   const { data:main } = useGetMainPageQuery();
