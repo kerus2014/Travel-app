@@ -5,12 +5,10 @@ $height: 54px;
 
 .button {
   @include text($colorWhite, 20px, 500, null, null);
-  display: flex;
-  align-items: center;
+  @include flex(row, center, center, nowrap);
   width: 100%;
   max-width: 240px;
   padding: 10px 20px;
-  justify-content: center;
   height: $height;
   background-color: $primaryColor;
   border-style: none;

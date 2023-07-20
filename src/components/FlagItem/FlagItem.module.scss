@@ -39,7 +39,7 @@ $triangles-height: calc($height/2);
   }
 
   .flag-text {
-    @include text(null, 17px, 500, normall, null);
+    @include text($text-color, 17px, 500, normal, none);
     @media (max-width: 768px) {
       font-size: 14px;
     }

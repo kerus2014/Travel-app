@@ -43,7 +43,7 @@
   }
   &__title {
     margin-bottom: 25px;
-    @include text(null, 20px, 600, normall, uppercase);
+    @include text($text-color, 20px, 600, normal, uppercase);
     @media (max-width: 950px) {
       margin-bottom: 10px;
     }

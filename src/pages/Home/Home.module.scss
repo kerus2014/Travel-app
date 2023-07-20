@@ -41,7 +41,7 @@
 
       .title {
         width: 100%;
-        @include text($colorWhite, 80px, 700, 80px, null);
+        @include text($colorWhite, 80px, 700, 80px, none);
         @media (max-width: 1250px) and (min-width: 360px) {
           font-size: calc(1.75rem + 52 * (100vw - 360px) / 890);
         }
@@ -50,17 +50,17 @@
           padding: 0px 47px;
         }
         @media (max-width: 360px) {
-          @include text($colorWhite, 28px, 700, 35px, null);
+          @include text($colorWhite, 28px, 700, 35px, none);
           padding-left: 27px;
         }
       }
 
       .descriptionTitle {
-        @include text($colorWhite, 16px, 600, normal, null);
+        @include text($colorWhite, 16px, 600, normal, none);
         margin-top: 30px;
         text-align: justify;
         @media (max-width: 768px) {
-          @include text($text-color, 16px, 500, normal, null);
+          @include text($text-color, 16px, 500, normal, none);
         }
         @media (max-width: 768px) {
           margin-top: 121px;
@@ -213,7 +213,7 @@
 
 .houses {
   padding-top: 54px;
-  @include flex(column, center, flex-start, null);
+  @include flex(column, center, flex-start, nowrap);
   @media (max-width: 768px) {
     padding-top: 0px;
   }
@@ -337,7 +337,7 @@
 
 .blockDescription {
   & p {
-    @include text($text-color, 16px, 400, normal, null);
+    @include text($text-color, 16px, 400, normal, none);
   }
 
   @media (max-width: 768px) {

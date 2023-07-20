@@ -15,7 +15,7 @@ export const LittleMealTimeCard = (props: IProps) => {
   return (
     <div className={styles.card}>
       <p className={styles.title}>{title}</p>
-      <div>
+      <div className={styles["time-price-block"]}>
         <div className={styles.time}>
           <div>
             <TimeIcon />

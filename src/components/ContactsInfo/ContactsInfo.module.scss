@@ -38,7 +38,7 @@
 
     .title {
       margin-bottom: 10px;
-      @include text(null, 35px, 500, 43px, uppercase);
+      @include text($text-color, 35px, 500, 43px, uppercase);
       @media (max-width: 768px) {
         line-height: normal;
         font-size: 18px;
@@ -47,7 +47,7 @@
     }
 
     .subtitle {
-      @include text(null, 35px, null, 43px, uppercase);
+      @include text($text-color, 35px, null, 43px, uppercase);
       @media (max-width: 768px) {
         font-size: 18px;
         line-height: normal;
@@ -93,7 +93,7 @@
     }
 
     & p {
-      @include text(null, 20px, 400, null, null);
+      @include text($text-color, 20px, 400, normal, none);
       @media (max-width: 768px) {
         font-size: 14px;
       }
@@ -115,9 +115,7 @@
       height: 100%;
       max-width: 74px;
       max-height: 85px;
-      display: flex;
-      justify-content: flex-start;
-      align-items: center;
+      @include flex(row, flex-start, center, nowrap);
     }
   }
 }

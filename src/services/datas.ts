@@ -1,9 +1,10 @@
 import {
+    DUSH,
     House,
     IEntertainmentCard,
-    IKitchenCard,
-    ISexData,
-    Rule,
+    IKitchenCard, INTERNET,
+    ISexData, KUHNIYA, MANGAL,
+    Rule, TELEVISOR,
 } from "../types";
 import haromi from "../assets/pics/houses/haromiIaromi/Изображение.png";
 import eggs from "../assets/pics/kitchen/kitchenLogoExample.png";
@@ -30,10 +31,13 @@ export const housesData: House[] = [
     Имеется интернет, телевидение. Перед домом большая беседка с русской печкой и летней кухней, мангал, гамак, место для костра. Рядом детская площадка. Вся мебель ручной работы.
     Имеется интернет, телевидение. Перед домом большая беседка с русской печкой и летней кухней, мангал, гамак, место для костра. Рядом детская площадка. Вся мебель ручной работы.
     Имеется интернет, телевидение. Перед домом большая беседка с русской печкой и летней кухней, мангал, гамак, место для костра. Рядом детская площадка.`,
-        photos: [haromi, eggs, haromi],
+        photos: [haromi, eggs, haromi, eggs],
         price_weekday: "150",
         price_holiday: "150",
-        objects_features: [haromi, haromi, haromi, haromi, haromi],
+        rooms_count: [{"Спальня": "2"}, {"Гостинная": "1"}],
+        pers_num: 7,
+        beds_count: 2,
+        objects_features: [TELEVISOR, MANGAL, KUHNIYA, DUSH, INTERNET],
     },
     {
         title: "Домик рубленый и мансардного типа",

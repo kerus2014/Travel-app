@@ -1,3 +1,5 @@
+@import "varaibles.scss";
+
 @mixin text ($color, $fontSize, $fontWeight, $lineHeight, $textTransform) {
   color: $color;
   font-size: $fontSize;

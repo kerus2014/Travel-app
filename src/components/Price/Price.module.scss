@@ -20,7 +20,7 @@
     }
 
     span {
-      @include text(null, 35px, 600, 22px, none);
+      @include text($text-color, 35px, 600, 22px, none);
       @media (max-width: 1000px) {
         font-size: 20px;
       }

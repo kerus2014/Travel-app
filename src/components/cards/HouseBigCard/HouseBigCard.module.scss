@@ -42,7 +42,7 @@
         text-transform: none;
       }
       @media (max-width: 768px) {
-        @include text($text-color, 18px, 500, normal, normal);
+        @include text($text-color, 18px, 500, normal, none);
       }
     }
 
@@ -104,10 +104,7 @@
         display: flex;
 
         span {
-          font-size: 30px;
-          line-height: 37px;
-          font-weight: 400;
-          color: $primaryColor;
+          @extend %persNum;
         }
       }
 
@@ -127,7 +124,7 @@
       height: 154px;
       overflow: hidden;
       margin-bottom: 26px;
-      @include text($text-color, 18px, 400, normal, normal);
+      @include text($text-color, 18px, 400, normal, none);
       text-overflow: ellipsis;
       //display: -webkit-box;
       //-webkit-line-clamp: 7;
