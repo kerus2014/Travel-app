@@ -1,10 +1,10 @@
 import styles from "./HouseItem.module.scss";
 import { HomeBlockTemplate } from "../../components/HomeBlockTemplate";
 import { useState, useEffect } from "react";
-import { DUSH, House, INTERNET, KUHNIYA, MANGAL, TELEVISOR } from "../../types";
+import { DUSH, House, IMeal, INTERNET, KUHNIYA, MANGAL, TELEVISOR } from "../../types";
 import { FaceBlock } from "../../components/FaceBlock/FaceBlock";
-import { useGetObjectsQuery } from "../../reduxTools/requests/requests";
-import { FormForOrder } from "../../components/Form";
+import { useGetFeedingInfoQuery, useGetObjectCurrentQuery } from "../../reduxTools/requests/apiRequests";
+import { ToFormButton } from '../../components/buttons/toFormButton';
 import { useParams } from "react-router";
 import { MyGallery } from "../../components/ImageGalleryCarousel";
 import { Person } from "../../assets/icons/features/Person";
@@ -17,41 +17,43 @@ import { Shower } from "../../assets/icons/features/Shower";
 import { Internet } from "../../assets/icons/features/Internet";
 import { KitchenIcon } from "../../assets/icons/features/KitchenIcon";
 import { BeatLoader } from "react-spinners";
+import { useDatas } from "../../services/useDatas";
+import { useRate } from "../../services/useRate";
 
 export const HouseItem = () => {
-  const {id} = useParams()
-  // const { data, error } = useGetObjectsQuery();
-  // console.log(data);
+  const {id} = useParams();
+  const { data } = useGetObjectCurrentQuery(id!);
+  const { data:meal} = useGetFeedingInfoQuery();
+  const datas = useDatas();
+  const {title, nameForSearchButton} = datas;
+  const rate = useRate();
+  const price_weekday = data?.price_weekday?
+  `от ${Math.round (Number(data.price_weekday) / rate.cur_scale * rate.cur_rate/10) * 10} BYN будние дни`
+  : "цену уточняйте"
+  const price_holiday = data?.price_holiday?
+  `от ${Math.round (Number(data.price_holiday) / rate.cur_scale * rate.cur_rate/10) * 10} BYN выходные дни`
+  : price_weekday
 
-  const [houseItem,setHouseItem] = useState<House>({} as House);
 
-  const URL = `http://eugenest.vh77.hosterby.com/swagger-ui/objects/${id}`;
-  const request = new Request(URL, {
-    method: "GET",
-  });
-
-  useEffect(() => {
-    fetch(request)
-      .then(res => res.json())
-      .then(res => setHouseItem(res))
-      .catch(console.error);
-  },[houseItem])
-
+  if (!data) return(
+  <div className={styles.preload}><BeatLoader color="#583711" /></div>
+  )
+  console.log(data)
   return (
     <>
-      {JSON.stringify(houseItem) != "{}" ?
+      {JSON.stringify(data) !== "{}" ?
       <>
-        <FaceBlock title={houseItem.title} image={houseItem.objects_photos[0]} />
+        <FaceBlock title={data.title} image={data.photos[0]} />
         <HomeBlockTemplate >
           <div className={styles.container}>
             <div className={styles["left-column"]}>
               <div className={styles["first-row"]}>
-                <h1>{houseItem.title}</h1>
+                <h1>{data.title}</h1>
                 <div>
-                  <span>{houseItem.pers_num}</span>
+                  <span>{data.pers_num}</span>
                   <Person/>
                   <div className={styles["beds-container"]}>
-                    {houseItem.rooms_count && houseItem.rooms_count.map((el:any,index) => {
+                    {data.rooms_types && data.rooms_types.map((el,index) => {
                       for(let key in el){
                         if (key === "Спальня"){
                           return (<p>{el[key]} {+el[key] > 1 ? "спальни(ен)" : "спальня"}</p>)
@@ -64,14 +66,14 @@ export const HouseItem = () => {
                   </div>
                 </div>
               </div>
-              <MyGallery images={houseItem.objects_photos}/>
+              <MyGallery images={data.photos}/>
               <div className={styles.features}>
                 <h1>Удобства в домике</h1>
                 <hr />
                 <div className={styles.grid}>
-                  {houseItem.beds_count && houseItem.beds_count > 0 ? <div className={styles["grid-item"]}><BigBed littleIcon={true}/> {houseItem.beds_count} {houseItem.beds_count == 1 ? "кровать" : "кровати(ей)"}</div> : null }
+                  {data.bed_count && data.bed_count > 0 ? <div className={styles["grid-item"]}><BigBed littleIcon={true}/> {data.bed_count} {data.bed_count == 1 ? "кровать" : "кровати(ей)"}</div> : null }
                   {
-                    houseItem.objects_features?.map((elem, index) => {
+                    data.features?.map((elem, index) => {
                       switch(elem) {
                         case TELEVISOR:  
                           return <div className={styles["grid-item"]}><TV littleIcon={true}/> {TELEVISOR}</div>;
@@ -91,32 +93,44 @@ export const HouseItem = () => {
                 </div>
               </div>
               
-              <p className={styles["description"]}>{houseItem.description_long}</p>
+              <p className={styles["description"]}>{data.description_long}</p>
             </div>
             <div className={styles["right-column"]}>
-              <p>{houseItem.description_short}</p>
-              <FormForOrder value="Забронировать домик" buttonValue="Забронировать" className={styles.form}/>
+              <p>{data.description_short}</p>
+              <ToFormButton value={title} buttonValue={nameForSearchButton} className={styles.form}/>
               <div className={styles.prices}>
                 <FlagItem value="За дом в сутки" className={styles.flag}/>
                 <div className={styles.row}>
-                  от <span>{houseItem.price_weekday?.slice(0,houseItem.price_weekday?.length-3)}</span> BYN будние дни
+                  {price_weekday}  
                 </div>
                 <div className={styles.row}>
-                  от <span>{houseItem.price_holiday?.slice(0,houseItem.price_holiday?.length-3)}</span> BYN выходные дни
+                  {price_holiday} 
                 </div>
               </div>
               <div className={styles.kitchen}>
                 <h2>Кухня</h2>
-                <LittleMealTimeCard/>
-                <LittleMealTimeCard title="Обед" time="14:00"/>
-                <LittleMealTimeCard title="Ужин" time="19:00" price="20"/>
+                {meal && meal.map((el:IMeal) => {
+                  return (
+                <LittleMealTimeCard
+                  key={el.id}
+                  id = {el.id}
+                  time={el.time}
+                  title={el.title}
+                  price={el.price}
+                  cur_rate = {rate.cur_rate}
+                  cur_scale = {rate.cur_scale}
+                />
+                );
+              })
+            }
+               
               </div>
             </div>
           </div>
         </HomeBlockTemplate>
 
         <HomeBlockTemplate>
-          <FormForOrder value="Заповедный остров" buttonValue="Найти домик" />
+          <ToFormButton value={title} buttonValue={nameForSearchButton}  />
         </HomeBlockTemplate>
       </>
       :

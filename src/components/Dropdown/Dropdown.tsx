@@ -56,8 +56,8 @@ export const Dropdown = (props: IProps) => {
         [styles["dropdown__items_visible"]]: open,
       })}
       >
-      {dropdownData.map(({ title }) => (
-        <div className={styles["dropdown__item"]} key={title} onClick={(e) => clickDropdownItem(e, title)}>
+      {dropdownData&&dropdownData.map(({ title, id }) => (
+        <div className={styles["dropdown__item"]} key={id} onClick={(e) => clickDropdownItem(e, title)}>
           {title}
         </div>
       ))}

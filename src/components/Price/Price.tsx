@@ -1,7 +1,7 @@
 import styles from "./Price.module.scss";
 
 interface IProps {
-  price: string;
+  price: number;
   type: "weekday" | "weekend";
 }
 
@@ -9,7 +9,7 @@ const Price = (props: IProps) => {
   const { type, price } = props;
   return (
     <div className={styles.container}>
-      <p>от <span>{price}</span> BYN </p>
+      <p>от <span>{price} </span>BYN </p>
       <p>{type === "weekday" ? "будни" : "выходные"}</p>
     </div>
   );

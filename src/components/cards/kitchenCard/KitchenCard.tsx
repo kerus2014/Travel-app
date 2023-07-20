@@ -1,7 +1,7 @@
-import { IKitchenCard } from "../../../types";
+import { IDishCard } from "../../../types";
 import styles from "./KitchenCard.module.scss";
 
-export const KitchenCard = (props: IKitchenCard) => {
+export const KitchenCard = (props: IDishCard) => {
   const { photo, title, description } = props;
   return (
     <div className={styles.card}>

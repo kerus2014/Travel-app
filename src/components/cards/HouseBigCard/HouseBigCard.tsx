@@ -21,8 +21,12 @@ const housePhotosSettings = {
   dots: true,
   infinite: true,
 };
+interface IProps extends House {
+  cur_scale: number,
+  cur_rate: number
+}
 
-const HouseBigCard = (props: House) => {
+const HouseBigCard = (props: IProps) => {
   const navigate = useNavigate()
 
   const {
@@ -30,23 +34,32 @@ const HouseBigCard = (props: House) => {
     title,
     description_short,
     description_long,
-    objects_photos,
+    photos,
     price_weekday,
     price_holiday,
-    objects_features,
+    features,
     pers_num,
-    beds_count,
-    beds_types
+    bed_count,
+    beds_types,
+    rooms_types,
+    cur_rate,
+    cur_scale
   } = props;
+  const priceBYN_weekday = price_weekday?
+  Math.round(Number(price_weekday) / cur_scale * cur_rate/10)* 10: 0
+ 
+  const priceBYN_holiday = price_holiday?
+  Math.round(Number(price_holiday) / cur_scale * cur_rate/10) * 10 : priceBYN_weekday
+  
 
   return (
     <div className={styles.card}>
       <div className={styles["card-left"]}>
         <h2 className={styles.title}>{title}</h2>
         <Carousel settings={housePhotosSettings}>
-          {objects_photos.map((el, index) => {
+          {photos.map((el) => {
             return (
-              <div key={index}>
+              <div key={el}>
                 <img className={styles.image} src={el} alt="" />
               </div>
             );
@@ -68,26 +81,26 @@ const HouseBigCard = (props: House) => {
             }
           })}
           {
-            objects_features?.slice(0,3).map((elem, index) => {
-
+            features?.slice(0,3).map((elem, index) => {
+              
               switch(elem) {
                 case TELEVISOR:  
-                  return <TV/>;
+                  return <TV key = {index}/>;
                 case MANGAL:  
-                  return <Fridge/>;
+                  return <Fridge key = {index}/>;
                 case KUHNIYA:  
-                  return <KitchenIcon/>;
+                  return <KitchenIcon key = {index}/>;
                 case DUSH:  
-                  return <Shower/>;
+                  return <Shower key = {index}/>;
                 case INTERNET:  
-                  return <Internet/>;
+                  return <Internet key = {index}/>;
                 default:
                   return null;
               }
             }
           )}
           {
-            objects_features && objects_features?.length > 3 ? <div className={styles["additional-features"]}>+</div> : null
+            features && features?.length > 3 ? <div className={styles["additional-features"]}>+</div> : null
           }
         </div>
         <div className={styles.descriptionLong}>{description_long}</div>
@@ -96,10 +109,10 @@ const HouseBigCard = (props: House) => {
             <p className={styles.priceText}>За дом в сутки:</p>
             <div className={styles.priceContainerContainer}>
               <div className={styles.priceContainer}>
-                <Price price={price_weekday!} type="weekday" />
+                <Price price={priceBYN_weekday} type="weekday" />
               </div>
               <div className={styles.priceContainer}>
-                <Price price={price_holiday!} type="weekend" />
+                <Price price={priceBYN_holiday} type="weekend" />
               </div>
             </div>
           </div>

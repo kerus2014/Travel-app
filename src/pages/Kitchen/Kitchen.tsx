@@ -1,48 +1,53 @@
 import { FaceBlock } from "../../components/FaceBlock";
-import image from "../../assets/pics/KitchenPage/Изображение.png";
-import { FormForOrder } from "../../components/Form";
+import { ToFormButton } from './../../components/buttons/toFormButton/ToFormButton';
 import { HomeBlockTemplate } from "../../components/HomeBlockTemplate";
-import { kitchenCardData } from "../../services/datas";
+import { useDatas } from "../../services/useDatas";
+import { useRate } from "../../services/useRate";
 import { KitchenCard } from "../../components/cards/KitchenCard";
 import styles from "./Kitchen.module.scss";
 import { MealTimeCard } from "../../components/cards/MealTimeCard";
-import { useEffect, useState } from "react";
-import { House, IKitchenCard } from "../../types";
 import { BeatLoader } from "react-spinners";
+import { useGetFeedingInfoQuery, useGetDishesQuery } from "../../reduxTools/requests/apiRequests";
+import { IMeal } from "../../types";
+
 
 export const Kitchen = () => {
-  // const { data, error } = useGetObjectsQuery();
-  // console.log(error);
-  const [kitchenData,setKitchenData] = useState<IKitchenCard[]>([]);
-
-  const URL = `http://eugenest.vh77.hosterby.com/swagger-ui/dishes/`;
-  const request = new Request(URL, {
-    method: "GET",
-  });
-
-  useEffect(() => {
-    fetch(request)
-      .then(res => res.json())
-      .then(res => setKitchenData(res))
-      .catch(console.error);
-  },[kitchenData])
-
-
+  const { data: meal} = useGetFeedingInfoQuery();
+  const { data: dishes } = useGetDishesQuery();
+  const datas = useDatas();
+  const rate = useRate();
+  const {title, titleKitchen, kitchen_back, nameForSearchButton} = datas;
+  const {cur_rate, cur_scale} = rate;
+  
+  
   return (
     <>
-      <FaceBlock title="Домашняя кухня" image={image} />
+      <FaceBlock title={titleKitchen} image={kitchen_back} />
       <HomeBlockTemplate title="Расписание">
         <div className={styles["meal-time"]}>
-          <MealTimeCard title="Завтрак" time="9:00" price="15" />
-          <MealTimeCard title="Обед" time="12:00" price="15" />
-          <MealTimeCard title="Ужин" time="18:00" price="15" />
+         {meal && meal.map((el:IMeal) => {
+            return (
+              <MealTimeCard
+                key={el.id}
+                id = {el.id}
+                time={el.time}
+                title={el.title}
+                price={el.price}
+                cur_rate ={cur_rate}
+                cur_scale ={cur_scale}
+                
+              />
+            );
+          })
+        }
         </div>
         <div className={styles.title}>У нас можно попробовать</div>
         <div className={styles.grid}>
-          {kitchenData ? kitchenData.map((el, index) => {
+          {dishes ? dishes.map((el) => {
             return (
               <KitchenCard
-                key={index.toString()}
+                key={el.id}
+                id = {el.id}
                 photo={el.photo}
                 title={el.title}
                 description={el.description}
@@ -57,7 +62,7 @@ export const Kitchen = () => {
         </div>
       </HomeBlockTemplate>
       <HomeBlockTemplate>
-        <FormForOrder value="Заповедный остров" buttonValue="Найти домик" />
+        <ToFormButton value={title} buttonValue={nameForSearchButton} />
       </HomeBlockTemplate>
     </>
   );

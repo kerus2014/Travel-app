@@ -1,29 +1,37 @@
-import { useGetEntertainmentsQuery } from "../../reduxTools/requests/requests";
+import { useGetEntertainmentsQuery } from "../../reduxTools/requests/apiRequests";
 import { EntertainmentBigCard } from "../../components/cards/EntertainmentBigCard/EntertainmentBigCard";
-import image from "../../assets/pics/Entertainment/Картинка.png";
 import { HomeBlockTemplate } from "../../components/HomeBlockTemplate";
 import styles from "./Entertainment.module.scss";
-import { FormForOrder } from "../../components/Form";
 import { FaceBlock } from "../../components/FaceBlock";
+import { ToFormButton } from './../../components/buttons/toFormButton/ToFormButton';
+import {useDatas} from "../../services/useDatas";
+import { useRate } from "../../services/useRate";
+
 
 const Entertainment = () => {
   const { data } = useGetEntertainmentsQuery();
-
-  if (data === undefined) {
-    return null;
-  }
+  const datas = useDatas();
+  const rate = useRate();
+  const {titleEntertainment, entertainments_back} = datas;
+  const {cur_rate, cur_scale } = rate;
+  
   return (
     <>
-      <FaceBlock title="Развлечения" image={image}/>
+      <FaceBlock title={titleEntertainment} image={entertainments_back}/>
       <HomeBlockTemplate title="">
         <div className={styles.container}>
-          {data.map((element) => (
-            <EntertainmentBigCard key={element.id} {...element} />
+          {data && data.map((element) => (
+            <EntertainmentBigCard 
+              key={element.id} 
+              cur_rate = {cur_rate}
+              cur_scale = {cur_scale}
+              {...element}
+             />
           ))}
         </div>
       </HomeBlockTemplate>
       <HomeBlockTemplate>
-        <FormForOrder/>
+        <ToFormButton/>
       </HomeBlockTemplate>
     </>
   );

@@ -1,40 +1,47 @@
 import image from "../../assets/pics/HousesPage/housesPageBgImageBanner.png";
-import { BackgroundBlockImage } from "../../components/BackgroundBlockImage";
-import { Container } from "../../components/Container";
-import { housesData } from "../../services/datas";
 import HouseBigCard from "../../components/cards/HouseBigCard";
 import styles from "./Houses.module.scss";
 import { HomeBlockTemplate } from "../../components/HomeBlockTemplate";
-import { useState, useEffect } from "react";
 import { House } from "../../types";
 import { FaceBlock } from "../../components/FaceBlock/FaceBlock";
-import { useGetObjectsQuery } from "../../reduxTools/requests/requests";
-import { FormForOrder } from "../../components/Form";
+import { useGetObjectsQuery, useGetMainPageQuery } from "../../reduxTools/requests/apiRequests";
 import { BeatLoader } from "react-spinners";
+import { ToFormButton } from "../../components/buttons/toFormButton";
+import { useDatas} from "../../services/useDatas";
+import { useRate } from "../../services/useRate";
+
 
 export const Houses = () => {
-  const { data, error } = useGetObjectsQuery();
+  const { data, isError:houseErr, isLoading:houseLoad} = useGetObjectsQuery();
+  const datas = useDatas();
+  const rate = useRate();
 
+  const {title, titleHouse, house_back, nameForSearchButton} = datas
+  const {cur_rate, cur_scale} = rate;
+    
   return (
     <>
-      <FaceBlock title="Домики" image={image} />
+      <FaceBlock title={titleHouse} image={house_back} />
       <HomeBlockTemplate title="">
         <div className={styles["houses-container"]}>
-          {data ? data.map((house:any, index:number) => {
+          {data ? data.map((house:House) => {
             return (
               <HouseBigCard
-                key={index.toString()}
+                key={house.id}
                 id={house.id}
                 title={house.title}
                 description_short={house.description_short}
                 description_long={house.description_long}
-                objects_photos={house.objects_photos}
+                photos={house.photos}
                 price_weekday={house.price_weekday}
                 price_holiday={house.price_holiday}
-                objects_features={house.objects_features}
+                features={house.features}
                 pers_num={house.pers_num}
-                beds_count={house.beds_count}
-                beds_types={house.beds_types}
+                bed_count={house.bed_count}
+                beds_types={house.beds_types} 
+                rooms_types={house.rooms_types}
+                cur_rate = {cur_rate}
+                cur_scale = {cur_scale}
               />
             );
           })
@@ -46,7 +53,7 @@ export const Houses = () => {
         </div>
       </HomeBlockTemplate>
       <HomeBlockTemplate>
-        <FormForOrder value="Заповедный остров" buttonValue="Найти домик" />
+        <ToFormButton value={title} buttonValue={nameForSearchButton} />
       </HomeBlockTemplate>
     </>
   );
