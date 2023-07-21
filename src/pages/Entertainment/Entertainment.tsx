@@ -16,23 +16,42 @@ const Entertainment = () => {
     // }
 
     const entertainmentCardsSettings = {
-        slidesToShow: 1,
+        // slidesToShow: 1,
+        // slidesToScroll: 1,
+        // rows: 3,
+        // dots: true,
+        // infinite: true,
+        // slidesPerRow: 3,
+        slidesToShow: 3,
         slidesToScroll: 1,
-        rows: 3,
+        rows: 1,
         dots: true,
         infinite: true,
         slidesPerRow: 3,
-        // responsive: [
-        //     {
-        //         breakpoint: 1024,
-        //         settings: {
-        //             slidesToShow: 3,
-        //             slidesToScroll: 3,
-        //             infinite: true,
-        //             dots: true
-        //         }
-        //     }
-        // ]
+        responsive: [
+            {
+                breakpoint: 950,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 1,
+                    infinite: true,
+                    dots: true,
+                    rows: 1,
+                    slidesPerRow: 2,
+                }
+            },
+            {
+                breakpoint: 550,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                    infinite: true,
+                    dots: true,
+                    rows: 3,
+                    slidesPerRow: 1,
+                }
+            }
+        ]
     };
 
     return (

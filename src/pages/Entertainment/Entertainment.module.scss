@@ -2,31 +2,42 @@
 @import "../../styles/extensions.scss";
 
 .container {
-  width: 100%;
+  //width: 100%;
 
   & :global(.slick-slider) {
-    //width: 100%;
     & :global(.slick-list) {
-      //margin: 0 -20px;
-      //overflow: visible !important;
-      //overflow-x: clip !important;
+      margin: 0 -20px;
+      @media(max-width: 1250px) {
+        margin: 0 -18px;
+      }
 
 
       & :global(.slick-track) {
-
+        //display: flex;
+        //justify-content: space-between;
 
         & :global(.slick-slide) {
-          width: 100% !important;
-          display: flex;
-          gap: 30px;
+          padding: 0 12px;
+          @media(max-width: 550px) {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+          }
 
           & > div {
+            margin: 5px;
             width: 100%;
             display: flex;
             flex-direction: column;
             gap: 35px;
+            @media(max-width: 768px) {
+              gap: 25px;
+            }
           }
         }
+        //& :global(.slick-slide):nth-last-child {
+        //  margin-right: 0px;
+        //}
       }
 
 
@@ -37,6 +48,9 @@
     //height: 20px;
     position: static;
     margin-top: 30px;
+    @media(max-width: 768px) {
+      margin-top: 15px;
+    }
 
     & li button:before {
       font-size: 10px;
