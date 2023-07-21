@@ -1,80 +1,113 @@
 @import "../../../styles/varaibles.scss";
+@import "../../../styles/mixins.scss";
+@import "../../../styles/extensions.scss";
 
 .card {
+  max-width: 377px;
   display: flex;
   flex-direction: column;
   overflow-x: hidden;
   position: relative;
+  height: 100%;
+  max-height: 522px;
   display: flex;
-  box-shadow: 0px 4px 17px 5px rgba(218, 203, 203, 0.4);
+  box-shadow: 0px 0px 17px 5px rgba(218, 203, 203, 0.40);
   padding: 25px 21px 12px 21px;
+  //border: 2px solid black;
 
-  .more{
-    cursor: pointer;
-    font-weight: 500;
+  @media(max-width: 768px) {
+    padding: 20px 25px 20px 20px;
   }
 
-  .price{
-    font-weight: 500;
-  }
-
-  .title{
+  .title {
+    height: 72px;
     cursor: pointer;
-    font-size: 30px;
-    font-weight: 500;
-    line-height: 37px;
-    text-transform: uppercase;margin-bottom: 20px;
+    @include text($text-color, 30px, 500, normal, uppercase);
+    margin-bottom: 20px;
+    @media(max-width: 768px) {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
   }
 
   img {
-    height: 215px;
+    max-height: 215px;
     object-fit: cover;
     object-position: bottom;
     width: 100%;
   }
-  & :global(.slick-slide) {
-    padding: 0 20px;
-    flex-direction: column;
-    row-gap: 20px;
-  }
 
-  & :global(.slick-list) {
-    margin: 0 -20px;
-    overflow: visible !important;
-    overflow-x: clip !important;
-  }
+  & :global(.slick-slider) {
+    max-height: 250px;
+    margin-bottom: 12px;
 
-  & :global(.slick-dots li button:before) {
-    font-size: 10px;
-  }
 
-  & :global(.slick-dots li.slick-active button:before) {
-    opacity: 1;
-    color: $primaryColor !important;
-  }
+    & :global(.slick-list) {
+      max-height: 215px;
+      height: 100%;
+      margin: 0 -20px;
+      overflow: visible;
+      overflow-x: clip;
 
-  & :global(.slick-dots) {
-    position: static;
-    margin-top: 15px;
+      & :global(.slick-track) {
+        display: flex;
+        height: 100%;
+
+        & :global(.slick-slide) {
+          width: 100%;
+          min-height: 1px;
+          padding: 0 20px;
+        }
+      }
+    }
+    & :global(.slick-dots) {
+      position: static;
+      margin-top: 9px;
+
+      & li button:before {
+        font-size: 10px;
+        color: $text-color !important;
+        opacity: 1;
+      }
+    }
+    & :global(.slick-dots li.slick-active button:before) {
+      @extend %slickActive;
+    }
   }
   & :global(.slick-arrow) {
     display: none !important;
   }
+
+  .description_short {
+    @include text($text-color, 16px, 400, normal, none);
+    height: 80px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    @media (max-width: 768px) {
+      font-size: 14px;
+      margin: 10px 0px;
+    }
+  }
+
+  .footer {
+    margin: 20px 0px 0px;
+    display: flex;
+    justify-content: space-between;
+
+    & div {
+      @include text($text-color, 18px, 500, normal, none);
+
+      @media (max-width: 768px) {
+        font-size: 14px;
+      }
+    }
+
+    .more {
+      cursor: pointer;
+    }
+  }
 }
 
-.description_short {
-  font-size: 16px;
-  height: 88px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  margin-bottom: 26px;
-  -webkit-line-clamp: 4;
-  -webkit-box-orient: vertical;
-  margin-top: 20px;
-}
-
-.footer {
-  display: flex;
-  justify-content: space-between;
-}

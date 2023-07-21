@@ -9,7 +9,7 @@ interface IProps extends ClassName {
 }
 
 export const FaceBlock = (props: IProps) => {
-  const { image, className,title } = props;
+  const { image, className, title } = props;
   return (
     <div className={styles["face-block"]}>
         <BackgroundBlockImage image={image} />

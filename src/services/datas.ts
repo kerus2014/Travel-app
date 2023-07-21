@@ -11,6 +11,7 @@ import eggs from "../assets/pics/kitchen/kitchenLogoExample.png";
 import faceImg1 from "../assets/pics/Home/carouselImages/20210607_104318 1.png";
 import faceImg2 from "../assets/pics/Home/carouselImages/IMG-1127d31fd8da398fa5b4f7f8a070e0b5-V 1.png";
 import faceImg3 from "../assets/pics/Home/carouselImages/IMG-1127d31fd8da398fa5b4f7f8a070e0b5-V 2.png";
+import entertainment from "../assets/pics/Entertainment/Картинка.png"
 
 export const sexData: ISexData[] = [
     {
@@ -122,19 +123,30 @@ export const kitchenCardData: IKitchenCard[] = [
 
 export const entertainmentCardData: IEntertainmentCard[] = [
     {
-        entertaiments_photos: eggs,
+        entertaiments_photos: [entertainment],
         title: "Купаловская ночь",
+        entertaiments_prices: [
+            {"ДАЙВИНГ": "50"}
+        ],
+        description_short: "Первоначальные навыки погружений вы освоите в комфортной, спокойной обстановке. Все " +
+            "необходимое для погружения вам предоставят",
         id: 1,
     },
     {
         entertaiments_photos: eggs,
         title: "Дайвинг",
         id: 2,
+        description_short: "Первоначальные навыки погружений вы освоите в комфортной, спокойной обстановке. Все " +
+            "необходимое для погружения вам предоставят Первоначальные навыки погружений вы освоите в комфортной, спокойной обстановке. Все " +
+            "необходимое для погружения вам предоставят",
     },
     {
         entertaiments_photos: eggs,
         title: "Рыбалка",
         id: 3,
+        description_short: "Первоначальные навыки погружений вы освоите в комфортной, спокойной обстановке. Все " +
+            "необходимое для погружения вам предоставят Первоначальные навыки погружений вы освоите в комфортной, спокойной обстановке. Все " +
+            "необходимое для погружения вам предоставят",
     },
     {
         entertaiments_photos: eggs,
@@ -155,6 +167,14 @@ export const entertainmentCardData: IEntertainmentCard[] = [
         entertaiments_photos: eggs,
         title: "Суп куриный",
         id: 7,
+        description_short: "Первоначальные навыки погружений вы освоите в комфортной, спокойной обстановке. Все " +
+            "необходимое для погружения вам предоставят Первоначальные навыки погружений вы освоите в комфортной, спокойной обстановке. Все " +
+            "необходимое для погружения вам предоставят",
+    },
+    {
+        entertaiments_photos: eggs,
+        title: "Суп куриный",
+        id: 8,
     },
     {
         entertaiments_photos: eggs,

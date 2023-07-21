@@ -18,7 +18,9 @@ export interface IKitchenCard {
 
 export interface IEntertainmentCard {
   id?: number;
+  entertaiments_prices?: IEntertainmentPrices[];
   entertaiments_photos?: string[];
+  description_short?: string;
   title: string;
 }
 
@@ -27,7 +29,7 @@ export interface IEntertainmentPrices{
 }
 
 export interface IEntertainments extends IEntertainmentCard {
-  entertaiments_prices: IEntertainmentPrices[];
+  entertaiments_prices?: IEntertainmentPrices[];
   description_short?: string;
   description_long?: string;
   price_desription?: string;

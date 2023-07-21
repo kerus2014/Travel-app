@@ -4,7 +4,7 @@ import { photoExample } from "../../../services/datas";
 import styles from "./EntertainmentBigCard.module.scss";
 import { useNavigate } from "react-router";
 
-const housePhotosSettings = {
+const entertainmentPhotosSettings = {
   slidesToShow: 1,
   slidesToScroll: 1,
   rows: 1,
@@ -33,8 +33,9 @@ export const EntertainmentBigCard = (props: IEntertainments) => {
         {title}
       </div>
 
-      <Carousel settings={housePhotosSettings}>
-        {entertaiments_photos && entertaiments_photos.map((el, index) => {
+      <Carousel settings={entertainmentPhotosSettings}>
+        {/*{entertaiments_photos && entertaiments_photos.map((el, index) => {*/}
+        {photoExample && photoExample.map((el, index) => {
           return (
             <div key={index}>
               <img className={styles.image} src={el} alt="" />
@@ -52,7 +53,7 @@ export const EntertainmentBigCard = (props: IEntertainments) => {
         </div>
         <div className={styles.price}>
           от {prices && prices[0]} {prices && prices[0] && prices[0] > 1 ? "рублей" : "рубля"}
-        </div> 
+        </div>
       </div>
     </div>
   );
