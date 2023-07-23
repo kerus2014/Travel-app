@@ -123,13 +123,16 @@ export const kitchenCardData: IKitchenCard[] = [
 
 export const entertainmentCardData: IEntertainmentCard[] = [
     {
-        entertaiments_photos: [entertainment],
+        entertaiments_photos: [entertainment, eggs, haromi],
         title: "Купаловская ночь",
         entertaiments_prices: [
-            {"ДАЙВИНГ": "50"}
+            {"Купаловская ночь": "50"}
         ],
         description_short: "Первоначальные навыки погружений вы освоите в комфортной, спокойной обстановке. Все " +
             "необходимое для погружения вам предоставят",
+        description_long: "Первоначальные навыки погружений вы освоите в комфортной, спокойной обстановке. Все " +
+            "необходимое для погружения вам предоставят jnbbbbbbbbbb bbbbbbbbb bbbjjbmvk vkvkkkvkv vmvmvm mvmnvnnn " +
+            "nfkfkrkrkrkrkr rmfmmmffmfmfmfmn",
         id: 1,
     },
     {

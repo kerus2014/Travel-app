@@ -21,6 +21,7 @@ export interface IEntertainmentCard {
   entertaiments_prices?: IEntertainmentPrices[];
   entertaiments_photos?: string[];
   description_short?: string;
+  description_long?: string;
   title: string;
 }
 
