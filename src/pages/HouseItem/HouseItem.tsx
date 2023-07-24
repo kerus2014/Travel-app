@@ -18,6 +18,7 @@ import {Internet} from "../../assets/icons/features/Internet";
 import {KitchenIcon} from "../../assets/icons/features/KitchenIcon";
 import {BeatLoader} from "react-spinners";
 import {housesData} from "../../services/datas";
+import {LittleKitchenCard} from "../../components/cards/LittleKitchenCard";
 
 export const HouseItem = () => {
     const {id} = useParams()
@@ -120,12 +121,7 @@ export const HouseItem = () => {
                                         выходные дни
                                     </div>
                                 </div>
-                                <div className={styles.kitchen}>
-                                    <h2>Кухня</h2>
-                                    <LittleMealTimeCard/>
-                                    <LittleMealTimeCard title="Обед" time="14:00"/>
-                                    <LittleMealTimeCard title="Ужин" time="19:00" price="20"/>
-                                </div>
+                                <LittleKitchenCard />
                             </div>
                         </div>
                     </HomeBlockTemplate>

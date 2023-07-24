@@ -13,8 +13,6 @@
 
 
       & :global(.slick-track) {
-        //display: flex;
-        //justify-content: space-between;
 
         & :global(.slick-slide) {
           padding: 0 12px;
@@ -35,12 +33,7 @@
             }
           }
         }
-        //& :global(.slick-slide):nth-last-child {
-        //  margin-right: 0px;
-        //}
       }
-
-
     }
   }
 

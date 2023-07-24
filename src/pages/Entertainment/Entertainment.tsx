@@ -16,12 +16,6 @@ const Entertainment = () => {
     // }
 
     const entertainmentCardsSettings = {
-        // slidesToShow: 1,
-        // slidesToScroll: 1,
-        // rows: 3,
-        // dots: true,
-        // infinite: true,
-        // slidesPerRow: 3,
         slidesToShow: 3,
         slidesToScroll: 1,
         rows: 1,

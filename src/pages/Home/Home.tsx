@@ -89,7 +89,7 @@ export const Home = () => {
         infinite: true,
         responsive: [
             {
-                breakpoint: 450,
+                breakpoint: 550,
                 settings: {
                     slidesToShow: 1,
                     slidesToScroll: 1,
