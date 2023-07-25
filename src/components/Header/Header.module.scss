@@ -9,11 +9,12 @@
   z-index: 2;
   transition-duration: 0.25s;
   padding-top: 10px;
+  background-color: $text-color;
   @media (max-width:360px) {
     padding-top: 2px;
   }
   &.headerBg {
-    background-color: $text-color;
+    //background-color: $text-color;
   }
   @media (max-width:768px) {
     height: 80px;

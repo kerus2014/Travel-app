@@ -1,4 +1,5 @@
 @import "../../../styles/varaibles.scss";
+@import "../../../styles/mixins.scss";
 
 $height: 95px;
 $triangles-height: calc($height/2);
@@ -6,11 +7,15 @@ $triangles-height: calc($height/2);
 .flag {
   display: flex;
   align-items: center;
-  padding: 5px;
+  padding: 17px 5px 18px 41px;
   position: relative;
   height: $height;
   background-color: $secondaryColor;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+  @media(max-width: 768px) {
+    padding: 5px 5px 3px 41px;
+    height: 82px;
+  }
 
   &::before {
     content: "";
@@ -19,7 +24,7 @@ $triangles-height: calc($height/2);
     width: 0;
     right: -24px;
     border-left: 24px solid $secondaryColor;
-    border-top: $triangles-height solid transparent;
+    border-top: calc($height/2) solid transparent;
     
   }
 
@@ -38,13 +43,23 @@ $triangles-height: calc($height/2);
     position: absolute;
     left:0px;
     top:0px;
-    transform:translateX(-50%) ;
+    transform:translateX(-50%);
+
+    svg {
+      width: 66px;
+      height: 96px;
+      @media(max-width: 768px) {
+        width: 55px;
+        height: 82px;
+      }
+    }
   }
 
   p{
-    color: $primaryColor;
-    font-size: 16px;
-    font-weight: 500;
-    margin-left: 45px;
+    @include text($text-color, 16px, 500, normal, none);
+
+    @media(max-width: 768px) {
+      font-size: 14px;
+    }
   }
 }

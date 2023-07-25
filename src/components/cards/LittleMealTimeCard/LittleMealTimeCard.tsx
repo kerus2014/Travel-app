@@ -1,7 +1,5 @@
-import { PriceIcon } from "../../../assets/icons/Price";
-import { TimeIcon } from "../../../assets/icons/Time";
-import { IKitchenCard } from "../../../types";
-import { FlagItem } from "../../FlagItem";
+import {PriceIcon} from "../../../assets/icons/Price";
+import {TimeIcon} from "../../../assets/icons/Time";
 import styles from "./LittleMealTimeCard.module.scss";
 
 interface IProps {
