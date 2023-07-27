@@ -1,0 +1,60 @@
+@import "../../styles/varaibles.scss";
+@import "../../styles/mixins.scss";
+
+.not-found-block {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+
+  .description {
+    @include flex(column, center, center, nowrap);
+    gap: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    .number {
+      @include text($text-color, 200px, 400, normal, none);
+    }
+
+    .text {
+      @include text($text-color, 42px, 800, 52px, none);
+    }
+  }
+
+  .big {
+    position: absolute;
+    top: 30%;
+    right: 35%;
+    width: 167px;
+    height: 167px;
+    z-index: -1;
+  }
+
+  .middle {
+    position: absolute;
+    top: 14%;
+    right: 6%;
+    width: 141px;
+    height: 141px;
+  }
+
+  .little {
+    position: absolute;
+    top: 58%;
+    left: 11%;
+    width: 63px;
+    height: 63px;
+  }
+  .little + .little {
+    position: absolute;
+    top: 70%;
+    left: 75%;
+    background-color: $text-color;
+  }
+  .big, .middle, .little {
+    border-radius: 50%;
+    background-color: $secondaryColor;
+  }
+}

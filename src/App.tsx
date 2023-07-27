@@ -10,6 +10,7 @@ import Entertainment from "./pages/Entertainment/Entertainment";
 import EntertainmentCurrent from "./pages/EntertainmentCurrent/EntertainmentCurrent";
 import { Nearest } from "./pages/Nearest";
 import { Gallery } from "./pages/Gallery";
+import {NotFound} from "./pages/NotFound";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path="gallery" element={<Gallery />} />
         <Route path="nearest" element={<Nearest />} />
       </Route>
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 }

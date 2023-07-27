@@ -333,14 +333,10 @@
       }
     }
   }
-
 }
 
 .blockDescription {
-  & p {
-    @include text($text-color, 16px, 400, normal, none);
-  }
-
+  @include text($text-color, 16px, 400, normal, none);
   @media (max-width: 768px) {
     display: none;
   }
