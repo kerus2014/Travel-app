@@ -37,7 +37,7 @@ export const ContactsInfo = (props: IProps) => {
                 <div className={styles.text}>
                     <p>Республика Беларусь, Витебская область, Глубокский р-н, д. Шо, ул. Полевая, д. 17</p>
                     <p>200 км от Минска, 140 км от Витебска</p>
-                    <p>Координаты: 55.167786, 28.250614</p>
+                    <p className={styles["contacts-coordinates"]}>Координаты: 55.167786, 28.250614</p>
                 </div>
                 <div className={styles.phones}>
                     <p>
