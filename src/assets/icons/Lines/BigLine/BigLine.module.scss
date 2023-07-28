@@ -1,0 +1,13 @@
+.bigLine {
+  position: absolute;
+  bottom: 6px;
+  right: 0px;
+  width: 70%;
+  height: 41%;
+  z-index: -1;
+
+   svg {
+     width: 100%;
+     height: 100%;
+   }
+}
